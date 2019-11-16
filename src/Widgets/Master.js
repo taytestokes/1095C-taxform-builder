@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 
+// Components
+import Uploader from "../Components/Uploader";
+
 class MasterWidget extends Component {
   render() {
-    return <div>Master Widget hello!</div>;
+    return (
+      <div>
+        <Uploader />
+      </div>
+    );
   }
 }
 
