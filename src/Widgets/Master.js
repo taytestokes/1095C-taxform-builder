@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 
-// Components
-import Uploader from "../Components/Uploader";
+// Router
+import MasterRouter from "../Routes/MasterRouter";
+
+// Styles
+import "../Styles/Reset.css";
 
 class MasterWidget extends Component {
   render() {
-    return (
-      <div>
-        <Uploader />
-      </div>
-    );
+    return <div>{MasterRouter}</div>;
   }
 }
 
