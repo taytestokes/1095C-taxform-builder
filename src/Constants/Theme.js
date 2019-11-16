@@ -6,11 +6,11 @@ module.exports = {
   FontColors: {
     DARK: "#2f363d",
     LIGHT: "#FFFFFF",
-    GRAY: "#e6e6e6"
+    GRAY: "#A6A6A6"
   },
   FontFamily: {
     PRIMARY:
-      "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;"
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
   },
   Colors: {
     WHITE: "#FFFFFF",

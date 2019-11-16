@@ -11,12 +11,21 @@ class Login extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
-          <div style={styles.icon}>
-            <Icon.File size={25} />
+          <div style={styles.label}>
+            <Icon.User size={15} />
+            <p style={styles.labelName}>Email</p>
           </div>
-          <input placeholder="Email" style={styles.input} />
-          <input placeholder="Password" style={styles.input} />
+          <input style={styles.input} />
+          <div style={styles.label}>
+            <Icon.Lock size={15} />
+            <p style={styles.labelName}>Password</p>
+          </div>
+          <input style={styles.input} />
           <button style={styles.login}>SIGN IN</button>
+          <div style={styles.label}>
+            <Icon.HelpCircle size={15} />
+            <p style={styles.labelName}>Don't have an account?</p>
+          </div>
           <button style={styles.register}>REGISTER</button>
         </div>
       </div>
@@ -44,19 +53,6 @@ class Login extends Component {
       boxShadow: theme.Shadows.CARD,
       borderRadius: theme.BorderRadius.MEDIUM
     },
-    icon: {
-      width: 50,
-      height: 50,
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "center",
-      background: theme.BackgroundColors.LIGHT,
-      color: theme.FontColors.DARK,
-      padding: theme.Spacing.SMALL,
-      borderRadius: theme.BorderRadius.CIRCLE,
-      border: theme.Border.DEFAULT,
-      marginBottom: theme.Spacing.MEDIUM
-    },
     input: {
       width: "90%",
       outline: "none",
@@ -65,6 +61,17 @@ class Login extends Component {
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
       marginTop: theme.Spacing.XSMALL
+    },
+    label: {
+      width: "90%",
+      display: "flex",
+      alignItems: "center",
+      color: theme.FontColors.GRAY,
+      marginTop: theme.Spacing.MEDIUM
+    },
+    labelName: {
+      marginLeft: theme.Spacing.SMALL,
+      fontSize: theme.FontSizes.MEDIUM
     },
     login: {
       width: "90%",
@@ -84,7 +91,7 @@ class Login extends Component {
       padding: theme.Spacing.SMALL,
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.XSMALL
+      marginTop: theme.Spacing.SMALL
     }
   });
 }
