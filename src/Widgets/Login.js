@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
 
+// Utils
+import { isEmail } from "../Utils/Format";
+
 // Theme
 import theme from "../Constants/Theme";
 
@@ -25,7 +28,12 @@ class Login extends Component {
   };
 
   _handleLogin = () => {
-    const { email, password, loading } = this.state;
+    const { email, password } = this.state;
+
+    const userInfo = {
+      email,
+      password
+    };
 
     this.setState({
       loading: true
@@ -36,10 +44,25 @@ class Login extends Component {
         loading: false
       });
       return swal({
-        text: "Email and Password are required, please try again.",
+        text: "Email and Password are required",
         button: "OKAY"
       });
     }
+
+    if (!isEmail(email)) {
+      return swal({
+        text: "Invalid email format, please try again.",
+        button: "OKAY"
+      });
+    }
+
+    axios.post("/login", userInfo).then(response => {
+      this.setState({
+        loading: false
+      });
+
+      this.props.history.push("/dashboard");
+    });
   };
 
   render() {
@@ -66,6 +89,7 @@ class Login extends Component {
             className={css(styles.input)}
             name="password"
             onChange={this._handleChange}
+            type="password"
           />
           <button className={css(styles.login)} onClick={this._handleLogin}>
             SIGN IN

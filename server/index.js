@@ -1,20 +1,23 @@
+require("dotenv").config();
+require("./auth/passport");
 const express = require("express");
-const cors = require("cors");
 const port = process.env.PORT || 8080;
 const IncomingForm = require("formidable").IncomingForm;
+const middleware = require("./middleware/provider");
+const database = require("./db/utils/connect");
+const router = require("./routers/router");
 
 // App Initialization
 const app = express();
 
-// Options
-const corsOptions = {
-  origin: "*",
-  optionsSucessStatus: 200
-};
-
 // Middleware
-app.use(express.json());
-app.use(cors(corsOptions));
+middleware.provider(app);
+
+// Database
+database.connect(app);
+
+// Endpoints
+router.addRoutes(app);
 
 // Endpoints
 app.post("/upload", (req, res) => {
