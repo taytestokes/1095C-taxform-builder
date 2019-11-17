@@ -5,6 +5,7 @@ import { css } from "glamor";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
+import Loader from "react-loader-spinner";
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -56,18 +57,42 @@ class Login extends Component {
       });
     }
 
-    axios.post("/login", userInfo).then(response => {
-      this.setState({
-        loading: false
-      });
+    axios
+      .post("/auth/login", userInfo)
+      .then(() => {
+        this.setState({
+          loading: false
+        });
 
-      this.props.history.push("/dashboard");
-    });
+        this.props.history.push("/dashboard");
+      })
+      .catch(err => {
+        this.setState({
+          loading: false
+        });
+        //create the error object
+        const error = Object.create(err);
+        //modify the error message based off of the response
+        if (error.response.status === 400) {
+          //if username or password is missing
+          error.message = "Username and Password are required";
+        } else if (error.response.status === 401) {
+          //if username or password are incorrect
+          error.message = "Invalid Username or Password";
+        } else {
+          error.message = "Internal Server Error";
+        }
+        // flash a pop up of the error message
+        swal({
+          text: error.message,
+          button: "Okay"
+        });
+      });
   };
 
   render() {
     const styles = this.getStyles();
-    console.log(this.state);
+    const { loading } = this.state;
 
     return (
       <div style={styles.widget}>
@@ -92,7 +117,11 @@ class Login extends Component {
             type="password"
           />
           <button className={css(styles.login)} onClick={this._handleLogin}>
-            SIGN IN
+            {loading ? (
+              <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
+            ) : (
+              "SIGN IN"
+            )}
           </button>
           <div style={styles.label}>
             <Icon.HelpCircle size={15} />

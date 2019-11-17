@@ -58,17 +58,34 @@ class Register extends Component {
 
     axios
       .post("/auth/register", userInfo)
-      .then(response => {
-        console.log(response.data);
+      .then(() => {
         this.setState({
           loading: false
         });
 
         this.props.history.push("/dashboard");
       })
-      .catch(error => {
-        if (error) throw error;
-        console.error(error);
+      .catch(err => {
+        this.setState({
+          loading: false
+        });
+        //create the error object
+        const error = Object.create(err);
+        //modify the error message based off of the response
+        if (error.response.status === 400) {
+          //if username or password is missing
+          error.message = "Username and Password are required";
+        } else if (error.response.status === 401) {
+          //if username or password are incorrect
+          error.message = "Invalid Username or Password";
+        } else {
+          error.message = "Internal Server Error";
+        }
+        // flash a pop up of the error message
+        swal({
+          text: error.message,
+          button: "Okay"
+        });
       });
   };
 
