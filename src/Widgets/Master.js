@@ -5,6 +5,7 @@ import MasterRouter from "../Routes/MasterRouter";
 
 // Styles
 import "../Styles/Reset.css";
+import "../Styles/SweetAlerts.css";
 
 // Theme
 import theme from "../Constants/Theme";

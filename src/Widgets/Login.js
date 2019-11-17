@@ -1,14 +1,50 @@
+// Packages
 import React, { Component } from "react";
 import * as Icon from "react-feather";
 import { css } from "glamor";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import swal from "@sweetalert/with-react";
 
 // Theme
 import theme from "../Constants/Theme";
 
 class Login extends Component {
+  state = {
+    email: "",
+    password: "",
+    loading: false
+  };
+
+  _handleChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  _handleLogin = () => {
+    const { email, password, loading } = this.state;
+
+    this.setState({
+      loading: true
+    });
+
+    if (email === "" || password === "") {
+      this.setState({
+        loading: false
+      });
+      return swal({
+        text: "Email and Password are required, please try again.",
+        button: "OKAY"
+      });
+    }
+  };
+
   render() {
     const styles = this.getStyles();
+    console.log(this.state);
 
     return (
       <div style={styles.widget}>
@@ -17,13 +53,23 @@ class Login extends Component {
             <Icon.User size={15} />
             <p style={styles.labelName}>Email</p>
           </div>
-          <input className={css(styles.input)} />
+          <input
+            className={css(styles.input)}
+            name="email"
+            onChange={this._handleChange}
+          />
           <div style={styles.label}>
             <Icon.Lock size={15} />
             <p style={styles.labelName}>Password</p>
           </div>
-          <input className={css(styles.input)} />
-          <button className={css(styles.login)}>SIGN IN</button>
+          <input
+            className={css(styles.input)}
+            name="password"
+            onChange={this._handleChange}
+          />
+          <button className={css(styles.login)} onClick={this._handleLogin}>
+            SIGN IN
+          </button>
           <div style={styles.label}>
             <Icon.HelpCircle size={15} />
             <p style={styles.labelName}>Don't have an account?</p>
