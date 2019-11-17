@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as Icon from "react-feather";
+import { css } from "glamor";
+import { Link } from "react-router-dom";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -15,18 +17,20 @@ class Login extends Component {
             <Icon.User size={15} />
             <p style={styles.labelName}>Email</p>
           </div>
-          <input style={styles.input} />
+          <input className={css(styles.input)} />
           <div style={styles.label}>
             <Icon.Lock size={15} />
             <p style={styles.labelName}>Password</p>
           </div>
-          <input style={styles.input} />
-          <button style={styles.login}>SIGN IN</button>
+          <input className={css(styles.input)} />
+          <button className={css(styles.login)}>SIGN IN</button>
           <div style={styles.label}>
             <Icon.HelpCircle size={15} />
             <p style={styles.labelName}>Don't have an account?</p>
           </div>
-          <button style={styles.register}>REGISTER</button>
+          <Link className={css(styles.register)} to="/register">
+            REGISTER
+          </Link>
         </div>
       </div>
     );
@@ -43,7 +47,7 @@ class Login extends Component {
     },
     loginContainer: {
       width: "25%",
-      height: "45%",
+      height: "50%",
       padding: theme.Spacing.XLARGE,
       display: "flex",
       flexDirection: "column",
@@ -60,7 +64,10 @@ class Login extends Component {
       padding: theme.Spacing.SMALL,
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.XSMALL
+      marginTop: theme.Spacing.XSMALL,
+      ":focus": {
+        border: theme.Border.FOCUS
+      }
     },
     label: {
       width: "90%",
@@ -78,20 +85,33 @@ class Login extends Component {
       outline: "none",
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
-      padding: theme.Spacing.SMALL,
+      padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
       border: "none",
-      marginTop: theme.Spacing.MEDIUM
+      marginTop: theme.Spacing.XLARGE,
+      fontSize: theme.FontSizes.SMALL,
+      ":hover": {
+        cursor: "pointer",
+        opacity: 0.8
+      }
     },
     register: {
       width: "90%",
       outline: "none",
       backgroundColor: theme.BackgroundColors.LIGHT,
       color: theme.FontColors.DARK,
-      padding: theme.Spacing.SMALL,
+      padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.SMALL
+      marginTop: theme.Spacing.SMALL,
+      textDecoration: "none",
+      display: "flex",
+      justifyContent: "space-around",
+      fontSize: theme.FontSizes.SMALL,
+      ":hover": {
+        cursor: "pointer",
+        opacity: 0.8
+      }
     }
   });
 }

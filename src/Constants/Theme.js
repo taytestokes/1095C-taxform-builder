@@ -37,7 +37,8 @@ module.exports = {
     XSMALL: 5
   },
   Border: {
-    DEFAULT: "1px solid #e6e6e6"
+    DEFAULT: "1px solid #e6e6e6",
+    FOCUS: "1px solid #0066ff"
   },
   BorderRadius: {
     SMALL: 3,
