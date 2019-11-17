@@ -14,6 +14,7 @@ AuthRouter.post(
   passport.authenticate("register"),
   AuthController.register
 );
+AuthRouter.get("/session", AuthController.checkForSession);
 
 // Export Router
 module.exports = {

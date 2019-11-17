@@ -20,9 +20,13 @@ class Login extends Component {
     loading: false
   };
 
+  componentDidMount() {
+    this._checkForSession();
+  }
+
   _handleChange = event => {
     const { name, value } = event.target;
-
+    // Set values to state
     this.setState({
       [name]: value
     });
@@ -30,16 +34,16 @@ class Login extends Component {
 
   _handleLogin = () => {
     const { email, password } = this.state;
-
+    // Create body for the request
     const userInfo = {
       email,
       password
     };
-
+    // Set loading to true
     this.setState({
       loading: true
     });
-
+    // Check to see if email and password fields are empty
     if (email === "" || password === "") {
       this.setState({
         loading: false
@@ -49,21 +53,21 @@ class Login extends Component {
         button: "OKAY"
       });
     }
-
+    // Check if email is in valid format
     if (!isEmail(email)) {
       return swal({
         text: "Invalid email format, please try again.",
         button: "OKAY"
       });
     }
-
+    // Make post request to login
     axios
       .post("/auth/login", userInfo)
       .then(() => {
         this.setState({
           loading: false
         });
-
+        // On success redirectd
         this.props.history.push("/dashboard");
       })
       .catch(err => {
@@ -90,6 +94,15 @@ class Login extends Component {
       });
   };
 
+  _checkForSession = () => {
+    axios.get("/auth/session").then(({ data }) => {
+      console.log(data);
+      if (data.user) {
+        this.props.history.push("/dashboard");
+      }
+    });
+  };
+
   render() {
     const styles = this.getStyles();
     const { loading } = this.state;
@@ -98,7 +111,7 @@ class Login extends Component {
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
           <div style={styles.label}>
-            <Icon.User size={15} />
+            <Icon.Mail size={15} />
             <p style={styles.labelName}>Email</p>
           </div>
           <input

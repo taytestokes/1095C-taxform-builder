@@ -97,7 +97,7 @@ class Register extends Component {
       <div style={styles.widget}>
         <div style={styles.registerContainer}>
           <div style={styles.label}>
-            <Icon.User size={15} />
+            <Icon.Mail size={15} />
             <p style={styles.labelName}>Email</p>
           </div>
           <input
