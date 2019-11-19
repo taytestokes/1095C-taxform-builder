@@ -19,6 +19,10 @@ class Register extends Component {
     loading: false
   };
 
+  componentDidMount() {
+    this._checkForSession();
+  }
+
   _handleChange = event => {
     const { name, value } = event.target;
 
@@ -87,6 +91,14 @@ class Register extends Component {
           button: "Okay"
         });
       });
+  };
+
+  _checkForSession = () => {
+    axios.get("/auth/session").then(({ data }) => {
+      if (data.user) {
+        this.props.history.push("/dashboard/documents");
+      }
+    });
   };
 
   render() {

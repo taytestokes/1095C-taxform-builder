@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import "./Dropzone.css";
+import * as Icon from "react-feather";
+import { css } from "glamor";
+
+// Theme
+import theme from "../Constants/Theme";
 
 class Dropzone extends Component {
   constructor(props) {
@@ -62,31 +66,67 @@ class Dropzone extends Component {
   };
 
   render() {
+    const styles = this.getStyles();
+
     return (
       <div
-        className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}`}
         onClick={this.openFileDialog}
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
-        style={{ cursor: this.props.disabled ? "default" : "pointer" }}
+        style={styles.dropzone}
       >
-        <img
-          alt="upload"
-          className="Icon"
-          src="https://cdn3.iconfinder.com/data/icons/unicons-vector-icons-pack/32/upload-128.png"
-        />
+        <Icon.UploadCloud size={55} style={styles.icon} />
+        <p style={styles.dropzoneText}>Drag and drop your files here</p>
+        <p style={styles.dropzoneTextTwo}>or</p>
+        <button className={css(styles.dropzoneButton)}>Browse Disk</button>
         <input
           ref={this.fileInputRef}
-          className="FileInput"
           type="file"
           multiple
           onChange={this.onFilesAdded}
+          style={styles.fileInput}
         />
-        <span>Upload Files</span>
       </div>
     );
   }
+
+  getStyles = () => ({
+    dropzone: {
+      width: "90%",
+      height: "65%",
+      border: "2px dashed #CCC",
+      borderRadius: 3,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    fileInput: {
+      display: "none"
+    },
+    icon: {},
+    dropzoneText: {
+      fontWeight: "bold",
+      padding: theme.Spacing.SMALL,
+      color: theme.FontColors.DARK
+    },
+    dropzoneTextTwo: {
+      color: "#a7a7a7",
+      paddingBottom: theme.Spacing.SMALL
+    },
+    dropzoneButton: {
+      fontSize: theme.FontSizes.MEDIUM,
+      backgroundColor: theme.Colors.PRIMARY,
+      color: theme.FontColors.LIGHT,
+      border: "none",
+      borderRadius: theme.BorderRadius.SMALL,
+      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.XLARGE}px`,
+      ":hover": {
+        cursor: "pointer"
+      }
+    }
+  });
 }
 
 export default Dropzone;

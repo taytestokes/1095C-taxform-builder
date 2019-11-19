@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./Uploader.css";
+import { css } from "glamor";
 
 // Components
 import Dropzone from "./Dropzone";
 import ProgressBar from "./Progress";
+
+// Theme
+import theme from "../Constants/Theme";
 
 class Uploader extends Component {
   constructor(props) {
@@ -12,7 +16,8 @@ class Uploader extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      successfullUploaded: false,
+      step: 1
     };
   }
 
@@ -25,8 +30,6 @@ class Uploader extends Component {
 
   renderProgress = file => {
     const uploadProgress = this.state.uploadProgress[file.name];
-    console.log(uploadProgress);
-    console.log("hit");
     // if uploading or successful return progress bar
     if (this.state.uploading || this.state.successfullUploaded) {
       return (
@@ -137,17 +140,40 @@ class Uploader extends Component {
     });
   };
 
+  _selectStepOne = () => {
+    this.setState({
+      step: 1
+    });
+  };
+
+  _selectStepTwo = () => {
+    this.setState({
+      step: 2
+    });
+  };
+
   render() {
+    const styles = this.getStyles();
+
     return (
-      <div className="Upload">
-        <span className="Title">Upload Files</span>
-        <div className="Content">
+      <div style={styles.uploader}>
+        <div style={styles.stepper}>
+          <div className={css(styles.stepOne)} onClick={this._selectStepOne}>
+            <div style={styles.stepCircle}>1</div>
+            <p style={styles.stepText}>Select desired files to upload</p>
+          </div>
+          <div className={css(styles.stepTwo)} onClick={this._selectStepTwo}>
+            <div style={styles.stepCircle}>2</div>
+            <p style={styles.stepText}>Save uploaded files to your documents</p>
+          </div>
+        </div>
+        {this.state.step === 1 ? (
           <Dropzone
             onFilesAdded={this.onFilesAdded}
             disabled={this.state.uploading || this.state.successfullUploaded}
           />
-          <div />
-          <div className="Files">
+        ) : (
+          <div style={styles.uploadedFiles}>
             {this.state.files.map(file => (
               <div key={file.name} className="Row">
                 <span className="Filename">{file.name}</span>
@@ -155,11 +181,75 @@ class Uploader extends Component {
               </div>
             ))}
           </div>
-        </div>
-        <div className="Actions">{this.renderActions()}</div>
+        )}
       </div>
     );
   }
+
+  getStyles = () => ({
+    uploader: {
+      width: "90%",
+      height: "90%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: theme.BorderRadius.MEDIUM
+    },
+    stepper: {
+      width: "90%",
+      height: "15%",
+      display: "flex",
+      alignItems: "center",
+      marginBottom: theme.Spacing.XLARGE
+    },
+    stepOne: {
+      width: "50%",
+      height: "100%",
+      borderBottom:
+        this.state.step === 1 ? "3px solid black" : "3px solid #CCC",
+      display: "flex",
+      alignItems: "center",
+      fontWeight: "bold",
+      ":hover": {
+        cursor: "pointer",
+        borderBottom: "3px solid black"
+      }
+    },
+    stepTwo: {
+      width: "50%",
+      height: "100%",
+      borderBottom:
+        this.state.step === 2 ? "3px solid black" : "3px solid #CCC",
+      display: "flex",
+      alignItems: "center",
+      fontWeight: "bold",
+      ":hover": {
+        cursor: "pointer",
+        borderBottom: "3px solid black"
+      }
+    },
+    stepCircle: {
+      height: "50px",
+      width: "50px",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+      borderRadius: theme.BorderRadius.CIRCLE,
+      border: "2px dashed #CCC",
+      fontWeight: "bold",
+      marginLeft: theme.Spacing.SMALL
+    },
+    stepText: {
+      marginLeft: theme.Spacing.XLARGE,
+      maxWidth: "35%",
+      lineHeight: 1.2
+    },
+    uploadedFiles: {
+      width: "80%",
+      height: "65%"
+    }
+  });
 }
 
 export default Uploader;

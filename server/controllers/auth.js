@@ -1,7 +1,6 @@
 // login handler
 exports.login = (req, res) => {
   req.session.user = req.user;
-  console.log(req.session);
   return res.send(req.user);
 };
 
@@ -13,6 +12,11 @@ exports.register = (req, res) => {
 
 // check for user session
 exports.checkForSession = (req, res) => {
-  console.log(req.session);
+  return res.send(req.session);
+};
+
+// clear user session and logout
+exports.logout = (req, res) => {
+  req.session.destroy();
   return res.send(req.session);
 };

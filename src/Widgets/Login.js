@@ -68,7 +68,7 @@ class Login extends Component {
           loading: false
         });
         // On success redirectd
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/documents");
       })
       .catch(err => {
         this.setState({
@@ -96,7 +96,6 @@ class Login extends Component {
 
   _checkForSession = () => {
     axios.get("/auth/session").then(({ data }) => {
-      console.log(data);
       if (data.user) {
         this.props.history.push("/dashboard");
       }
