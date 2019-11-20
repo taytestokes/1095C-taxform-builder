@@ -48,7 +48,8 @@ export default class Navbar extends Component {
       justifyContent: "space-between",
       alignItems: "center",
       background: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD
+      boxShadow: theme.Shadows.CARD,
+      fontWeight: "bold"
     },
     links: {
       width: "100%",
@@ -58,12 +59,11 @@ export default class Navbar extends Component {
       alignItems: "flex-end"
     },
     navlink: {
-      width: "85%",
+      width: "90%",
       height: "10%",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      marginTop: theme.Spacing.MEDIUM,
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
       color: theme.FontColors.DARK,

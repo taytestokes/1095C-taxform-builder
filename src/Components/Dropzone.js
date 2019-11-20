@@ -122,6 +122,7 @@ class Dropzone extends Component {
       border: "none",
       borderRadius: theme.BorderRadius.SMALL,
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.XLARGE}px`,
+      outline: "none",
       ":hover": {
         cursor: "pointer"
       }

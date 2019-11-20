@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./Uploader.css";
 import { css } from "glamor";
+import * as Icon from "react-feather";
 
 // Components
 import Dropzone from "./Dropzone";
@@ -22,33 +22,9 @@ class Uploader extends Component {
   }
 
   onFilesAdded = files => {
-    console.log(files);
     this.setState(prevState => ({
       files: prevState.files.concat(files)
     }));
-  };
-
-  renderProgress = file => {
-    const uploadProgress = this.state.uploadProgress[file.name];
-    // if uploading or successful return progress bar
-    if (this.state.uploading || this.state.successfullUploaded) {
-      return (
-        <div className="ProgressWrapper">
-          <ProgressBar
-            progress={uploadProgress ? uploadProgress.percentage : 0}
-          />
-          <img
-            className="CheckIcon"
-            alt="done"
-            src="https://img.icons8.com/cotton/2x/checkmark.png"
-            style={{
-              opacity:
-                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-            }}
-          />
-        </div>
-      );
-    }
   };
 
   renderActions = () => {
@@ -175,9 +151,31 @@ class Uploader extends Component {
         ) : (
           <div style={styles.uploadedFiles}>
             {this.state.files.map(file => (
-              <div key={file.name} className="Row">
-                <span className="Filename">{file.name}</span>
-                {this.renderProgress(file)}
+              <div key={file.name} style={styles.fileCard}>
+                <Icon.File size={30} />
+                <div style={styles.fileProgress}>
+                  <div style={styles.fileInfo}>
+                    <p>{file.name}</p>
+                    <p>
+                      {this.state.uploadProgress[file.name]
+                        ? `${this.state.uploadProgress[file.name].percentage}%`
+                        : `0%`}
+                    </p>
+                  </div>
+                  <div style={styles.progressbar}>
+                    <ProgressBar
+                      progress={
+                        this.state.uploadProgress[file.name]
+                          ? this.state.uploadProgress[file.name].percentage
+                          : 0
+                      }
+                    />
+                  </div>
+                </div>
+                <Icon.CheckCircle
+                  size={20}
+                  style={{ color: theme.Colors.SUCCESS }}
+                />
               </div>
             ))}
           </div>
@@ -201,7 +199,8 @@ class Uploader extends Component {
       height: "15%",
       display: "flex",
       alignItems: "center",
-      marginBottom: theme.Spacing.XLARGE
+      marginBottom: theme.Spacing.XLARGE,
+      borderRadius: "5px"
     },
     stepOne: {
       width: "50%",
@@ -246,8 +245,38 @@ class Uploader extends Component {
       lineHeight: 1.2
     },
     uploadedFiles: {
-      width: "80%",
-      height: "65%"
+      width: "90%",
+      height: "65%",
+      display: "flex",
+      flexDirection: "column",
+      flexWrap: "wrap",
+      overflow: "hidden"
+    },
+    fileCard: {
+      width: "50%",
+      height: "20%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: theme.Spacing.MEDIUM
+    },
+    fileProgress: {
+      width: "85%",
+      height: "45%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-between"
+    },
+    fileInfo: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      fontSize: theme.FontSizes.LARGE
+    },
+    progressbar: {
+      width: "100%"
     }
   });
 }
