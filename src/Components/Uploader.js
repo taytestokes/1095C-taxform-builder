@@ -165,8 +165,8 @@ class Uploader extends Component {
         ) : (
           <>
             <div style={styles.uploadedFiles}>
-              {this.state.files.map(file => (
-                <div key={file.name} style={styles.fileCard}>
+              {this.state.files.map((file, index) => (
+                <div key={`${file.name}-${index}`} style={styles.fileCard}>
                   <Icon.File size={30} />
                   <div style={styles.fileProgress}>
                     <div style={styles.fileInfo}>
@@ -211,7 +211,7 @@ class Uploader extends Component {
                 className={css(styles.saveButton)}
                 onClick={this._uploadFiles}
               >
-                Save Files
+                Upload
               </button>
             </div>
           </>

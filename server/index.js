@@ -23,7 +23,9 @@ router.addRoutes(app);
 app.post("/upload", (req, res) => {
   const form = new IncomingForm();
 
-  form.on("file", (field, file) => {});
+  form.on("file", (field, file) => {
+    console.log(file);
+  });
 
   form.on("end", () => {
     res.json("Sucess");
