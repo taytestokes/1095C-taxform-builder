@@ -76,7 +76,7 @@ class Dropzone extends Component {
         onDrop={this.onDrop}
         style={styles.dropzone}
       >
-        <Icon.UploadCloud size={55} style={styles.icon} />
+        <Icon.UploadCloud size={55} />
         <p style={styles.dropzoneText}>Drag and drop your files here</p>
         <p style={styles.dropzoneTextTwo}>or</p>
         <button className={css(styles.dropzoneButton)}>Browse Disk</button>
@@ -94,18 +94,20 @@ class Dropzone extends Component {
   getStyles = () => ({
     dropzone: {
       width: "90%",
-      height: "65%",
+      height: "75%",
       border: "2px dashed #CCC",
       borderRadius: 3,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      backgroundColor: this.state.highlight
+        ? "#CCCCCC25"
+        : theme.BackgroundColors.LIGHT
     },
     fileInput: {
       display: "none"
     },
-    icon: {},
     dropzoneText: {
       fontWeight: "bold",
       padding: theme.Spacing.SMALL,

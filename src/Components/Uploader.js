@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import * as Icon from "react-feather";
+import swal from "@sweetalert/with-react";
 
 // Components
 import Dropzone from "./Dropzone";
@@ -21,36 +22,15 @@ class Uploader extends Component {
     };
   }
 
+  // Adds new file to the list of files on state
   onFilesAdded = files => {
     this.setState(prevState => ({
-      files: prevState.files.concat(files)
+      files: prevState.files.concat(files),
+      step: 2
     }));
   };
 
-  renderActions = () => {
-    if (this.state.successfullUploaded) {
-      return (
-        <button
-          onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })
-          }
-        >
-          Clear
-        </button>
-      );
-    } else {
-      return (
-        <button
-          disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
-        >
-          Upload
-        </button>
-      );
-    }
-  };
-
-  uploadFiles = async () => {
+  _uploadFiles = async () => {
     this.setState({
       uploadProgress: {},
       uploading: true
@@ -58,7 +38,7 @@ class Uploader extends Component {
 
     const promises = [];
     this.state.files.forEach(file => {
-      promises.push(this.sendRequest(file));
+      promises.push(this._sendRequest(file));
     });
     try {
       await Promise.all(promises);
@@ -68,12 +48,11 @@ class Uploader extends Component {
         uploading: false
       });
     } catch (event) {
-      console.error(event);
       this.setState({ successfullUploaded: true, uploading: false });
     }
   };
 
-  sendRequest = file => {
+  _sendRequest = file => {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -117,14 +96,49 @@ class Uploader extends Component {
   };
 
   _selectStepOne = () => {
+    if (this.state.files.length > 9) {
+      return;
+    }
     this.setState({
       step: 1
     });
   };
 
   _selectStepTwo = () => {
+    if (this.state.files.length < 1) {
+      return swal({
+        text: "Please select a file or files to upload before moving on.",
+        button: "Got It"
+      });
+    }
     this.setState({
       step: 2
+    });
+  };
+
+  _cancelUpload = () => {
+    swal("Are you sure you want to cancel?", {
+      buttons: {
+        cancel: "Nevermind",
+        confirm: {
+          text: "Yes",
+          value: "confirm"
+        }
+      }
+    }).then(value => {
+      switch (value) {
+        case "confirm":
+          this.setState({
+            files: [],
+            uploading: false,
+            uploadProgress: {},
+            successfullUploaded: false,
+            step: 1
+          });
+          return;
+        default:
+          return;
+      }
     });
   };
 
@@ -140,7 +154,7 @@ class Uploader extends Component {
           </div>
           <div className={css(styles.stepTwo)} onClick={this._selectStepTwo}>
             <div style={styles.stepCircle}>2</div>
-            <p style={styles.stepText}>Save uploaded files to your documents</p>
+            <p style={styles.stepText}>Upload files to your documents</p>
           </div>
         </div>
         {this.state.step === 1 ? (
@@ -149,36 +163,58 @@ class Uploader extends Component {
             disabled={this.state.uploading || this.state.successfullUploaded}
           />
         ) : (
-          <div style={styles.uploadedFiles}>
-            {this.state.files.map(file => (
-              <div key={file.name} style={styles.fileCard}>
-                <Icon.File size={30} />
-                <div style={styles.fileProgress}>
-                  <div style={styles.fileInfo}>
-                    <p>{file.name}</p>
-                    <p>
-                      {this.state.uploadProgress[file.name]
-                        ? `${this.state.uploadProgress[file.name].percentage}%`
-                        : `0%`}
-                    </p>
+          <>
+            <div style={styles.uploadedFiles}>
+              {this.state.files.map(file => (
+                <div key={file.name} style={styles.fileCard}>
+                  <Icon.File size={30} />
+                  <div style={styles.fileProgress}>
+                    <div style={styles.fileInfo}>
+                      <p>{file.name}</p>
+                      <p>
+                        {this.state.uploadProgress[file.name]
+                          ? `${
+                              this.state.uploadProgress[file.name].percentage
+                            }%`
+                          : `0%`}
+                      </p>
+                    </div>
+                    <div style={styles.progressbar}>
+                      <ProgressBar
+                        progress={
+                          this.state.uploadProgress[file.name]
+                            ? this.state.uploadProgress[file.name].percentage
+                            : 0
+                        }
+                      />
+                    </div>
                   </div>
-                  <div style={styles.progressbar}>
-                    <ProgressBar
-                      progress={
-                        this.state.uploadProgress[file.name]
-                          ? this.state.uploadProgress[file.name].percentage
-                          : 0
-                      }
-                    />
-                  </div>
+                  <Icon.CheckCircle
+                    size={20}
+                    style={
+                      this.state.uploadProgress[file.name]
+                        ? { color: theme.Colors.SUCCESS }
+                        : { color: "#CCC" }
+                    }
+                  />
                 </div>
-                <Icon.CheckCircle
-                  size={20}
-                  style={{ color: theme.Colors.SUCCESS }}
-                />
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            <div style={styles.uploadSubmit}>
+              <button
+                className={css(styles.cancelButton)}
+                onClick={this._cancelUpload}
+              >
+                Cancel
+              </button>
+              <button
+                className={css(styles.saveButton)}
+                onClick={this._uploadFiles}
+              >
+                Save Files
+              </button>
+            </div>
+          </>
         )}
       </div>
     );
@@ -250,7 +286,8 @@ class Uploader extends Component {
       display: "flex",
       flexDirection: "column",
       flexWrap: "wrap",
-      overflow: "hidden"
+      overflow: "hidden",
+      position: "relative"
     },
     fileCard: {
       width: "50%",
@@ -277,6 +314,40 @@ class Uploader extends Component {
     },
     progressbar: {
       width: "100%"
+    },
+    uploadSubmit: {
+      height: "10%",
+      width: "90%",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center"
+    },
+    saveButton: {
+      width: "100px",
+      height: "35px",
+      fontSize: theme.FontSizes.MEDIUM,
+      backgroundColor: theme.Colors.PRIMARY,
+      color: theme.FontColors.LIGHT,
+      border: `1px solid ${theme.Colors.PRIMARY}`,
+      borderRadius: theme.BorderRadius.SMALL,
+      outline: "none",
+      ":hover": {
+        cursor: "pointer"
+      }
+    },
+    cancelButton: {
+      width: "100px",
+      height: "35px",
+      fontSize: theme.FontSizes.MEDIUM,
+      backgroundColor: "transparent",
+      color: "#BBB",
+      border: `1px solid #BBB`,
+      borderRadius: theme.BorderRadius.SMALL,
+      marginRight: theme.Spacing.SMALL,
+      outline: "none",
+      ":hover": {
+        cursor: "pointer"
+      }
     }
   });
 }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Progress.css";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -18,12 +17,15 @@ class Progress extends Component {
   getStyles = () => ({
     progressbar: {
       width: "100%",
-      background: theme.Colors.PRIMARY,
+      background: "#CCC",
       height: theme.Spacing.XSMALL,
       borderRadius: theme.BorderRadius.MEDIUM
     },
     progress: {
-      width: `${this.props.progress}%`
+      width: `${this.props.progress}%`,
+      background: theme.Colors.PRIMARY,
+      height: theme.Spacing.XSMALL,
+      borderRadius: theme.BorderRadius.MEDIUM
     }
   });
 }
