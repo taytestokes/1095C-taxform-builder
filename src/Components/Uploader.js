@@ -90,7 +90,7 @@ class Uploader extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
 
-      req.open("POST", "/upload");
+      req.open("POST", "/upload/xlsx");
       req.send(formData);
     });
   };

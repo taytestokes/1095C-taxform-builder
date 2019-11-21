@@ -84,6 +84,7 @@ class Dropzone extends Component {
           ref={this.fileInputRef}
           type="file"
           multiple
+          name="files"
           onChange={this.onFilesAdded}
           style={styles.fileInput}
         />

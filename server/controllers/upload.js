@@ -1,17 +1,21 @@
 // Packages
-const IncomingForm = require("formidable").IncomingForm;
+const excelToJSON = require("xlsx-to-json-lc");
+
+// Utils
+const { upload } = require("../utils/uploads");
 
 // Upload XLSX file
 exports.uploadXLSX = (req, res) => {
-  const form = new IncomingForm();
-
-  form.on("file", (field, file) => {
-    console.log(file);
+  upload(req, res, error => {
+    excelToJSON(
+      {
+        input: req.file.path,
+        output: null,
+        lowerCaseHeaders: true
+      },
+      (err, result) => {
+        console.log(result);
+      }
+    );
   });
-
-  form.on("end", () => {
-    res.json("Sucess");
-  });
-
-  form.parse(req);
 };
