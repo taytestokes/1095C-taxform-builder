@@ -2,13 +2,14 @@
 const express = require("express");
 
 // Upload Controller
-const UploadController = require("../controllers/upload");
+const UploadController = require("../controllers/documents");
 
 // Auth Router
 const UploadRouter = express.Router();
 
 // Routes
-UploadRouter.post("/xlsx", UploadController.uploadXLSX);
+UploadRouter.post("/upload", UploadController.upload);
+UploadRouter.get("/all", UploadController.getDocuments);
 
 // Export Router
 module.exports = {

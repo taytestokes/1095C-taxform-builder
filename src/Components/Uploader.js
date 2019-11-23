@@ -90,8 +90,21 @@ class Uploader extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
 
-      req.open("POST", "/upload/xlsx");
+      req.open("POST", "/documents/upload");
       req.send(formData);
+    }).then(() => {
+      swal({
+        text: "Files successfully uploaded!",
+        button: "OKAY"
+      });
+
+      this.setState({
+        step: 1,
+        files: [],
+        uploading: false,
+        uploadProgress: {},
+        successfullUploaded: false
+      });
     });
   };
 

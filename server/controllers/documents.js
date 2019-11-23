@@ -4,9 +4,9 @@ const exceltojson = require("convert-excel-to-json");
 // Utils
 const { upload } = require("../utils/uploads");
 
-// Upload XLSX file
-exports.uploadXLSX = (req, res) => {
-  const { id } = req.session.user.id;
+// Controller Methods
+exports.upload = (req, res) => {
+  const { id } = req.session.user;
   const db = req.app.get("db");
 
   upload(req, res, error => {
@@ -135,4 +135,18 @@ exports.uploadXLSX = (req, res) => {
         res.send("Files uploaded!");
       });
   });
+};
+
+exports.getDocuments = (req, res) => {
+  const { id } = req.session.user;
+  const db = req.app.get("db");
+
+  db.scripts
+    .get_users_documents([id])
+    .then(documents => {
+      res.send(documents);
+    })
+    .catch(error => {
+      res.send(error);
+    });
 };
