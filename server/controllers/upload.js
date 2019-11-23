@@ -6,8 +6,12 @@ const { upload } = require("../utils/uploads");
 
 // Upload XLSX file
 exports.uploadXLSX = (req, res) => {
+  const { id } = req.session.user.id;
+  const db = req.app.get("db");
+
   upload(req, res, error => {
     const { Sheet1 } = exceltojson({ sourceFile: req.file.path });
+    const fileName = req.file.originalname.split(".")[0];
 
     const employees = {
       1: Sheet1[2].B,
@@ -35,7 +39,7 @@ exports.uploadXLSX = (req, res) => {
       Apr: Sheet1[2].M,
       May: Sheet1[2].N,
       Jun: Sheet1[2].O,
-      July: Sheet1[2].P,
+      Jul: Sheet1[2].P,
       Aug: Sheet1[2].Q,
       Sep: Sheet1[2].R,
       Oct: Sheet1[2].S,
@@ -50,7 +54,7 @@ exports.uploadXLSX = (req, res) => {
       Apr: Sheet1[4].M,
       May: Sheet1[4].N,
       Jun: Sheet1[4].O,
-      July: Sheet1[4].P,
+      Jul: Sheet1[4].P,
       Aug: Sheet1[4].Q,
       Sep: Sheet1[4].R,
       Oct: Sheet1[4].S,
@@ -65,13 +69,70 @@ exports.uploadXLSX = (req, res) => {
       Apr: Sheet1[6].M,
       May: Sheet1[6].N,
       Jun: Sheet1[6].O,
-      July: Sheet1[6].P,
+      Jul: Sheet1[6].P,
       Aug: Sheet1[6].Q,
       Sep: Sheet1[6].R,
       Oct: Sheet1[6].S,
       Nov: Sheet1[6].T,
       Dec: Sheet1[6].U
     };
-    // WRITE LOGIC TO STORE INFO INTO DATABASE AND CONVERT TO A PDF?
+
+    db.documents
+      .insert({
+        user_id: id,
+        name: fileName,
+        employees_1: employees["1"],
+        employees_2: employees["2"],
+        employees_3: employees["3"],
+        employees_4: employees["4"],
+        employees_5: employees["5"],
+        employees_6: employees["6"],
+        employers_7: employers["7"],
+        employers_8: employers["8"],
+        employers_9: employers["9"],
+        employers_10: employers["10"],
+        employers_11: employers["11"],
+        employers_12: employers["12"],
+        employers_13: employers["13"],
+        jan_14: fourTeenth["Jan"],
+        feb_14: fourTeenth["Feb"],
+        mar_14: fourTeenth["Mar"],
+        apr_14: fourTeenth["Apr"],
+        may_14: fourTeenth["May"],
+        jun_14: fourTeenth["Jun"],
+        jul_14: fourTeenth["Jul"],
+        aug_14: fourTeenth["Aug"],
+        sep_14: fourTeenth["Sep"],
+        oct_14: fourTeenth["Oct"],
+        nov_14: fourTeenth["Nov"],
+        dec_14: fourTeenth["Dec"],
+        jan_15: fifthTeenth["Jan"],
+        feb_15: fifthTeenth["Feb"],
+        mar_15: fifthTeenth["Mar"],
+        apr_15: fifthTeenth["Apr"],
+        may_15: fifthTeenth["May"],
+        jun_15: fifthTeenth["Jun"],
+        jul_15: fifthTeenth["Jul"],
+        aug_15: fifthTeenth["Aug"],
+        sep_15: fifthTeenth["Sep"],
+        oct_15: fifthTeenth["Oct"],
+        nov_15: fifthTeenth["Nov"],
+        dec_15: fifthTeenth["Dec"],
+        jan_16: sixthTeenth["Jan"],
+        feb_16: sixthTeenth["Feb"],
+        mar_16: sixthTeenth["Mar"],
+        apr_16: sixthTeenth["Apr"],
+        may_16: sixthTeenth["May"],
+        jun_16: sixthTeenth["Jun"],
+        jul_16: sixthTeenth["Jul"],
+        aug_16: sixthTeenth["Aug"],
+        sep_16: sixthTeenth["Sep"],
+        oct_16: sixthTeenth["Oct"],
+        nov_16: sixthTeenth["Nov"],
+        dec_16: sixthTeenth["Dec"]
+      })
+      .then(() => {
+        res.send("Files uploaded!");
+      });
   });
 };
