@@ -15,6 +15,7 @@ AuthRouter.post(
   AuthController.register
 );
 AuthRouter.get("/session", AuthController.checkForSession);
+AuthRouter.get("/logout", AuthController.logout);
 
 // Export Router
 module.exports = {

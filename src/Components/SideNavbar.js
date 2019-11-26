@@ -1,11 +1,24 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import * as Icon from "react-feather";
+import { css } from "glamor";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 // Theme
 import theme from "../Constants/Theme";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  _logout = () => {
+    axios
+      .get("/auth/logout")
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        if (error) throw error;
+      });
+  };
+
   render() {
     const styles = this.getStyles();
 
@@ -26,8 +39,10 @@ export default class Navbar extends Component {
           >
             Uploads
           </NavLink>
+          <button className={css(styles.logout)} onClick={this._logout}>
+            Sign Out
+          </button>
         </div>
-        <div style={styles.logout}></div>
       </div>
     );
   }
@@ -58,14 +73,34 @@ export default class Navbar extends Component {
       justifyContent: "space-around",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
-      color: "#A7B3B6",
-      marginTop: theme.Spacing.SMALL
+      color: "#A7B3B6"
     },
     activeLink: {
       color: theme.FontColors.DARK
     },
     text: {
       paddingLeft: theme.Spacing.MEDIUM
+    },
+    logout: {
+      marginLeft: "auto",
+      width: "10%",
+      height: "90%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+      textDecoration: "none",
+      fontSize: theme.FontSizes.MEDIUM,
+      color: theme.Colors.PRIMARY,
+      background: "transparent",
+      border: "none",
+      outline: "none",
+      fontWeight: "bold",
+      ":hover": {
+        cursor: "pointer"
+      }
     }
   });
 }
+
+export default withRouter(Navbar);
