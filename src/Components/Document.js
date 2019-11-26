@@ -14,6 +14,11 @@ export default class Document extends Component {
       <div style={styles.document}>
         <Icon.FileText size={20} />
         <p className={css(styles.text)}>{document.name}</p>
+        <Icon.Trash
+          size={16}
+          className={css(styles.trash)}
+          onClick={() => this.props.removeDocument(document.id)}
+        />
         <Icon.Download size={18} className={css(styles.download)} />
       </div>
     );
@@ -43,11 +48,18 @@ export default class Document extends Component {
       }
     },
     download: {
-      marginLeft: "auto",
+      marginLeft: theme.Spacing.SMALL,
       marginRight: theme.Spacing.XSMALL,
       ":hover": {
         cursor: "pointer",
         color: theme.Colors.PRIMARY
+      }
+    },
+    trash: {
+      marginLeft: "auto",
+      ":hover": {
+        cursor: "pointer",
+        color: theme.Colors.DANGER
       }
     }
   });

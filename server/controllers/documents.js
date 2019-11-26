@@ -149,3 +149,19 @@ exports.getDocuments = (req, res) => {
       res.send(error);
     });
 };
+
+exports.deleteDocument = (req, res) => {
+  const { id } = req.params;
+  const db = req.app.get("db");
+
+  db.delete_user_document([id])
+    .then(() => {
+      return db.get_users_documents([req.session.user.id]);
+    })
+    .then(documents => {
+      res.send(documents);
+    })
+    .catch(error => {
+      res.send(error);
+    });
+};

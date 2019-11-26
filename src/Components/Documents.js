@@ -45,6 +45,15 @@ export default class Documents extends Component {
       });
   };
 
+  _removeDocument = id => {
+    axios.delete(`/documents/delete/${id}`).then(response => {
+      console.log(response);
+      this.setState({
+        documents: response.data
+      });
+    });
+  };
+
   render() {
     const styles = this.getStyles();
 
@@ -97,7 +106,11 @@ export default class Documents extends Component {
           </div>
           <div style={styles.documents}>
             {this.state.documents.map(document => (
-              <Document document={document} />
+              <Document
+                removeDocument={this._removeDocument}
+                document={document}
+                key={document.name}
+              />
             ))}
           </div>
         </div>
