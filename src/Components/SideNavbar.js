@@ -17,73 +17,55 @@ export default class Navbar extends Component {
             style={styles.navlink}
             to="/dashboard/documents"
           >
-            <Icon.FileText size={15} />
-            <p style={styles.text}>Documents</p>
+            Documents
           </NavLink>
           <NavLink
             activeStyle={styles.activeLink}
             style={styles.navlink}
             to="/dashboard/upload"
           >
-            <Icon.Upload size={15} />
-            <p style={styles.text}>Upload</p>
+            Uploads
           </NavLink>
         </div>
-        <div style={styles.logout}>
-          <NavLink style={styles.navlink} to="/">
-            <Icon.LogOut size={15} />
-            <p style={styles.text}>Sign Out</p>
-          </NavLink>
-        </div>
+        <div style={styles.logout}></div>
       </div>
     );
   }
 
   getStyles = () => ({
     navbar: {
-      width: "10vw",
-      height: "100vh",
+      width: "100vw",
+      height: "8vh",
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignItems: "center",
       background: theme.Colors.WHITE,
       boxShadow: theme.Shadows.CARD,
       fontWeight: "bold"
     },
     links: {
-      width: "100%",
-      height: "50%",
+      width: "75%",
+      height: "100%",
       display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-end"
+      alignItems: "center"
     },
     navlink: {
-      width: "90%",
-      height: "10%",
+      width: "10%",
+      height: "90%",
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       alignItems: "center",
+      justifyContent: "space-around",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
-      color: theme.FontColors.DARK,
-      borderRadius: "5px 0 0 5px",
-      paddingLeft: theme.Spacing.MEDIUM
+      color: "#A7B3B6",
+      marginTop: theme.Spacing.SMALL
     },
     activeLink: {
-      background: theme.BackgroundColors.LIGHT
+      color: theme.FontColors.DARK
     },
     text: {
       paddingLeft: theme.Spacing.MEDIUM
-    },
-    logout: {
-      width: "100%",
-      height: "40%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-end",
-      alignItems: "flex-end",
-      marginBottom: theme.Spacing.MEDIUM
     }
   });
 }

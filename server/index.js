@@ -3,7 +3,7 @@ require("./auth/passport");
 const express = require("express");
 const port = process.env.PORT || 8080;
 const middleware = require("./middleware/provider");
-const database = require("./db/utils/connect");
+const database = require("../db/utils/connect");
 const router = require("./routers/router");
 
 // App Initialization

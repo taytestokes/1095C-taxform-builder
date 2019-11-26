@@ -20,8 +20,10 @@ class Dashboard extends Component {
 
   getStyles = () => ({
     dashboard: {
+      width: "100vw",
+      height: "100vh",
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "flex-start",
       alignItems: "center"
     }

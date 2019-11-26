@@ -141,8 +141,7 @@ exports.getDocuments = (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
 
-  db.scripts
-    .get_users_documents([id])
+  db.get_users_documents([id])
     .then(documents => {
       res.send(documents);
     })

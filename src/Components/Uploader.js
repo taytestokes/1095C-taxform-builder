@@ -235,11 +235,10 @@ class Uploader extends Component {
 
   getStyles = () => ({
     uploader: {
-      width: "90%",
+      width: "80%",
       height: "90%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
       alignItems: "center",
       borderRadius: theme.BorderRadius.MEDIUM
     },
