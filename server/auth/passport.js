@@ -1,8 +1,8 @@
 const passport = require("passport");
 
 // Strategies
-const login = require("./login");
-const register = require("./register");
+const login = require("./Login");
+const register = require("./Register");
 
 // Passport Config
 passport.use("login", login.LoginStrategy);

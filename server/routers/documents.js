@@ -2,7 +2,7 @@
 const express = require("express");
 
 // Upload Controller
-const UploadController = require("../controllers/documents");
+const UploadController = require("../Controllers/Documents");
 
 // Auth Router
 const UploadRouter = express.Router();

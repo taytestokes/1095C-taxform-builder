@@ -1,10 +1,10 @@
 require("dotenv").config();
-require("./auth/passport");
+require("./Auth/Passport");
 const express = require("express");
 const port = process.env.PORT || 8080;
-const middleware = require("./middleware/provider");
+const middleware = require("./Middleware/Provider");
 const database = require("../db/utils/connect");
-const router = require("./routers/router");
+const router = require("./Routers/Router");
 
 // App Initialization
 const app = express();

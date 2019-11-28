@@ -1,6 +1,6 @@
 // Routers
-const { AuthRouter } = require("./auth");
-const { UploadRouter } = require("./documents");
+const { AuthRouter } = require("./Auth");
+const { UploadRouter } = require("./Documents");
 
 // Add Routes To Server
 exports.addRoutes = app => {
