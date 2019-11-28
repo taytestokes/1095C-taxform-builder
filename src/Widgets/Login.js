@@ -209,11 +209,10 @@ class Login extends Component {
     register: {
       width: "90%",
       outline: "none",
-      backgroundColor: theme.BackgroundColors.LIGHT,
-      color: theme.FontColors.DARK,
+      backgroundColor: theme.Colors.GRAY,
+      color: theme.FontColors.GRAY,
       padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
-      border: theme.Border.DEFAULT,
       marginTop: theme.Spacing.SMALL,
       textDecoration: "none",
       display: "flex",

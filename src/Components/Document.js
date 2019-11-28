@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 import * as Icon from "react-feather";
 import { css } from "glamor";
+import axios from "axios";
+import fileSaver from "file-saver";
 
 // Theme
 import theme from "../Constants/Theme";
 
 export default class Document extends Component {
+  _downloadPDF = () => {
+    const { document } = this.props;
+
+    axios
+      .post("/documents/createPDF", document)
+      .then(() => {
+        return axios.get("/documents/fetchPDF", { responseType: "blob" });
+      })
+      .then(response => {
+        const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+        console.log(pdfBlob);
+        fileSaver.saveAs(pdfBlob, "testPdf.pdf");
+      });
+  };
+
   render() {
     const styles = this.getStyles();
     const { document } = this.props;
@@ -19,7 +36,11 @@ export default class Document extends Component {
           className={css(styles.trash)}
           onClick={() => this.props.removeDocument(document.id)}
         />
-        <Icon.Download size={18} className={css(styles.download)} />
+        <Icon.Download
+          size={18}
+          className={css(styles.download)}
+          onClick={this._downloadPDF}
+        />
       </div>
     );
   }

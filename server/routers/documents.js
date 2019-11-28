@@ -11,6 +11,8 @@ const UploadRouter = express.Router();
 UploadRouter.post("/upload", UploadController.upload);
 UploadRouter.get("/all", UploadController.getDocuments);
 UploadRouter.delete("/delete/:id", UploadController.deleteDocument);
+UploadRouter.post("/createPDF", UploadController.createPDF);
+UploadRouter.get("/fetchPDF", UploadController.fetchPDF);
 
 // Export Router
 module.exports = {

@@ -15,6 +15,7 @@ const corsOptions = {
 // Function to provide middleware to server
 exports.provider = app => {
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(cors(corsOptions));
   app.use(passport.initialize());
   app.use(
