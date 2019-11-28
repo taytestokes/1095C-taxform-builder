@@ -1,7 +1,4 @@
 module.exports = ({
-  id,
-  user_id,
-  name,
   employees_1,
   employees_2,
   employees_3,
@@ -51,7 +48,12 @@ module.exports = ({
   oct_16,
   nov_16,
   dec_16
-}) => `<!DOCTYPE html>
+}) => {
+  const employeeFirst = employees_1.split(" ")[0];
+  const employeeMiddle = employees_1.split(" ")[1];
+  const employeeLast = employees_1.split(" ")[2];
+
+  return `<!DOCTYPE html>
 <html>
   <body style="font-size: 8px">
     <img
@@ -59,157 +61,158 @@ module.exports = ({
       style="width: 100%; max-height: 200%;"
     />
     <div style="position: absolute; top: 128px; left: 57px">
-      Employee First Name
+      ${employeeFirst}
     </div>
     <div style="position: absolute; top: 128px; left: 162px">
-      F
+      ${employeeMiddle}
     </div>
     <div style="position: absolute; top: 128px; left: 190px">
-      Employee Last Name
+      ${employeeLast}
     </div>
     <div style="position: absolute; top: 128px; left: 325px">
-      647-34-2896
+    ${employees_2}
     </div>
     <div style="position: absolute; top: 128px; left: 433px">
-      Name of Employer
+      ${employers_7}
     </div>
     <div style="position: absolute; top: 128px; left: 675px">
-      Employer ID #
+      ${employers_8}
     </div>
     <div style="position: absolute; top: 151px; left: 57px">
-      Employee Street Address
+      ${employees_3}
     </div>
     <div style="position: absolute; top: 151px; left: 433px">
-      Employer Street Address
+      ${employers_9}
     </div>
     <div style="position: absolute; top: 151px; left: 675px">
-      Employer contact number
+      ${employers_10}
     </div>
     <div style="position: absolute; top: 174px; left: 57px">
-      Employee City
+      ${employees_4}
     </div>
     <div style="position: absolute; top: 174px; left: 168px">
-      Employee State
+      ${employees_5}
     </div>
     <div style="position: absolute; top: 174px; left: 297px">
-      Employee Zip
+      ${employees_6}
     </div>
     <div style="position: absolute; top: 174px; left: 433px">
-      Employer City
+        ${employers_11}
     </div>
     <div style="position: absolute; top: 174px; left: 549px">
-      Employer State
+      ${employers_12}
     </div>
     <div style="position: absolute; top: 174px; left: 675px">
-      Employer Zip
+      ${employers_13}
     </div>
     <div style="position: absolute; top: 222px; left: 175px">
-      Jan 14
+      ${jan_14}
     </div>
     <div style="position: absolute; top: 222px; left: 225px">
-      Feb 14
+      ${feb_14}
     </div>
     <div style="position: absolute; top: 222px; left: 280px">
-      Mar 14
+      ${mar_14}
     </div>
     <div style="position: absolute; top: 222px; left: 330px">
-      Apr 14
+      ${apr_14}
     </div>
     <div style="position: absolute; top: 222px; left: 385px">
-      May 14
+      ${may_14}
     </div>
     <div style="position: absolute; top: 222px; left: 435px">
-      Jun 14
+      ${jun_14}
     </div>
     <div style="position: absolute; top: 222px; left: 488px">
-      Jul 14
+      ${jul_14}
     </div>
     <div style="position: absolute; top: 222px; left: 540px">
-      Aug 14
+      ${aug_14}
     </div>
     <div style="position: absolute; top: 222px; left: 593px">
-      Sep 14
+      ${sep_14}
     </div>
     <div style="position: absolute; top: 222px; left: 647px">
-      Oct 14
+      ${oct_14}
     </div>
     <div style="position: absolute; top: 222px; left: 698px">
-      Nov 14
+      ${nov_14}
     </div>
     <div style="position: absolute; top: 222px; left: 750px">
-      Dec 14
+      ${dec_14}
     </div>
     <div style="position: absolute; top: 258px; left: 175px">
-      Jan 15
+      ${jan_15}
     </div>
     <div style="position: absolute; top: 258px; left: 225px">
-      Feb 15
+      ${feb_15}
     </div>
     <div style="position: absolute; top: 258px; left: 280px">
-      Mar 15
+      ${mar_15}
     </div>
     <div style="position: absolute; top: 258px; left: 330px">
-      Apr 15
+      ${apr_15}
     </div>
     <div style="position: absolute; top: 258px; left: 385px">
-      May 15
+      ${may_15}
     </div>
     <div style="position: absolute; top: 258px; left: 435px">
-      Jun 15
+      ${jun_15}
     </div>
     <div style="position: absolute; top: 258px; left: 488px">
-      Jul 15
+      ${jul_15}
     </div>
     <div style="position: absolute; top: 258px; left: 540px">
-      Aug 15
+        ${aug_15}
     </div>
     <div style="position: absolute; top: 258px; left: 593px">
-      Sep 15
+      ${sep_15}
     </div>
     <div style="position: absolute; top: 258px; left: 647px">
-      Oct 15
+      ${oct_15}
     </div>
     <div style="position: absolute; top: 258px; left: 698px">
-      Nov 15
+      ${nov_15}
     </div>
     <div style="position: absolute; top: 258px; left: 750px">
-      Dec 15
+      ${dec_15}
     </div>
     <div style="position: absolute; top: 294px; left: 175px">
-      Jan 16
+      ${jan_14}
     </div>
     <div style="position: absolute; top: 294px; left: 225px">
-      Feb 16
+      ${feb_16}
     </div>
     <div style="position: absolute; top: 294px; left: 280px">
-      Mar 16
+      ${mar_16}
     </div>
     <div style="position: absolute; top: 294px; left: 330px">
-      Apr 16
+      ${apr_16}
     </div>
     <div style="position: absolute; top: 294px; left: 385px">
-      May 16
+      ${may_16}
     </div>
     <div style="position: absolute; top: 294px; left: 435px">
-      Jun 16
+      ${jun_16}
     </div>
     <div style="position: absolute; top: 294px; left: 488px">
-      Jul 16
+      ${jul_16}
     </div>
     <div style="position: absolute; top: 294px; left: 540px">
-      Aug 16
+      ${aug_16}
     </div>
     <div style="position: absolute; top: 294px; left: 593px">
-      Sep 16
+      ${sep_16}
     </div>
     <div style="position: absolute; top: 294px; left: 647px">
-      Oct 16
+      ${oct_16}
     </div>
     <div style="position: absolute; top: 294px; left: 698px">
-      Nov 16
+      ${nov_16}
     </div>
     <div style="position: absolute; top: 294px; left: 750px">
-      Dec 16
+      ${dec_16}
     </div>
   </body>
 </html>`;
+};
