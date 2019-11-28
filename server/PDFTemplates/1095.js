@@ -53,13 +53,163 @@ module.exports = ({
   dec_16
 }) => `<!DOCTYPE html>
 <html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
-</body>
+  <body style="font-size: 8px">
+    <img
+      src="http://localhost:8080/1095cPDF.png"
+      style="width: 100%; max-height: 200%;"
+    />
+    <div style="position: absolute; top: 128px; left: 57px">
+      Employee First Name
+    </div>
+    <div style="position: absolute; top: 128px; left: 162px">
+      F
+    </div>
+    <div style="position: absolute; top: 128px; left: 190px">
+      Employee Last Name
+    </div>
+    <div style="position: absolute; top: 128px; left: 325px">
+      647-34-2896
+    </div>
+    <div style="position: absolute; top: 128px; left: 433px">
+      Name of Employer
+    </div>
+    <div style="position: absolute; top: 128px; left: 675px">
+      Employer ID #
+    </div>
+    <div style="position: absolute; top: 151px; left: 57px">
+      Employee Street Address
+    </div>
+    <div style="position: absolute; top: 151px; left: 433px">
+      Employer Street Address
+    </div>
+    <div style="position: absolute; top: 151px; left: 675px">
+      Employer contact number
+    </div>
+    <div style="position: absolute; top: 174px; left: 57px">
+      Employee City
+    </div>
+    <div style="position: absolute; top: 174px; left: 168px">
+      Employee State
+    </div>
+    <div style="position: absolute; top: 174px; left: 297px">
+      Employee Zip
+    </div>
+    <div style="position: absolute; top: 174px; left: 433px">
+      Employer City
+    </div>
+    <div style="position: absolute; top: 174px; left: 549px">
+      Employer State
+    </div>
+    <div style="position: absolute; top: 174px; left: 675px">
+      Employer Zip
+    </div>
+    <div style="position: absolute; top: 222px; left: 175px">
+      Jan 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 225px">
+      Feb 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 280px">
+      Mar 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 330px">
+      Apr 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 385px">
+      May 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 435px">
+      Jun 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 488px">
+      Jul 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 540px">
+      Aug 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 593px">
+      Sep 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 647px">
+      Oct 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 698px">
+      Nov 14
+    </div>
+    <div style="position: absolute; top: 222px; left: 750px">
+      Dec 14
+    </div>
+    <div style="position: absolute; top: 258px; left: 175px">
+      Jan 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 225px">
+      Feb 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 280px">
+      Mar 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 330px">
+      Apr 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 385px">
+      May 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 435px">
+      Jun 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 488px">
+      Jul 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 540px">
+      Aug 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 593px">
+      Sep 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 647px">
+      Oct 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 698px">
+      Nov 15
+    </div>
+    <div style="position: absolute; top: 258px; left: 750px">
+      Dec 15
+    </div>
+    <div style="position: absolute; top: 294px; left: 175px">
+      Jan 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 225px">
+      Feb 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 280px">
+      Mar 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 330px">
+      Apr 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 385px">
+      May 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 435px">
+      Jun 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 488px">
+      Jul 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 540px">
+      Aug 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 593px">
+      Sep 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 647px">
+      Oct 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 698px">
+      Nov 16
+    </div>
+    <div style="position: absolute; top: 294px; left: 750px">
+      Dec 16
+    </div>
+  </body>
 </html>`;

@@ -172,7 +172,8 @@ exports.deleteDocument = (req, res) => {
 
 exports.createPDF = (req, res) => {
   const pdfOptions = {
-    orientation: "landscape"
+    orientation: "landscape",
+    format: "A4"
   };
 
   pdf

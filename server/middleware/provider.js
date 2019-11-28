@@ -16,6 +16,8 @@ const corsOptions = {
 exports.provider = app => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(express.static("server/Uploads"));
+  app.use(express.static("server/Assets"));
   app.use(cors(corsOptions));
   app.use(passport.initialize());
   app.use(
