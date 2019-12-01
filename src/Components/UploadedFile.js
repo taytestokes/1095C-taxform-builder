@@ -55,7 +55,8 @@ export default class UploadedFile extends Component {
       justifyContent: "space-between",
       alignItems: "center",
       padding: `${theme.Spacing.MEDIUM}px 0px`,
-      borderBottom: theme.Border.SEGMENT
+      borderBottom: theme.Border.SEGMENT,
+      transition: "ease 1s"
     },
     fileProgress: {
       width: "80%",
