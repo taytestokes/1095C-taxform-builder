@@ -21,7 +21,7 @@ class MasterWidget extends Component {
     widget: {
       width: "100vw",
       height: "100vh",
-      background: theme.BackgroundColors.LIGHT,
+      background: theme.BackgroundColors.WHITE,
       fontFamily: theme.FontFamily.PRIMARY,
       color: theme.FontColors.DARK
     }

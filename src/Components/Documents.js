@@ -221,8 +221,8 @@ export default class Documents extends Component {
     },
     documents: {
       display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-between"
+      flexDirection: "column",
+      alignItems: "center"
     }
   });
 }

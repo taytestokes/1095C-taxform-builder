@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { css } from "glamor";
-import * as Icon from "react-feather";
 import swal from "@sweetalert/with-react";
 
 // Components
 import Dropzone from "./Dropzone";
-import ProgressBar from "./Progress";
+import UploadedFile from "./UploadedFile";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -178,40 +177,15 @@ class Uploader extends Component {
         ) : (
           <>
             <div style={styles.uploadedFiles}>
-              {this.state.files.map((file, index) => (
-                <div key={`${file.name}-${index}`} style={styles.fileCard}>
-                  <Icon.File size={30} />
-                  <div style={styles.fileProgress}>
-                    <div style={styles.fileInfo}>
-                      <p>{file.name}</p>
-                      <p>
-                        {this.state.uploadProgress[file.name]
-                          ? `${
-                              this.state.uploadProgress[file.name].percentage
-                            }%`
-                          : `0%`}
-                      </p>
-                    </div>
-                    <div style={styles.progressbar}>
-                      <ProgressBar
-                        progress={
-                          this.state.uploadProgress[file.name]
-                            ? this.state.uploadProgress[file.name].percentage
-                            : 0
-                        }
-                      />
-                    </div>
-                  </div>
-                  <Icon.CheckCircle
-                    size={20}
-                    style={
-                      this.state.uploadProgress[file.name]
-                        ? { color: theme.Colors.SUCCESS }
-                        : { color: "#CCC" }
-                    }
+              {this.state.files.map((file, index) => {
+                return (
+                  <UploadedFile
+                    file={file}
+                    uploadProgress={this.state.uploadProgress}
+                    key={index}
                   />
-                </div>
-              ))}
+                );
+              })}
             </div>
             <div style={styles.uploadSubmit}>
               <button
@@ -301,32 +275,6 @@ class Uploader extends Component {
       overflow: "hidden",
       position: "relative"
     },
-    fileCard: {
-      width: "50%",
-      height: "20%",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      padding: theme.Spacing.MEDIUM
-    },
-    fileProgress: {
-      width: "85%",
-      height: "45%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "space-between"
-    },
-    fileInfo: {
-      width: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      fontSize: theme.FontSizes.LARGE
-    },
-    progressbar: {
-      width: "100%"
-    },
     uploadSubmit: {
       height: "10%",
       width: "90%",
@@ -343,22 +291,29 @@ class Uploader extends Component {
       border: `1px solid ${theme.Colors.PRIMARY}`,
       borderRadius: theme.BorderRadius.SMALL,
       outline: "none",
+      transition: "ease .2s",
       ":hover": {
-        cursor: "pointer"
+        cursor: "pointer",
+        background: theme.Colors.HOVER_PRIMARY,
+        borderColor: theme.Colors.HOVER_PRIMARY
       }
     },
     cancelButton: {
       width: "100px",
       height: "35px",
       fontSize: theme.FontSizes.MEDIUM,
-      backgroundColor: "transparent",
-      color: "#BBB",
-      border: `1px solid #BBB`,
+      backgroundColor: theme.Colors.GRAY,
+      color: theme.FontColors.GRAY,
+      border: `1px solid ${theme.Colors.GRAY}`,
       borderRadius: theme.BorderRadius.SMALL,
       marginRight: theme.Spacing.SMALL,
       outline: "none",
+      transition: "ease .2s",
       ":hover": {
-        cursor: "pointer"
+        cursor: "pointer",
+        background: theme.Colors.HOVER_GRAY,
+        borderColor: theme.Colors.HOVER_GRAY,
+        color: theme.FontColors.HOVER_GRAY
       }
     }
   });

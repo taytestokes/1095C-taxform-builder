@@ -6,7 +6,8 @@ module.exports = {
   FontColors: {
     DARK: "#2f363d",
     LIGHT: "#FFFFFF",
-    GRAY: "rgba(0,0,0,.6)"
+    GRAY: "rgba(0,0,0,.6)",
+    HOVER_GRAY: "rgba(0,0,0,.8)"
   },
   FontFamily: {
     PRIMARY:
@@ -17,7 +18,9 @@ module.exports = {
     PRIMARY: "#2185d0",
     SUCCESS: "#14C764",
     GRAY: "#e0e1e2",
-    DANGER: "#EB3434"
+    DANGER: "#EB3434",
+    HOVER_GRAY: "#cacbcd",
+    HOVER_PRIMARY: "#1678c2"
   },
   FontSizes: {
     JUMBO: 30,

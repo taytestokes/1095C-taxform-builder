@@ -53,7 +53,7 @@ export default class Document extends Component {
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.MEDIUM,
-      width: "32%",
+      width: "100%",
       display: "flex",
       alignItems: "center"
     },

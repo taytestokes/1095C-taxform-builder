@@ -76,7 +76,7 @@ class Dropzone extends Component {
         onDrop={this.onDrop}
         style={styles.dropzone}
       >
-        <Icon.UploadCloud size={55} />
+        <Icon.UploadCloud size={60} />
         <p style={styles.dropzoneText}>Drag and drop your files here</p>
         <p style={styles.dropzoneTextTwo}>or</p>
         <button className={css(styles.dropzoneButton)}>Browse Disk</button>
@@ -111,12 +111,12 @@ class Dropzone extends Component {
     },
     dropzoneText: {
       fontWeight: "bold",
-      padding: theme.Spacing.SMALL,
+      padding: theme.Spacing.MEDIUM,
       color: theme.FontColors.DARK
     },
     dropzoneTextTwo: {
       color: "#a7a7a7",
-      paddingBottom: theme.Spacing.SMALL
+      paddingBottom: theme.Spacing.MEDIUM
     },
     dropzoneButton: {
       fontSize: theme.FontSizes.MEDIUM,
@@ -126,8 +126,11 @@ class Dropzone extends Component {
       borderRadius: theme.BorderRadius.SMALL,
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.XLARGE}px`,
       outline: "none",
+      transition: "ease .2s",
       ":hover": {
-        cursor: "pointer"
+        cursor: "pointer",
+        backgroundColor: theme.Colors.HOVER_PRIMARY,
+        borderColor: theme.Colors.HOVER_PRIMARY
       }
     }
   });

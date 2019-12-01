@@ -17,7 +17,7 @@ class Progress extends Component {
   getStyles = () => ({
     progressbar: {
       width: "100%",
-      background: "#CCC",
+      background: theme.Colors.SUCCESS,
       height: theme.Spacing.XSMALL,
       borderRadius: theme.BorderRadius.MEDIUM
     },
