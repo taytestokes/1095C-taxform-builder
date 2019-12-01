@@ -20,7 +20,8 @@ module.exports = {
     GRAY: "#e0e1e2",
     DANGER: "#EB3434",
     HOVER_GRAY: "#cacbcd",
-    HOVER_PRIMARY: "#1678c2"
+    HOVER_PRIMARY: "#1678c2",
+    OFFICE_GREEN: "#008000"
   },
   FontSizes: {
     JUMBO: 30,
@@ -40,7 +41,8 @@ module.exports = {
   },
   Border: {
     DEFAULT: "1px solid #e6e6e6",
-    FOCUS: "1px solid #2185d0"
+    FOCUS: "1px solid #2185d0",
+    SEGMENT: "1px solid rgba(34,36,38,.15)"
   },
   BorderRadius: {
     SMALL: 3,

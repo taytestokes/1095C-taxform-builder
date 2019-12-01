@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import FileIcon, { defaultStyles } from "react-file-icon";
+import FileIcon from "react-file-icon";
 import * as Icon from "react-feather";
+import filesize from "filesize";
+import { css } from "glamor";
 
 // Components
 import ProgressBar from "./Progress";
@@ -11,35 +13,32 @@ import theme from "../Constants/Theme";
 export default class UploadedFile extends Component {
   render() {
     const styles = this.getStyles();
-    const { file, uploadProgress } = this.props;
+    const { file } = this.props;
+    const fileType = file.name.split(".")[1];
+    const fileSize = filesize(file.size);
+
+    console.log(file);
     return (
       <div style={styles.fileCard}>
-        <FileIcon extension={"xlsx"} {...defaultStyles.docx} size={45} />
+        <FileIcon
+          extension={fileType}
+          fold={true}
+          color={theme.Colors.GRAY}
+          labelColor={theme.Colors.OFFICE_GREEN}
+          size={45}
+        />
         <div style={styles.fileProgress}>
           <div style={styles.fileInfo}>
-            <p>{file.name}</p>
-            <p>
-              {uploadProgress[file.name]
-                ? `${uploadProgress[file.name].percentage}%`
-                : `0%`}
-            </p>
+            <p style={styles.fileName}>{file.name}</p>
+            <p style={styles.fileSize}>{fileSize}</p>
+            <p style={styles.uploadPercentage}>100%</p>
           </div>
           <div style={styles.progressbar}>
-            <ProgressBar
-              progress={
-                uploadProgress[file.name]
-                  ? uploadProgress[file.name].percentage
-                  : 0
-              }
-            />
+            <ProgressBar progress={100} />
           </div>
         </div>
-        <Icon.CheckCircle
-          size={20}
-          style={{
-            color: theme.Colors.SUCCESS
-          }}
-        />
+        <Icon.CheckCircle size={22} style={styles.checkCircle} />
+        <Icon.Trash2 size={22} className={css(styles.trash)} />
       </div>
     );
   }
@@ -51,25 +50,50 @@ export default class UploadedFile extends Component {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: theme.Spacing.MEDIUM
+      padding: `${theme.Spacing.MEDIUM}px 0px`,
+      borderBottom: theme.Border.SEGMENT
     },
     fileProgress: {
-      width: "85%",
-      height: "45%",
+      width: "80%",
+      height: "60%",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      alignItems: "center"
     },
     fileInfo: {
       width: "100%",
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignItems: "center",
       fontSize: theme.FontSizes.LARGE
     },
+    fileName: {
+      width: "30%"
+    },
+    fileSize: {
+      width: "40%",
+      textAlign: "left"
+    },
+    uploadPercentage: {
+      width: "30%",
+      textAlign: "right"
+    },
     progressbar: {
       width: "100%"
+    },
+    checkCircle: {
+      color: theme.Colors.SUCCESS,
+      marginTop: theme.Spacing.SMALL
+    },
+    trash: {
+      color: theme.Colors.GRAY,
+      marginTop: theme.Spacing.SMALL,
+      transition: "ease .2s",
+      ":hover": {
+        color: theme.Colors.DANGER,
+        cursor: "pointer"
+      }
     }
   });
 }

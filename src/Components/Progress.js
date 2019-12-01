@@ -17,14 +17,14 @@ class Progress extends Component {
   getStyles = () => ({
     progressbar: {
       width: "100%",
-      background: theme.Colors.SUCCESS,
-      height: theme.Spacing.XSMALL,
+      background: theme.Colors.PRIMARY,
+      height: 8,
       borderRadius: theme.BorderRadius.MEDIUM
     },
     progress: {
       width: `${this.props.progress}%`,
       background: theme.Colors.PRIMARY,
-      height: theme.Spacing.XSMALL,
+      height: 8,
       borderRadius: theme.BorderRadius.MEDIUM
     }
   });

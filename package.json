@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "file-saver": "^2.0.2",
+    "filesize": "^6.0.1",
     "formidable": "^1.2.1",
     "glamor": "^2.20.40",
     "html-pdf": "^2.2.0",
