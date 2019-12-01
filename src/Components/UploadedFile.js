@@ -13,7 +13,7 @@ import theme from "../Constants/Theme";
 export default class UploadedFile extends Component {
   render() {
     const styles = this.getStyles();
-    const { file } = this.props;
+    const { file, removeUpload } = this.props;
     const fileType = file.name.split(".")[1];
     const fileSize = filesize(file.size);
 
@@ -38,7 +38,11 @@ export default class UploadedFile extends Component {
           </div>
         </div>
         <Icon.CheckCircle size={22} style={styles.checkCircle} />
-        <Icon.Trash2 size={22} className={css(styles.trash)} />
+        <Icon.Trash2
+          size={22}
+          className={css(styles.trash)}
+          onClick={() => removeUpload(file)}
+        />
       </div>
     );
   }

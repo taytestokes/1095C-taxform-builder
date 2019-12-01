@@ -154,6 +154,22 @@ class Uploader extends Component {
     });
   };
 
+  _removeUpload = file => {
+    const fileIndex = this.state.files.indexOf(file);
+
+    if (fileIndex === -1) {
+      return;
+    }
+
+    const updatedFiles = this.state.files.filter(
+      (file, index) => index !== fileIndex
+    );
+
+    return this.setState({
+      files: updatedFiles
+    });
+  };
+
   render() {
     const styles = this.getStyles();
 
@@ -181,7 +197,7 @@ class Uploader extends Component {
                 return (
                   <UploadedFile
                     file={file}
-                    uploadProgress={this.state.uploadProgress}
+                    removeUpload={this._removeUpload}
                     key={index}
                   />
                 );
