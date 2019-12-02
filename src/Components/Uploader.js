@@ -23,10 +23,22 @@ class Uploader extends Component {
 
   // Adds new file to the list of files on state
   onFilesAdded = files => {
-    this.setState(prevState => ({
-      files: prevState.files.concat(files),
+    const currentFilesLength = this.state.files.length;
+    const fileAmountToCut = 5 - currentFilesLength;
+    const incomingFiles = files.slice(0, fileAmountToCut);
+    const updatedFileList = this.state.files.concat(incomingFiles);
+
+    if (fileAmountToCut === 0) {
+      return swal({
+        text: "Only 5 files allowed to be uploaded.",
+        button: "Okay"
+      });
+    }
+
+    this.setState({
+      files: updatedFileList,
       step: 2
-    }));
+    });
   };
 
   _uploadFiles = async () => {
@@ -94,7 +106,7 @@ class Uploader extends Component {
     }).then(() => {
       swal({
         text: "Files successfully uploaded!",
-        button: "OKAY"
+        button: "Okay"
       });
 
       this.setState({
@@ -120,7 +132,7 @@ class Uploader extends Component {
     if (this.state.files.length < 1) {
       return swal({
         text: "Please select a file or files to upload before moving on.",
-        button: "Got It"
+        button: "Okay"
       });
     }
     this.setState({

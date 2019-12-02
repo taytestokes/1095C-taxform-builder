@@ -77,7 +77,9 @@ class Dropzone extends Component {
         style={styles.dropzone}
       >
         <Icon.UploadCloud size={60} />
-        <p style={styles.dropzoneText}>Drag and drop your files here</p>
+        <p style={styles.dropzoneText}>
+          Drag or drop up to 5 of your files here
+        </p>
         <p style={styles.dropzoneTextTwo}>or</p>
         <button className={css(styles.dropzoneButton)}>Browse Disk</button>
         <input

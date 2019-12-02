@@ -17,7 +17,6 @@ export default class UploadedFile extends Component {
     const fileType = file.name.split(".")[1];
     const fileSize = filesize(file.size);
 
-    console.log(file);
     return (
       <div style={styles.fileCard}>
         <FileIcon
@@ -96,7 +95,7 @@ export default class UploadedFile extends Component {
       marginTop: theme.Spacing.SMALL,
       transition: "ease .2s",
       ":hover": {
-        color: theme.Colors.DANGER,
+        color: theme.FontColors.GRAY,
         cursor: "pointer"
       }
     }
