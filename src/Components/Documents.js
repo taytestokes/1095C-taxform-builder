@@ -128,7 +128,7 @@ export default class Documents extends Component {
     },
     documentsContainer: {
       height: "90%",
-      width: "75%",
+      width: "72%",
       display: "flex",
       flexDirection: "column"
     },

@@ -27,17 +27,17 @@ class Navbar extends Component {
         <div style={styles.links}>
           <NavLink
             activeStyle={styles.activeLink}
-            style={styles.navlink}
+            className={css(styles.navlink)}
             to="/dashboard/documents"
           >
             Documents
           </NavLink>
           <NavLink
             activeStyle={styles.activeLink}
-            style={styles.navlink}
+            className={css(styles.navlink)}
             to="/dashboard/upload"
           >
-            Uploads
+            Upload
           </NavLink>
           <button className={css(styles.logout)} onClick={this._logout}>
             Sign Out
@@ -59,7 +59,7 @@ class Navbar extends Component {
       fontWeight: "bold"
     },
     links: {
-      width: "75%",
+      width: "72%",
       height: "100%",
       display: "flex",
       alignItems: "center"
@@ -72,10 +72,14 @@ class Navbar extends Component {
       justifyContent: "flex-start",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
-      color: "#A7B3B6"
+      color: "#A7B3B6",
+      transition: "ease .2s",
+      ":hover": {
+        color: theme.Colors.PRIMARY
+      }
     },
     activeLink: {
-      color: theme.FontColors.DARK
+      color: theme.Colors.PRIMARY
     },
     text: {
       paddingLeft: theme.Spacing.MEDIUM
@@ -95,6 +99,7 @@ class Navbar extends Component {
       borderRadius: theme.BorderRadius.SMALL,
       outline: "none",
       fontWeight: "bold",
+      padding: "none",
       ":hover": {
         cursor: "pointer"
       }

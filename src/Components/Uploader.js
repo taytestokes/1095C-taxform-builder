@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import swal from "@sweetalert/with-react";
+import * as Icon from "react-feather";
 
 // Components
 import Dropzone from "./Dropzone";
@@ -177,9 +178,18 @@ class Uploader extends Component {
       (file, index) => index !== fileIndex
     );
 
-    return this.setState({
-      files: updatedFiles
-    });
+    return this.setState(
+      {
+        files: updatedFiles
+      },
+      () => {
+        if (this.state.files.length === 0) {
+          this.setState({
+            step: 1
+          });
+        }
+      }
+    );
   };
 
   render() {
@@ -216,6 +226,9 @@ class Uploader extends Component {
               })}
             </div>
             <div style={styles.uploadSubmit}>
+              <div style={styles.filesAmount}>
+                <p>{`Uploaded File Amount: ${this.state.files.length} out of 5`}</p>
+              </div>
               <button
                 className={css(styles.cancelButton)}
                 onClick={this._cancelUpload}
@@ -260,6 +273,7 @@ class Uploader extends Component {
       display: "flex",
       alignItems: "center",
       fontWeight: "bold",
+      transition: "ease .2s",
       ":hover": {
         cursor: "pointer",
         borderBottom: "3px solid black"
@@ -273,6 +287,7 @@ class Uploader extends Component {
       display: "flex",
       alignItems: "center",
       fontWeight: "bold",
+      transition: "ease .2s",
       ":hover": {
         cursor: "pointer",
         borderBottom: "3px solid black"
@@ -296,11 +311,8 @@ class Uploader extends Component {
     },
     uploadedFiles: {
       width: "90%",
-      height: "65%",
       display: "flex",
       flexDirection: "column",
-      flexWrap: "wrap",
-      overflow: "hidden",
       position: "relative"
     },
     uploadSubmit: {
@@ -308,7 +320,9 @@ class Uploader extends Component {
       width: "90%",
       display: "flex",
       justifyContent: "flex-end",
-      alignItems: "center"
+      alignItems: "center",
+      borderTop: theme.Border.SEGMENT,
+      marginTop: theme.Spacing.MEDIUM
     },
     saveButton: {
       width: "100px",
@@ -343,6 +357,13 @@ class Uploader extends Component {
         borderColor: theme.Colors.HOVER_GRAY,
         color: theme.FontColors.HOVER_GRAY
       }
+    },
+    filesAmount: {
+      marginRight: "auto",
+      fontSize: theme.FontSizes.LARGE,
+      color: theme.FontColors.DARK,
+      display: "flex",
+      alignItems: "center"
     }
   });
 }

@@ -27,17 +27,12 @@ export default class UploadedFile extends Component {
           size={45}
         />
         <div style={styles.fileProgress}>
-          <div style={styles.fileInfo}>
-            <p style={styles.fileName}>{file.name}</p>
-            <p style={styles.fileSize}>{fileSize}</p>
-            <p style={styles.uploadPercentage}>100%</p>
-          </div>
-          <div style={styles.progressbar}>
-            <ProgressBar progress={100} />
-          </div>
+          <p style={styles.fileName}>{file.name}</p>
+          <p style={styles.fileSize}>{fileSize}</p>
+          <p style={styles.uploadPercentage}>100%</p>
         </div>
         <Icon.CheckCircle size={22} style={styles.checkCircle} />
-        <Icon.Trash2
+        <Icon.XCircle
           size={22}
           className={css(styles.trash)}
           onClick={() => removeUpload(file)}
@@ -49,20 +44,18 @@ export default class UploadedFile extends Component {
   getStyles = () => ({
     fileCard: {
       width: "100%",
-      height: "20%",
+      height: "11vh",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
       padding: `${theme.Spacing.MEDIUM}px 0px`,
-      borderBottom: theme.Border.SEGMENT,
       transition: "ease 1s"
     },
     fileProgress: {
       width: "80%",
       height: "60%",
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignItems: "center"
     },
     fileInfo: {
@@ -88,14 +81,14 @@ export default class UploadedFile extends Component {
     },
     checkCircle: {
       color: theme.Colors.SUCCESS,
-      marginTop: theme.Spacing.SMALL
+      marginTop: theme.Spacing.XSMALL
     },
     trash: {
       color: theme.Colors.GRAY,
-      marginTop: theme.Spacing.SMALL,
+      marginTop: theme.Spacing.XSMALL,
       transition: "ease .2s",
       ":hover": {
-        color: theme.FontColors.GRAY,
+        color: theme.Colors.DANGER,
         cursor: "pointer"
       }
     }
