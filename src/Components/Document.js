@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import * as Icon from "react-feather";
-import { css } from "glamor";
 import axios from "axios";
 import fileSaver from "file-saver";
 import FileIcon from "react-file-icon";
+import filesize from "filesize";
+import moment from "moment";
+import { css } from "glamor";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -26,71 +28,96 @@ export default class Document extends Component {
   render() {
     const styles = this.getStyles();
     const { document } = this.props;
+    const fileSize = filesize(document.size);
+    const createdDate = moment(+document.created).format("MMM DD, YYYY");
 
     return (
-      <div style={styles.document}>
+      <div style={styles.documentCard}>
         <FileIcon
           extension="PDF"
           fold={true}
           color={theme.Colors.GRAY}
-          labelColor={theme.Colors.PDF_ORANGE}
-          size={30}
+          labelColor={theme.Colors.PDF_RED}
+          size={40}
         />
-        <div className={css(styles.text)}>{document.name}</div>
-        <div style={styles.size}>{document.size}</div>
-        <div style={styles.form}>PDF</div>
-        <Icon.Eye size={18} style={styles.preview} />
-        <Icon.Download size={18} />
-        <Icon.XCircle size={18} />
+
+        <div style={styles.documentCardInfo}>
+          <div style={styles.text}>{document.name}</div>
+          <div style={styles.documentCardStats}>
+            <div>{fileSize}</div>
+            <div>{createdDate}</div>
+          </div>
+        </div>
+
+        <div style={styles.optionsContainer}>
+          <Icon.Delete size={14} className={css(styles.delete)} />
+          <Icon.Download
+            size={14}
+            className={css(styles.download)}
+            onClick={this._downloadPDF}
+          />
+        </div>
       </div>
     );
   }
 
   getStyles = () => ({
-    document: {
+    documentCard: {
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
       boxShadow: theme.Shadows.CARD,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.MEDIUM,
-      width: "100%",
+      width: "30%",
       display: "flex",
       alignItems: "center"
     },
+    documentCardInfo: {
+      width: "70%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "left",
+      justifyContent: "space-between",
+      marginLeft: theme.Spacing.SMALL
+    },
     text: {
-      marginLeft: theme.Spacing.XSMALL,
-      width: "40%",
-      textOverflow: "ellipsis",
-      overFlow: "hidden",
-      whiteSpace: "nowrap",
       color: theme.FontColors.DARK,
-      ":hover": {
-        cursor: "default"
-      }
+      fontSize: theme.FontSizes.LARGE,
+      marginBottom: theme.Spacing.XSMALL
     },
-    size: {
-      width: "20%"
+    documentCardStats: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      fontSize: theme.FontSizes.MEDIUM,
+      color: theme.FontColors.GRAY,
+      marginTop: theme.Spacing.XSMALL
     },
-    form: {
-      width: "80%"
-    },
-    preview: {
+    optionsContainer: {
+      width: "5%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-end",
+      justifyContent: "space-between",
       marginLeft: "auto"
     },
-    download: {
-      marginLeft: theme.Spacing.SMALL,
-      marginRight: theme.Spacing.XSMALL,
+    delete: {
+      marginBottom: theme.Spacing.XSMALL,
+      transition: "ease .2s",
       ":hover": {
-        cursor: "pointer",
-        color: theme.Colors.PRIMARY
+        color: theme.FontColors.DARK,
+        cursor: "pointer"
       }
     },
-    trash: {
-      marginLeft: "auto",
+    download: {
+      marginTop: theme.Spacing.XSMALL,
+      transition: "ease .2s",
       ":hover": {
-        cursor: "pointer",
-        color: theme.Colors.DANGER
+        color: theme.FontColors.DARK,
+        cursor: "pointer"
       }
     }
   });
