@@ -193,13 +193,32 @@ exports.createPDF = (req, res) => {
 
   pdf
     .create(pdfTemplate(req.body), pdfOptions)
-    .toFile(`${__dirname}/PDF/testname.pdf`, error => {
-      if (error) throw error;
+    .toFile(
+      `${__dirname}/PDF/${req.body.name}${req.body.created}.pdf`,
+      error => {
+        if (error) throw error;
 
-      res.send("PDF created!");
-    });
+        res.send("PDF created!");
+      }
+    );
 };
 
 exports.fetchPDF = (req, res) => {
-  res.sendFile(`${__dirname}/PDF/testname.pdf`);
+  const { name } = req.params;
+  console.log(name);
+  res.sendFile(`${__dirname}/PDF/${name}.pdf`);
+};
+
+exports.deletePDF = (req, res) => {
+  const { name } = req.params;
+
+  fs.unlink(`${__dirname}/PDF/${name}.pdf`, error => {
+    // check for any errors
+    if (error) {
+      const errorMessage = new Error(error);
+      console.log(errorMessage);
+    }
+    // send a response on success
+    res.send("PDF file deleted!");
+  });
 };

@@ -12,7 +12,8 @@ UploadRouter.post("/upload", UploadController.upload);
 UploadRouter.get("/all", UploadController.getDocuments);
 UploadRouter.post("/delete/:id", UploadController.deleteDocument);
 UploadRouter.post("/createPDF", UploadController.createPDF);
-UploadRouter.get("/fetchPDF", UploadController.fetchPDF);
+UploadRouter.get("/fetchPDF/:name", UploadController.fetchPDF);
+UploadRouter.delete("/deletePDF/:name", UploadController.deletePDF);
 
 // Export Router
 module.exports = {

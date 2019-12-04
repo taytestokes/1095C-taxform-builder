@@ -17,7 +17,12 @@ export default class Document extends Component {
     axios
       .post("/documents/createPDF", document)
       .then(() => {
-        return axios.get("/documents/fetchPDF", { responseType: "blob" });
+        return axios.get(
+          `/documents/fetchPDF/${document.name}${document.created}`,
+          {
+            responseType: "blob"
+          }
+        );
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
@@ -53,7 +58,14 @@ export default class Document extends Component {
           <Icon.Delete
             size={14}
             className={css(styles.delete)}
-            onClick={() => removeDocument(document.id, document.path)}
+            onClick={() =>
+              removeDocument(
+                document.id,
+                document.path,
+                document.name,
+                document.created
+              )
+            }
           />
           <Icon.Download
             size={14}

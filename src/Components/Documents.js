@@ -45,12 +45,20 @@ export default class Documents extends Component {
       });
   };
 
-  _removeDocument = (id, path) => {
-    axios.post(`/documents/delete/${id}`, { path }).then(response => {
-      this.setState({
-        documents: response.data
+  _removeDocument = (id, path, name, created) => {
+    axios
+      .post(`/documents/delete/${id}`, { path })
+      .then(response => {
+        // update state
+        this.setState({
+          documents: response.data
+        });
+        // make request to remove PDF file
+        return axios.delete(`/documents/deletePDF/${name}${created}`);
+      })
+      .then(response => {
+        console.log(response);
       });
-    });
   };
 
   render() {
