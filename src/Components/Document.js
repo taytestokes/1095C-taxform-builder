@@ -53,7 +53,7 @@ export default class Document extends Component {
           <Icon.Delete
             size={14}
             className={css(styles.delete)}
-            onClick={() => removeDocument(document.id)}
+            onClick={() => removeDocument(document.id, document.path)}
           />
           <Icon.Download
             size={14}

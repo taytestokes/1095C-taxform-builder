@@ -1,6 +1,7 @@
 // Packages
 const exceltojson = require("convert-excel-to-json");
 const pdf = require("html-pdf");
+const fs = require("fs");
 
 // Utils
 const { upload } = require("../Utils/Uploads");
@@ -16,7 +17,7 @@ exports.upload = (req, res) => {
   upload(req, res, error => {
     const { Sheet1 } = exceltojson({ sourceFile: req.file.path });
     const fileName = req.file.originalname.split(".")[0];
-    const { size } = req.file;
+    const { size, path } = req.file;
     const date = Date.now();
 
     const employees = {
@@ -89,6 +90,7 @@ exports.upload = (req, res) => {
         name: fileName,
         size,
         created: date,
+        path,
         employees_1: employees["1"],
         employees_2: employees["2"],
         employees_3: employees["3"],
@@ -160,18 +162,21 @@ exports.getDocuments = (req, res) => {
 
 exports.deleteDocument = (req, res) => {
   const { id } = req.params;
+  const { path } = req.body;
   const db = req.app.get("db");
 
-  db.delete_user_document([id])
-    .then(() => {
-      return db.get_users_documents([req.session.user.id]);
-    })
-    .then(documents => {
-      res.send(documents);
-    })
-    .catch(error => {
-      res.send(error);
-    });
+  fs.unlink(path, error => {
+    db.delete_user_document([id])
+      .then(() => {
+        return db.get_users_documents([req.session.user.id]);
+      })
+      .then(documents => {
+        res.send(documents);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  });
 };
 
 exports.createPDF = (req, res) => {

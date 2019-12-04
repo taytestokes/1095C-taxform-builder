@@ -45,9 +45,8 @@ export default class Documents extends Component {
       });
   };
 
-  _removeDocument = id => {
-    axios.delete(`/documents/delete/${id}`).then(response => {
-      console.log(response);
+  _removeDocument = (id, path) => {
+    axios.post(`/documents/delete/${id}`, { path }).then(response => {
       this.setState({
         documents: response.data
       });
