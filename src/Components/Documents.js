@@ -105,12 +105,6 @@ export default class Documents extends Component {
             </div>
           </div>
           <div style={styles.documents}>
-            <div style={styles.infoBar}>
-              <div>File</div>
-              <div>Name</div>
-              <div>Size</div>
-              <div>Form</div>
-            </div>
             {this.state.documents.map(document => (
               <Document
                 removeDocument={this._removeDocument}
@@ -138,15 +132,6 @@ export default class Documents extends Component {
       display: "flex",
       flexDirection: "column"
     },
-    infoBar: {
-      width: "100%",
-      height: "5vh",
-      color: theme.FontColors.GRAY,
-      display: "flex",
-      alignItems: "center",
-      paddingLeft: theme.Spacing.SMALL,
-      paddingRight: theme.Spacing.SMALL
-    },
     banner: {
       padding: `${theme.Spacing.MEDIUM}px 0px`,
       display: "flex",
@@ -155,7 +140,8 @@ export default class Documents extends Component {
     },
     title: {
       fontSize: theme.FontSizes.JUMBO,
-      color: theme.FontColors.DARK
+      color: theme.FontColors.DARK,
+      marginLeft: theme.Spacing.XSMALL
     },
     subtitle: {
       fontSize: theme.FontSizes.LARGE,
@@ -165,7 +151,8 @@ export default class Documents extends Component {
     },
     bannerContainer: {
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      paddingRight: theme.Spacing.XSMALL
     },
     bannerButton: {
       fontSize: theme.FontSizes.MEDIUM,
@@ -178,24 +165,8 @@ export default class Documents extends Component {
       textDecoration: "none",
       display: "flex",
       boxShadow: theme.Shadows.CARD,
-      alignItems: "center",
-      ":hover": {
-        cursor: "pointer"
-      }
-    },
-    trashButton: {
-      fontSize: theme.FontSizes.MEDIUM,
-      backgroundColor: theme.Colors.WHITE,
-      color: theme.FontColors.GRAY,
-      border: "none",
-      borderRadius: theme.BorderRadius.SMALL,
-      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.LARGE}px`,
-      outline: "none",
-      textDecoration: "none",
-      display: "flex",
-      boxShadow: theme.Shadows.CARD,
-      alignItems: "center",
       marginRight: theme.Spacing.SMALL,
+      alignItems: "center",
       ":hover": {
         cursor: "pointer"
       }
@@ -236,8 +207,9 @@ export default class Documents extends Component {
     },
     documents: {
       display: "flex",
-      flexDirection: "column",
-      alignItems: "center"
+      flexWrap: "wrap",
+      alignItems: "center",
+      marginBottom: theme.Spacing.MEDIUM
     }
   });
 }

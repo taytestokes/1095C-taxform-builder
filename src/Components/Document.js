@@ -27,7 +27,7 @@ export default class Document extends Component {
 
   render() {
     const styles = this.getStyles();
-    const { document } = this.props;
+    const { document, removeDocument } = this.props;
     const fileSize = filesize(document.size);
     const createdDate = moment(+document.created).format("MMM DD, YYYY");
 
@@ -50,7 +50,11 @@ export default class Document extends Component {
         </div>
 
         <div style={styles.optionsContainer}>
-          <Icon.Delete size={14} className={css(styles.delete)} />
+          <Icon.Delete
+            size={14}
+            className={css(styles.delete)}
+            onClick={() => removeDocument(document.id)}
+          />
           <Icon.Download
             size={14}
             className={css(styles.download)}
@@ -69,9 +73,11 @@ export default class Document extends Component {
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.MEDIUM,
-      width: "30%",
+      width: "32%",
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      marginLeft: theme.Spacing.XSMALL,
+      marginRight: theme.Spacing.XSMALL
     },
     documentCardInfo: {
       width: "70%",

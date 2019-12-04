@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import swal from "@sweetalert/with-react";
-import * as Icon from "react-feather";
 
 // Components
 import Dropzone from "./Dropzone";

@@ -56,7 +56,9 @@ class Navbar extends Component {
       alignItems: "center",
       background: theme.Colors.WHITE,
       boxShadow: theme.Shadows.CARD,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      position: "sticky",
+      top: 0
     },
     links: {
       width: "72%",
