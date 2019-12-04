@@ -3,6 +3,7 @@ import * as Icon from "react-feather";
 import { css } from "glamor";
 import axios from "axios";
 import fileSaver from "file-saver";
+import FileIcon from "react-file-icon";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -18,8 +19,7 @@ export default class Document extends Component {
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
-        console.log(pdfBlob);
-        fileSaver.saveAs(pdfBlob, "testPdf.pdf");
+        fileSaver.saveAs(pdfBlob, `${document.name}.pdf`);
       });
   };
 
@@ -29,18 +29,19 @@ export default class Document extends Component {
 
     return (
       <div style={styles.document}>
-        <Icon.FileText size={20} />
-        <p className={css(styles.text)}>{document.name}</p>
-        <Icon.Trash
-          size={16}
-          className={css(styles.trash)}
-          onClick={() => this.props.removeDocument(document.id)}
+        <FileIcon
+          extension="PDF"
+          fold={true}
+          color={theme.Colors.GRAY}
+          labelColor={theme.Colors.PDF_ORANGE}
+          size={30}
         />
-        <Icon.Download
-          size={18}
-          className={css(styles.download)}
-          onClick={this._downloadPDF}
-        />
+        <div className={css(styles.text)}>{document.name}</div>
+        <div style={styles.size}>{document.size}</div>
+        <div style={styles.form}>PDF</div>
+        <Icon.Eye size={18} style={styles.preview} />
+        <Icon.Download size={18} />
+        <Icon.XCircle size={18} />
       </div>
     );
   }
@@ -48,7 +49,7 @@ export default class Document extends Component {
   getStyles = () => ({
     document: {
       background: theme.Colors.WHITE,
-      padding: theme.Spacing.MEDIUM,
+      padding: theme.Spacing.SMALL,
       boxShadow: theme.Shadows.CARD,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
@@ -59,7 +60,7 @@ export default class Document extends Component {
     },
     text: {
       marginLeft: theme.Spacing.XSMALL,
-      maxWidth: "80%",
+      width: "40%",
       textOverflow: "ellipsis",
       overFlow: "hidden",
       whiteSpace: "nowrap",
@@ -67,6 +68,15 @@ export default class Document extends Component {
       ":hover": {
         cursor: "default"
       }
+    },
+    size: {
+      width: "20%"
+    },
+    form: {
+      width: "80%"
+    },
+    preview: {
+      marginLeft: "auto"
     },
     download: {
       marginLeft: theme.Spacing.SMALL,

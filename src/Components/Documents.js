@@ -105,6 +105,12 @@ export default class Documents extends Component {
             </div>
           </div>
           <div style={styles.documents}>
+            <div style={styles.infoBar}>
+              <div>File</div>
+              <div>Name</div>
+              <div>Size</div>
+              <div>Form</div>
+            </div>
             {this.state.documents.map(document => (
               <Document
                 removeDocument={this._removeDocument}
@@ -131,6 +137,15 @@ export default class Documents extends Component {
       width: "72%",
       display: "flex",
       flexDirection: "column"
+    },
+    infoBar: {
+      width: "100%",
+      height: "5vh",
+      color: theme.FontColors.GRAY,
+      display: "flex",
+      alignItems: "center",
+      paddingLeft: theme.Spacing.SMALL,
+      paddingRight: theme.Spacing.SMALL
     },
     banner: {
       padding: `${theme.Spacing.MEDIUM}px 0px`,

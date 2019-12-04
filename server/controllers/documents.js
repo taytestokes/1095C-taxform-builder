@@ -14,9 +14,10 @@ exports.upload = (req, res) => {
   const db = req.app.get("db");
 
   upload(req, res, error => {
-    console.log(req.file);
     const { Sheet1 } = exceltojson({ sourceFile: req.file.path });
     const fileName = req.file.originalname.split(".")[0];
+    const { size } = req.file;
+    const date = Date.now();
 
     const employees = {
       1: Sheet1[2].B,
@@ -86,6 +87,8 @@ exports.upload = (req, res) => {
       .insert({
         user_id: id,
         name: fileName,
+        size,
+        created: date,
         employees_1: employees["1"],
         employees_2: employees["2"],
         employees_3: employees["3"],

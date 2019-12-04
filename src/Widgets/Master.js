@@ -27,14 +27,6 @@ class MasterWidget extends Component {
     const styles = this.getStyles();
     const { browserSize } = this.state;
 
-    window.addEventListener("resize", () => {
-      if (getBrowserSize() !== browserSize) {
-        this.setState({
-          browserSize: getBrowserSize()
-        });
-      }
-    });
-
     if (browserSize === "small") {
       return (
         <div style={styles.alert}>
@@ -53,7 +45,7 @@ class MasterWidget extends Component {
     widget: {
       width: "100vw",
       height: "100vh",
-      background: theme.Colors.WHITE,
+      background: theme.BackgroundColors.LIGHT,
       fontFamily: theme.FontFamily.PRIMARY,
       color: theme.FontColors.DARK
     },

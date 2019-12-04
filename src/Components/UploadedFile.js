@@ -4,9 +4,6 @@ import * as Icon from "react-feather";
 import filesize from "filesize";
 import { css } from "glamor";
 
-// Components
-import ProgressBar from "./Progress";
-
 // Theme
 import theme from "../Constants/Theme";
 
@@ -44,12 +41,16 @@ export default class UploadedFile extends Component {
   getStyles = () => ({
     fileCard: {
       width: "100%",
-      height: "11vh",
+      height: "9vh",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: `${theme.Spacing.MEDIUM}px 0px`,
-      transition: "ease 1s"
+      padding: `${theme.Spacing.XSMALL}px ${theme.Spacing.SMALL}px`,
+      transition: "ease 1s",
+      background: theme.Colors.WHITE,
+      boxShadow: theme.Shadows.CARD,
+      borderRadius: theme.BorderRadius.SMALL,
+      marginTop: theme.Spacing.SMALL
     },
     fileProgress: {
       width: "80%",

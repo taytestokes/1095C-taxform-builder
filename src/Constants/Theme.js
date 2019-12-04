@@ -21,7 +21,8 @@ module.exports = {
     DANGER: "#EB3434",
     HOVER_GRAY: "#cacbcd",
     HOVER_PRIMARY: "#1678c2",
-    OFFICE_GREEN: "#008000"
+    OFFICE_GREEN: "#008000",
+    PDF_ORANGE: "#fbb034"
   },
   FontSizes: {
     JUMBO: 30,

@@ -321,8 +321,7 @@ class Uploader extends Component {
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "center",
-      borderTop: theme.Border.SEGMENT,
-      marginTop: theme.Spacing.MEDIUM
+      marginTop: theme.Spacing.SMALL
     },
     saveButton: {
       width: "100px",
