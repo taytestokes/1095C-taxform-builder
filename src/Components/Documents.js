@@ -73,9 +73,13 @@ export default class Documents extends Component {
     if (this.state.documents.length < 1) {
       return (
         <div style={styles.zerostate}>
-          <Icon.AlertCircle size={40} />
+          <Icon.AlertCircle
+            size={45}
+            style={{ color: theme.FontColors.GRAY }}
+          />
           <p style={styles.zerostateText}>
-            It looks like you don't have any documents
+            It looks like you don't have any documents, get started by clicking
+            the button below
           </p>
           <NavLink
             className={css(styles.zerostateButton)}
@@ -188,20 +192,27 @@ export default class Documents extends Component {
       alignItems: "center"
     },
     zerostateText: {
+      width: "25%",
       margin: `${theme.Spacing.LARGE}px 0px`,
-      fontSize: theme.FontSizes.XLARGE,
-      fontWeight: "bold"
+      fontSize: theme.FontSizes.LARGE,
+      fontWeight: 500,
+      color: theme.FontColors.GRAY,
+      textAlign: "center",
+      lineHeight: 1.2
     },
     zerostateButton: {
       fontSize: theme.FontSizes.MEDIUM,
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
-      border: "none",
+      border: `1px solid ${theme.Colors.PRIMARY}`,
       borderRadius: theme.BorderRadius.SMALL,
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.XLARGE}px`,
       outline: "none",
       textDecoration: "none",
+      transition: "ease .2s",
       ":hover": {
+        background: theme.Colors.HOVER_PRIMARY,
+        borderColor: theme.Colors.HOVER_PRIMARY,
         cursor: "pointer"
       }
     },
