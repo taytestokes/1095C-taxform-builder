@@ -154,7 +154,8 @@ class Login extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      background: theme.BackgroundColors.LIGHT
     },
     loginContainer: {
       width: "25%",
