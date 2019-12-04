@@ -166,6 +166,12 @@ exports.deleteDocument = (req, res) => {
   const db = req.app.get("db");
 
   fs.unlink(path, error => {
+    // Check for any errors
+    if (error) {
+      const errorMessage = new Error(error);
+      res.send(errorMessage);
+    }
+    // If no errors remove from DB
     db.delete_user_document([id])
       .then(() => {
         return db.get_users_documents([req.session.user.id]);
