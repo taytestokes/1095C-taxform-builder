@@ -77,8 +77,10 @@ class Dropzone extends Component {
         onDrop={this.onDrop}
       >
         <Icon.UploadCloud size={45} />
-        <p style={styles.dropzoneText}>Drag and drop your files here</p>
-        <button className={css(styles.dropzoneButton)}>Browse Disk</button>
+        <p style={styles.dropzoneText}>
+          Drop your files to upload or{" "}
+          <span className={css(styles.browse)}>browse</span>
+        </p>
         <input
           ref={this.fileInputRef}
           type="file"
@@ -104,20 +106,24 @@ class Dropzone extends Component {
       backgroundColor: this.state.highlight
         ? theme.BackgroundColors.GRAY
         : theme.BackgroundColors.LIGHT_GRAY,
-      transition: "ease .2s",
-      ":hover": {
-        cursor: "pointer"
-        // backgroundColor: theme.BackgroundColors.GRAY
-      }
+      transition: "ease .2s"
     },
     fileInput: {
       display: "none"
     },
     dropzoneText: {
       fontWeight: "bold",
+      width: "28%",
       padding: theme.Spacing.MEDIUM,
       color: theme.FontColors.DARK,
       textAlign: "center"
+    },
+    browse: {
+      color: theme.Colors.PRIMARY,
+      ":hover": {
+        cursor: "pointer",
+        color: theme.Colors.HOVER_PRIMARY
+      }
     },
     dropzoneButton: {
       fontSize: theme.FontSizes.MEDIUM,
