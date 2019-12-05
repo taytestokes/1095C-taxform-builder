@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { css } from "glamor";
 import axios from "axios";
+import * as Icon from "react-feather";
 import { withRouter } from "react-router-dom";
 
 // Theme
@@ -40,7 +41,7 @@ class Navbar extends Component {
             Upload
           </NavLink>
           <button className={css(styles.logout)} onClick={this._logout}>
-            Sign Out
+            <Icon.ExternalLink size={15} />
           </button>
         </div>
       </div>
@@ -49,16 +50,12 @@ class Navbar extends Component {
 
   getStyles = () => ({
     navbar: {
-      width: "100vw",
-      height: "8vh",
+      width: "5vw",
+      height: "100vh",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "#1b1c1d",
-      // boxShadow: theme.Shadows.CARD,
-      fontWeight: "bold",
-      position: "sticky",
-      top: 0
+      background: "#1b1c1d"
     },
     links: {
       width: "72%",
@@ -95,12 +92,12 @@ class Navbar extends Component {
       justifyContent: "flex-end",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
+      fontWeight: "bold",
       color: theme.Colors.WHITE,
       background: "transparent",
       border: "none",
       borderRadius: theme.BorderRadius.SMALL,
       outline: "none",
-      fontWeight: "bold",
       padding: "none",
       ":hover": {
         cursor: "pointer"

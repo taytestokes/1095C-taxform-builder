@@ -3,6 +3,9 @@ import React, { Component } from "react";
 // Components
 import Uploader from "./Uploader";
 
+// Theme
+import theme from "../Constants/Theme";
+
 export default class Upload extends Component {
   render() {
     const styles = this.getStyles();
@@ -16,11 +19,12 @@ export default class Upload extends Component {
 
   getStyles = () => ({
     upload: {
-      width: "100vw",
-      height: "92vh",
+      width: "35vw",
+      height: "100vh",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "center"
+      alignItems: "center",
+      borderLeft: theme.Border.DEFAULT
     }
   });
 }

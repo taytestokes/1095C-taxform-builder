@@ -1,7 +1,8 @@
 module.exports = {
   BackgroundColors: {
     LIGHT: "#FFFFFF",
-    DARK: "#1b1c1d"
+    DARK: "#1b1c1d",
+    GRAY: "#f6f8fa"
   },
   FontColors: {
     DARK: "#2f363d",
@@ -54,6 +55,8 @@ module.exports = {
   Shadows: {
     CARD:
       "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
-    SEGMENT: "0 1px 2px 0 rgba(34,36,38,.15)"
+    SEGMENT: "0 1px 2px 0 rgba(34,36,38,.15)",
+    NAVBAR:
+      "rgba(0,0,0,0.1) 1px 0px 3px 0px, rgba(0, 0, 0, 0.06) 1px 0px 2px 0px"
   }
 };
