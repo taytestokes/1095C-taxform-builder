@@ -170,22 +170,6 @@ export default class Documents extends Component {
       alignItems: "center",
       paddingRight: theme.Spacing.XSMALL
     },
-    bannerButton: {
-      fontSize: theme.FontSizes.MEDIUM,
-      backgroundColor: theme.Colors.PRIMARY,
-      color: theme.FontColors.LIGHT,
-      border: "none",
-      borderRadius: theme.BorderRadius.SMALL,
-      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.LARGE}px`,
-      outline: "none",
-      textDecoration: "none",
-      display: "flex",
-      marginRight: theme.Spacing.SMALL,
-      alignItems: "center",
-      ":hover": {
-        cursor: "pointer"
-      }
-    },
     loadingstate: {
       width: "100vw",
       height: "92vh",
@@ -213,6 +197,7 @@ export default class Documents extends Component {
     },
     zerostateButton: {
       fontSize: theme.FontSizes.MEDIUM,
+      fontWeight: 700,
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
       border: `1px solid ${theme.Colors.PRIMARY}`,

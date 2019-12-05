@@ -104,9 +104,7 @@ class Dropzone extends Component {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: this.state.highlight
-        ? "#CCCCCC25"
-        : theme.BackgroundColors.LIGHT
+      backgroundColor: this.state.highlight ? "#CCCCCC25" : "#f9fafb"
     },
     fileInput: {
       display: "none"
@@ -122,6 +120,7 @@ class Dropzone extends Component {
     },
     dropzoneButton: {
       fontSize: theme.FontSizes.MEDIUM,
+      fontWeight: 700,
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
       border: "none",

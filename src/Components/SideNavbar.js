@@ -54,8 +54,8 @@ class Navbar extends Component {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD,
+      background: "#1b1c1d",
+      // boxShadow: theme.Shadows.CARD,
       fontWeight: "bold",
       position: "sticky",
       top: 0
@@ -74,14 +74,14 @@ class Navbar extends Component {
       justifyContent: "flex-start",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
-      color: "#A7B3B6",
+      color: "rgba(255,255,255,.5)",
       transition: "ease .2s",
       ":hover": {
-        color: theme.Colors.PRIMARY
+        color: theme.Colors.GRAY
       }
     },
     activeLink: {
-      color: theme.Colors.PRIMARY
+      color: "rgba(255,255,255,.9"
     },
     text: {
       paddingLeft: theme.Spacing.MEDIUM
@@ -95,7 +95,7 @@ class Navbar extends Component {
       justifyContent: "flex-end",
       textDecoration: "none",
       fontSize: theme.FontSizes.MEDIUM,
-      color: "#A7B3B6",
+      color: theme.Colors.WHITE,
       background: "transparent",
       border: "none",
       borderRadius: theme.BorderRadius.SMALL,

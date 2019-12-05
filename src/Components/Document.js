@@ -81,7 +81,8 @@ export default class Document extends Component {
     documentCard: {
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
-      boxShadow: theme.Shadows.CARD,
+      boxShadow: theme.Shadows.SEGMENT,
+      border: theme.Border.SEGMENT,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.MEDIUM,

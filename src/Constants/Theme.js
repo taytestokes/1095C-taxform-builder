@@ -1,6 +1,6 @@
 module.exports = {
   BackgroundColors: {
-    LIGHT: "#f6f8fa",
+    LIGHT: "#FFFFFF",
     DARK: "#1b1c1d"
   },
   FontColors: {
@@ -53,6 +53,7 @@ module.exports = {
   },
   Shadows: {
     CARD:
-      "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px"
+      "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+    SEGMENT: "0 1px 2px 0 rgba(34,36,38,.15)"
   }
 };
