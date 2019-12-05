@@ -32,7 +32,7 @@ export default class Documents extends Component {
 
   getStyles = () => ({
     component: {
-      width: "30vw",
+      width: "35vw",
       height: "100vh",
       display: "flex",
       flexDirection: "column",

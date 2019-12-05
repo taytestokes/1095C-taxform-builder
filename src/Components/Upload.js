@@ -19,7 +19,7 @@ export default class Upload extends Component {
 
   getStyles = () => ({
     upload: {
-      width: "35vw",
+      width: "60vw",
       height: "100vh",
       display: "flex",
       justifyContent: "space-around",

@@ -2,7 +2,8 @@ module.exports = {
   BackgroundColors: {
     LIGHT: "#FFFFFF",
     DARK: "#1b1c1d",
-    GRAY: "#f6f8fa"
+    GRAY: "#f6f8fa",
+    LIGHT_GRAY: "#f9fafb"
   },
   FontColors: {
     DARK: "#2f363d",

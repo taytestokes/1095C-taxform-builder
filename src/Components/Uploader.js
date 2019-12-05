@@ -196,131 +196,66 @@ class Uploader extends Component {
 
     return (
       <div style={styles.uploader}>
-        <div style={styles.stepper}>
-          <div className={css(styles.stepOne)} onClick={this._selectStepOne}>
-            <div style={styles.stepCircle}>1</div>
-            <p style={styles.stepText}>Select desired files to upload</p>
-          </div>
-          <div className={css(styles.stepTwo)} onClick={this._selectStepTwo}>
-            <div style={styles.stepCircle}>2</div>
-            <p style={styles.stepText}>Upload files to your documents</p>
-          </div>
+        <Dropzone
+          onFilesAdded={this.onFilesAdded}
+          disabled={this.state.uploading || this.state.successfullUploaded}
+        />
+        <div style={styles.uploadedFiles}>
+          {this.state.files.map((file, index) => {
+            return (
+              <UploadedFile
+                file={file}
+                removeUpload={this._removeUpload}
+                key={index}
+              />
+            );
+          })}
         </div>
-        {this.state.step === 1 ? (
-          <Dropzone
-            onFilesAdded={this.onFilesAdded}
-            disabled={this.state.uploading || this.state.successfullUploaded}
-          />
-        ) : (
-          <>
-            <div style={styles.uploadedFiles}>
-              {this.state.files.map((file, index) => {
-                return (
-                  <UploadedFile
-                    file={file}
-                    removeUpload={this._removeUpload}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
-            <div style={styles.uploadSubmit}>
-              <div style={styles.filesAmount}>
-                <p>{`Uploaded File Amount: ${this.state.files.length} out of 5`}</p>
-              </div>
-              <button
-                className={css(styles.cancelButton)}
-                onClick={this._cancelUpload}
-              >
-                Cancel
-              </button>
-              <button
-                className={css(styles.saveButton)}
-                onClick={this._uploadFiles}
-              >
-                Upload
-              </button>
-            </div>
-          </>
-        )}
+        <div style={styles.uploadSubmit}>
+          <div style={styles.filesAmount}>
+            <p>{`Uploaded File Amount: ${this.state.files.length} of 5`}</p>
+          </div>
+          <button
+            className={css(styles.cancelButton)}
+            onClick={this._cancelUpload}
+          >
+            Cancel
+          </button>
+          <button
+            className={css(styles.saveButton)}
+            onClick={this._uploadFiles}
+          >
+            Upload
+          </button>
+        </div>
       </div>
     );
   }
 
   getStyles = () => ({
     uploader: {
-      width: "80%",
-      height: "90%",
+      width: "100%",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      borderRadius: theme.BorderRadius.MEDIUM
-    },
-    stepper: {
-      width: "90%",
-      height: "15%",
-      display: "flex",
-      alignItems: "center",
-      marginBottom: theme.Spacing.XLARGE,
-      borderRadius: "5px"
-    },
-    stepOne: {
-      width: "50%",
-      height: "100%",
-      borderBottom:
-        this.state.step === 1 ? "3px solid black" : "3px solid #CCC",
-      display: "flex",
-      alignItems: "center",
-      fontWeight: "bold",
-      transition: "ease .2s",
-      ":hover": {
-        cursor: "pointer",
-        borderBottom: "3px solid black"
-      }
-    },
-    stepTwo: {
-      width: "50%",
-      height: "100%",
-      borderBottom:
-        this.state.step === 2 ? "3px solid black" : "3px solid #CCC",
-      display: "flex",
-      alignItems: "center",
-      fontWeight: "bold",
-      transition: "ease .2s",
-      ":hover": {
-        cursor: "pointer",
-        borderBottom: "3px solid black"
-      }
-    },
-    stepCircle: {
-      height: "50px",
-      width: "50px",
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "center",
-      borderRadius: theme.BorderRadius.CIRCLE,
-      border: "2px dashed #CCC",
-      fontWeight: "bold",
-      marginLeft: theme.Spacing.SMALL
-    },
-    stepText: {
-      marginLeft: theme.Spacing.XLARGE,
-      maxWidth: "35%",
-      lineHeight: 1.2
+      borderRadius: theme.BorderRadius.MEDIUM,
+      padding: theme.Spacing.LARGE
     },
     uploadedFiles: {
-      width: "90%",
+      width: "100%",
+      height: "55%",
       display: "flex",
       flexDirection: "column",
-      position: "relative"
+      marginTop: theme.Spacing.SMALL
     },
     uploadSubmit: {
-      height: "10%",
-      width: "90%",
+      height: "5%",
+      width: "100%",
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "center",
-      marginTop: theme.Spacing.SMALL
+      paddingTop: theme.Spacing.SMALL
     },
     saveButton: {
       width: "100px",

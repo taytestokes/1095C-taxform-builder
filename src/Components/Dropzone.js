@@ -70,17 +70,14 @@ class Dropzone extends Component {
 
     return (
       <div
+        className={css(styles.dropzone)}
         onClick={this.openFileDialog}
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
-        style={styles.dropzone}
       >
-        <Icon.UploadCloud size={60} />
-        <p style={styles.dropzoneText}>
-          Drag or drop up to 5 of your files here
-        </p>
-        <p style={styles.dropzoneTextTwo}>or</p>
+        <Icon.UploadCloud size={45} />
+        <p style={styles.dropzoneText}>Drag and drop your files here</p>
         <button className={css(styles.dropzoneButton)}>Browse Disk</button>
         <input
           ref={this.fileInputRef}
@@ -96,15 +93,22 @@ class Dropzone extends Component {
 
   getStyles = () => ({
     dropzone: {
-      width: "90%",
-      height: "75%",
+      width: "100%",
+      height: "40%",
       border: "2px dashed #CCC",
-      borderRadius: 3,
+      borderRadius: theme.BorderRadius.SMALL,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: this.state.highlight ? "#CCCCCC25" : "#f9fafb"
+      backgroundColor: this.state.highlight
+        ? theme.BackgroundColors.GRAY
+        : theme.BackgroundColors.LIGHT_GRAY,
+      transition: "ease .2s",
+      ":hover": {
+        cursor: "pointer"
+        // backgroundColor: theme.BackgroundColors.GRAY
+      }
     },
     fileInput: {
       display: "none"
@@ -112,11 +116,8 @@ class Dropzone extends Component {
     dropzoneText: {
       fontWeight: "bold",
       padding: theme.Spacing.MEDIUM,
-      color: theme.FontColors.DARK
-    },
-    dropzoneTextTwo: {
-      color: "#a7a7a7",
-      paddingBottom: theme.Spacing.MEDIUM
+      color: theme.FontColors.DARK,
+      textAlign: "center"
     },
     dropzoneButton: {
       fontSize: theme.FontSizes.MEDIUM,
@@ -125,7 +126,7 @@ class Dropzone extends Component {
       color: theme.FontColors.LIGHT,
       border: "none",
       borderRadius: theme.BorderRadius.SMALL,
-      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.XLARGE}px`,
+      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.LARGE}px`,
       outline: "none",
       transition: "ease .2s",
       ":hover": {
