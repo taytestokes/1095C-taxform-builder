@@ -4,6 +4,7 @@ import * as Icon from "react-feather";
 import { css } from "glamor";
 import Loader from "react-loader-spinner";
 import { NavLink } from "react-router-dom";
+import swal from "@sweetalert/with-react";
 
 // Components
 import Document from "./Document";
@@ -46,19 +47,31 @@ export default class Documents extends Component {
   };
 
   _removeDocument = (id, path, name, created) => {
-    axios
-      .post(`/documents/delete/${id}`, { path })
-      .then(response => {
-        // update state
-        this.setState({
-          documents: response.data
-        });
-        // make request to remove PDF file
-        return axios.delete(`/documents/deletePDF/${name}${created}`);
-      })
-      .then(response => {
-        console.log(response);
-      });
+    swal("Are you sure you want to remove this upload?", {
+      buttons: {
+        cancel: "Nevermind",
+        confirm: {
+          text: "Yes",
+          value: "confirm"
+        }
+      }
+    }).then(value => {
+      switch (value) {
+        case "confirm":
+          return axios
+            .post(`/documents/delete/${id}`, { path })
+            .then(response => {
+              // update state
+              this.setState({
+                documents: response.data
+              });
+              // make request to remove PDF file
+              return axios.delete(`/documents/deletePDF/${name}${created}`);
+            });
+        default:
+          return;
+      }
+    });
   };
 
   render() {
@@ -105,14 +118,6 @@ export default class Documents extends Component {
             <div style={styles.bannerContainer}>
               <h1 style={styles.title}>Documents</h1>
               <p style={styles.subtitle}>({this.state.documents.length})</p>
-            </div>
-            <div style={styles.bannerContainer}>
-              <NavLink
-                className={css(styles.bannerButton)}
-                to="/dashboard/upload"
-              >
-                <p>New Document</p>
-              </NavLink>
             </div>
           </div>
           <div style={styles.documents}>
@@ -175,7 +180,6 @@ export default class Documents extends Component {
       outline: "none",
       textDecoration: "none",
       display: "flex",
-      boxShadow: theme.Shadows.CARD,
       marginRight: theme.Spacing.SMALL,
       alignItems: "center",
       ":hover": {
