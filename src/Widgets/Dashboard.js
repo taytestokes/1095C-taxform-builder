@@ -5,7 +5,7 @@ import swal from "@sweetalert/with-react";
 // Components
 import SideNavbar from "../Components/SideNavbar";
 import Documents from "../Components/Documents";
-import Upload from "../Components/Upload";
+import Uploader from "../Components/Uploader";
 import ZeroState from "../Components/ZeroState";
 
 class Dashboard extends Component {
@@ -66,7 +66,7 @@ class Dashboard extends Component {
           documents={this.state.documents}
           removeDocument={this._removeDocument}
         />
-        <Upload />
+        <Uploader getDocuments={this._getDocuments} />
       </div>
     );
   }

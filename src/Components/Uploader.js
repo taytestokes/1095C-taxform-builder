@@ -10,16 +10,13 @@ import UploadedFile from "./UploadedFile";
 import theme from "../Constants/Theme";
 
 class Uploader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      files: [],
-      uploading: false,
-      uploadProgress: {},
-      successfullUploaded: false,
-      step: 1
-    };
-  }
+  state = {
+    files: [],
+    uploading: false,
+    uploadProgress: {},
+    successfullUploaded: false,
+    step: 1
+  };
 
   // Adds new file to the list of files on state
   onFilesAdded = files => {
@@ -42,6 +39,13 @@ class Uploader extends Component {
   };
 
   _uploadFiles = async () => {
+    if (this.state.files.length < 1) {
+      return swal({
+        text: "Please upload files before attempting to save.",
+        button: "Okay"
+      });
+    }
+
     this.setState({
       uploadProgress: {},
       uploading: true
@@ -225,7 +229,7 @@ class Uploader extends Component {
             className={css(styles.saveButton)}
             onClick={this._uploadFiles}
           >
-            Upload
+            Save
           </button>
         </div>
       </div>
@@ -234,12 +238,12 @@ class Uploader extends Component {
 
   getStyles = () => ({
     uploader: {
-      width: "100%",
-      height: "100%",
+      width: "60vw",
+      height: "100vh",
+      borderLeft: theme.Border.DEFAULT,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      borderRadius: theme.BorderRadius.MEDIUM,
       padding: theme.Spacing.LARGE
     },
     uploadedFiles: {
