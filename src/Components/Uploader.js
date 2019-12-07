@@ -14,11 +14,9 @@ class Uploader extends Component {
     files: [],
     uploading: false,
     uploadProgress: {},
-    successfullUploaded: false,
-    step: 1
+    successfullUploaded: false
   };
 
-  // Adds new file to the list of files on state
   onFilesAdded = files => {
     const currentFilesLength = this.state.files.length;
     const fileAmountToCut = 5 - currentFilesLength;
@@ -33,8 +31,7 @@ class Uploader extends Component {
     }
 
     this.setState({
-      files: updatedFileList,
-      step: 2
+      files: updatedFileList
     });
   };
 
@@ -72,8 +69,10 @@ class Uploader extends Component {
   _sendRequest = file => {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
+      const formData = new FormData();
 
       req.upload.addEventListener("progress", event => {
+        console.log("progress", this.state.uploadProgress);
         if (event.lengthComputable) {
           const copy = { ...this.state.uploadProgress };
 
@@ -89,6 +88,7 @@ class Uploader extends Component {
       });
 
       req.upload.addEventListener("load", event => {
+        console.log("log", this.state.uploadProgress);
         const copy = { ...this.state.uploadProgress };
 
         copy[file.name] = { state: "done", percentage: 100 };
@@ -98,13 +98,13 @@ class Uploader extends Component {
       });
 
       req.upload.addEventListener("error", event => {
+        console.log("error", this.state.uploadProgress);
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "error", percentage: 0 };
         this.setState({ uploadProgress: copy });
         reject(req.response);
       });
 
-      const formData = new FormData();
       formData.append("file", file, file.name);
 
       req.open("POST", "/documents/upload");
@@ -114,35 +114,6 @@ class Uploader extends Component {
         text: "Files successfully uploaded!",
         button: "Okay"
       });
-
-      this.setState({
-        step: 1,
-        files: [],
-        uploading: false,
-        uploadProgress: {},
-        successfullUploaded: false
-      });
-    });
-  };
-
-  _selectStepOne = () => {
-    if (this.state.files.length > 9) {
-      return;
-    }
-    this.setState({
-      step: 1
-    });
-  };
-
-  _selectStepTwo = () => {
-    if (this.state.files.length < 1) {
-      return swal({
-        text: "Please select a file or files to upload before moving on.",
-        button: "Okay"
-      });
-    }
-    this.setState({
-      step: 2
     });
   };
 
@@ -212,7 +183,8 @@ class Uploader extends Component {
               <UploadedFile
                 file={file}
                 removeUpload={this._removeUpload}
-                key={index}
+                uploadProgress={this.state.uploadProgress}
+                key={file.name + index}
               />
             );
           })}

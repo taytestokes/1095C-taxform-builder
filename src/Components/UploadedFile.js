@@ -4,15 +4,21 @@ import * as Icon from "react-feather";
 import filesize from "filesize";
 import { css } from "glamor";
 
+// Components
+import ProgressBar from "../Components/ProgressBar";
+
 // Theme
 import theme from "../Constants/Theme";
 
 export default class UploadedFile extends Component {
   render() {
     const styles = this.getStyles();
-    const { file, removeUpload } = this.props;
+    const { file, removeUpload, uploadProgress } = this.props;
     const fileType = file.name.split(".")[1];
     const fileSize = filesize(file.size);
+    const progressPercentage = uploadProgress[file.name]
+      ? uploadProgress[file.name].percentage
+      : 0;
 
     return (
       <div style={styles.fileCard}>
@@ -24,12 +30,12 @@ export default class UploadedFile extends Component {
           size={45}
         />
         <div style={styles.fileProgress}>
+          <ProgressBar progress={progressPercentage} />
           <p style={styles.fileName}>{file.name}</p>
           <p style={styles.fileSize}>{fileSize}</p>
-          <p style={styles.uploadPercentage}>100%</p>
         </div>
         <Icon.CheckCircle size={22} style={styles.checkCircle} />
-        <Icon.XCircle
+        <Icon.X
           size={22}
           className={css(styles.trash)}
           onClick={() => removeUpload(file)}
@@ -45,17 +51,16 @@ export default class UploadedFile extends Component {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: `${theme.Spacing.XSMALL}px ${theme.Spacing.SMALL}px`,
+      padding: `${theme.Spacing.XSMALL}px 0px`,
       transition: "ease 1s",
       background: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD,
-      borderRadius: theme.BorderRadius.SMALL,
       marginTop: theme.Spacing.SMALL
     },
     fileProgress: {
       width: "80%",
-      height: "60%",
+      height: "100%",
       display: "flex",
+      flexDirection: "column",
       justifyContent: "center",
       alignItems: "center"
     },
