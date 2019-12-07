@@ -14,7 +14,7 @@ class Uploader extends Component {
     files: [],
     uploading: false,
     uploadProgress: {},
-    successfullUploaded: false
+    successfullUpload: false
   };
 
   onFilesAdded = files => {
@@ -54,16 +54,11 @@ class Uploader extends Component {
       promises.push(this._sendRequest(file));
     });
 
-    Promise.all(promises)
-      .then(() => {
-        this.setState({
-          successfullUploaded: true,
-          uploading: false
-        });
-      })
-      .catch(error => {
-        this.setState({ successfullUploaded: true, uploading: false });
+    Promise.all(promises).then(() => {
+      this.setState({
+        uploading: false
       });
+    });
   };
 
   _sendRequest = file => {
@@ -71,8 +66,12 @@ class Uploader extends Component {
       const req = new XMLHttpRequest();
       const formData = new FormData();
 
+      this.setState({
+        uploading: true
+      });
+
+      // Update file upload information in progress
       req.upload.addEventListener("progress", event => {
-        console.log("progress", this.state.uploadProgress);
         if (event.lengthComputable) {
           const copy = { ...this.state.uploadProgress };
 
@@ -87,8 +86,8 @@ class Uploader extends Component {
         }
       });
 
+      // Update file upload information when upload completes
       req.upload.addEventListener("load", event => {
-        console.log("log", this.state.uploadProgress);
         const copy = { ...this.state.uploadProgress };
 
         copy[file.name] = { state: "done", percentage: 100 };
@@ -97,10 +96,10 @@ class Uploader extends Component {
         resolve(req.response);
       });
 
+      // Update file upload information when upload fails
       req.upload.addEventListener("error", event => {
-        console.log("error", this.state.uploadProgress);
         const copy = { ...this.state.uploadProgress };
-        copy[file.name] = { state: "error", percentage: 0 };
+        copy[file.name] = { state: "error", percentage: 100 };
         this.setState({ uploadProgress: copy });
         reject(req.response);
       });
@@ -109,12 +108,15 @@ class Uploader extends Component {
 
       req.open("POST", "/documents/upload");
       req.send(formData);
-    }).then(() => {
-      swal({
-        text: "Files successfully uploaded!",
-        button: "Okay"
+    })
+      .then(() => {
+        return this.props.getDocuments();
+      })
+      .then(() => {
+        this.setState({
+          successfullUpload: true
+        });
       });
-    });
   };
 
   _cancelUpload = () => {
@@ -132,14 +134,21 @@ class Uploader extends Component {
           this.setState({
             files: [],
             uploading: false,
-            uploadProgress: {},
-            successfullUploaded: false,
-            step: 1
+            uploadProgress: {}
           });
           return;
         default:
           return;
       }
+    });
+  };
+
+  _clearUpload = () => {
+    this.setState({
+      files: [],
+      uploading: false,
+      uploadProgress: {},
+      successfullUpload: false
     });
   };
 
@@ -195,9 +204,13 @@ class Uploader extends Component {
           </div>
           <button
             className={css(styles.cancelButton)}
-            onClick={this._cancelUpload}
+            onClick={
+              this.state.successfullUpload
+                ? this._clearUpload
+                : this._cancelUpload
+            }
           >
-            Cancel
+            {this.state.successfullUpload ? "Clear" : "Cancel"}
           </button>
           <button
             className={css(styles.saveButton)}

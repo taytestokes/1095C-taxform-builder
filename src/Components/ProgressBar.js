@@ -17,7 +17,7 @@ class Progress extends Component {
   getStyles = () => ({
     progressbar: {
       width: "100%",
-      background: theme.BackgroundColors.LIGHT_GRAY,
+      background: theme.Colors.GRAY,
       height: 8,
       borderRadius: theme.BorderRadius.MEDIUM
     },
@@ -26,7 +26,7 @@ class Progress extends Component {
       background: theme.Colors.PRIMARY,
       height: 8,
       borderRadius: theme.BorderRadius.MEDIUM,
-      transition: "ease 50ms"
+      transition: "ease .4s"
     }
   });
 }

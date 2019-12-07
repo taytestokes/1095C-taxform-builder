@@ -27,17 +27,31 @@ export default class UploadedFile extends Component {
           fold={true}
           color={theme.Colors.GRAY}
           labelColor={theme.Colors.OFFICE_GREEN}
-          size={45}
+          size={40}
         />
         <div style={styles.fileProgress}>
+          <div style={styles.fileInfo}>
+            <p style={styles.fileName}>{file.name}</p>
+            <p style={styles.uploadPercentage}>{progressPercentage}%</p>
+            <Icon.CheckCircle
+              size={14}
+              style={{
+                color:
+                  progressPercentage === 100
+                    ? theme.Colors.SUCCESS
+                    : theme.Colors.GRAY,
+                ...styles.checkCircle
+              }}
+            />
+          </div>
           <ProgressBar progress={progressPercentage} />
-          <p style={styles.fileName}>{file.name}</p>
-          <p style={styles.fileSize}>{fileSize}</p>
         </div>
-        <Icon.CheckCircle size={22} style={styles.checkCircle} />
+
+        <div style={styles.fileSize}>{fileSize}</div>
+
         <Icon.X
-          size={22}
-          className={css(styles.trash)}
+          size={20}
+          className={styles.deleteUpload}
           onClick={() => removeUpload(file)}
         />
       </div>
@@ -54,42 +68,35 @@ export default class UploadedFile extends Component {
       padding: `${theme.Spacing.XSMALL}px 0px`,
       transition: "ease 1s",
       background: theme.Colors.WHITE,
-      marginTop: theme.Spacing.SMALL
+      marginTop: theme.Spacing.SMALL,
+      borderBtoom: theme.Border.DEFAULT
     },
     fileProgress: {
-      width: "80%",
-      height: "100%",
+      width: "75%",
+      height: "50%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
+      justifyContent: "space-between",
       alignItems: "center"
     },
     fileInfo: {
       width: "100%",
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "flex-end",
       alignItems: "center",
-      fontSize: theme.FontSizes.LARGE
+      fontSize: theme.FontSizes.MEDIUM
     },
     fileName: {
-      width: "30%"
-    },
-    fileSize: {
-      width: "40%",
-      textAlign: "left"
+      marginRight: "auto"
     },
     uploadPercentage: {
-      width: "30%",
-      textAlign: "right"
+      marginRight: theme.Spacing.SMALL
     },
-    progressbar: {
-      width: "100%"
-    },
-    checkCircle: {
-      color: theme.Colors.SUCCESS,
+    fileSize: {
+      fontSize: theme.FontSizes.MEDIUM,
       marginTop: theme.Spacing.XSMALL
     },
-    trash: {
+    deleteUpload: css({
       color: theme.Colors.GRAY,
       marginTop: theme.Spacing.XSMALL,
       transition: "ease .2s",
@@ -97,6 +104,6 @@ export default class UploadedFile extends Component {
         color: theme.Colors.DANGER,
         cursor: "pointer"
       }
-    }
+    })
   });
 }
