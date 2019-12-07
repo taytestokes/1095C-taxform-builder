@@ -15,6 +15,7 @@ exports.upload = (req, res) => {
   const db = req.app.get("db");
 
   upload(req, res, error => {
+    console.log(req.file);
     const { Sheet1 } = exceltojson({ sourceFile: req.file.path });
     const fileName = req.file.originalname.split(".")[0];
     const { size, path } = req.file;

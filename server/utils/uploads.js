@@ -4,7 +4,7 @@ const multer = require("multer");
 // Multer Configuration
 const storage = multer.diskStorage({
   destination: (req, file, next) => {
-    next(null, "server/uploads/");
+    next(null, "server/Uploads/");
   },
   filename: (req, file, next) => {
     next(null, file.fieldname + Date.now());
