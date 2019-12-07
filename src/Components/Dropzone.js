@@ -76,7 +76,7 @@ class Dropzone extends Component {
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
       >
-        <Icon.UploadCloud size={45} />
+        <Icon.UploadCloud size={40} />
         <p style={styles.dropzoneText}>
           Drop your files to upload or{" "}
           <span className={css(styles.browse)}>browse</span>
@@ -113,8 +113,7 @@ class Dropzone extends Component {
     },
     dropzoneText: {
       fontWeight: "bold",
-      width: "28%",
-      padding: theme.Spacing.MEDIUM,
+      padding: theme.Spacing.XSMALL,
       color: theme.FontColors.DARK,
       textAlign: "center"
     },

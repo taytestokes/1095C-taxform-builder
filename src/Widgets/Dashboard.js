@@ -6,7 +6,6 @@ import swal from "@sweetalert/with-react";
 import SideNavbar from "../Components/SideNavbar";
 import Documents from "../Components/Documents";
 import Uploader from "../Components/Uploader";
-import ZeroState from "../Components/ZeroState";
 
 class Dashboard extends Component {
   state = {

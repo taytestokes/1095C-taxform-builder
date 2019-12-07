@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+
 // Components
 import Document from "./Document";
+import ZeroState from "./ZeroState";
+
 // Theme
 import theme from "../Constants/Theme";
 
@@ -17,15 +20,19 @@ export default class Documents extends Component {
             <div style={styles.badge}>{documents.length}</div>
           </div>
         </div>
-        <div style={styles.documents}>
-          {documents.map(document => (
-            <Document
-              removeDocument={removeDocument}
-              document={document}
-              key={document.name}
-            />
-          ))}
-        </div>
+        {documents.length < 1 ? (
+          <ZeroState />
+        ) : (
+          <div style={styles.documents}>
+            {documents.map(document => (
+              <Document
+                removeDocument={removeDocument}
+                document={document}
+                key={document.name}
+              />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

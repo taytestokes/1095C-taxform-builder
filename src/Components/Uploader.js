@@ -25,7 +25,7 @@ class Uploader extends Component {
 
     if (fileAmountToCut === 0) {
       return swal({
-        text: "Only 5 files allowed to be uploaded.",
+        text: "Only 5 files can be uploaded at a single time",
         button: "Okay"
       });
     }
@@ -40,7 +40,7 @@ class Uploader extends Component {
 
     if (this.state.files.length < 1) {
       return swal({
-        text: "Please upload files before attempting to save.",
+        text: "Please upload files before attempting to save",
         button: "Okay"
       });
     }
@@ -120,6 +120,13 @@ class Uploader extends Component {
   };
 
   _cancelUpload = () => {
+    if (this.state.files.length < 1) {
+      return swal({
+        text: "Please upload files before attempting to cancel",
+        button: "Okay"
+      });
+    }
+
     swal("Are you sure you want to cancel?", {
       buttons: {
         cancel: "Nevermind",
@@ -187,16 +194,22 @@ class Uploader extends Component {
           disabled={this.state.uploading || this.state.successfullUploaded}
         />
         <div style={styles.uploadedFiles}>
-          {this.state.files.map((file, index) => {
-            return (
-              <UploadedFile
-                file={file}
-                removeUpload={this._removeUpload}
-                uploadProgress={this.state.uploadProgress}
-                key={file.name + index}
-              />
-            );
-          })}
+          {this.state.files.length < 1 ? (
+            <div>No files uploaded</div>
+          ) : (
+            <React.Fragment>
+              {this.state.files.map((file, index) => {
+                return (
+                  <UploadedFile
+                    file={file}
+                    removeUpload={this._removeUpload}
+                    uploadProgress={this.state.uploadProgress}
+                    key={file.name + index}
+                  />
+                );
+              })}
+            </React.Fragment>
+          )}
         </div>
         <div style={styles.uploadSubmit}>
           <div style={styles.filesAmount}>
