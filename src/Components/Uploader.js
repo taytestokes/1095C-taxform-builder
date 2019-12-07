@@ -38,7 +38,9 @@ class Uploader extends Component {
     });
   };
 
-  _uploadFiles = async () => {
+  _uploadFiles = () => {
+    const promises = [];
+
     if (this.state.files.length < 1) {
       return swal({
         text: "Please upload files before attempting to save.",
@@ -51,20 +53,20 @@ class Uploader extends Component {
       uploading: true
     });
 
-    const promises = [];
     this.state.files.forEach(file => {
       promises.push(this._sendRequest(file));
     });
-    try {
-      await Promise.all(promises);
 
-      this.setState({
-        successfullUploaded: true,
-        uploading: false
+    Promise.all(promises)
+      .then(() => {
+        this.setState({
+          successfullUploaded: true,
+          uploading: false
+        });
+      })
+      .catch(error => {
+        this.setState({ successfullUploaded: true, uploading: false });
       });
-    } catch (event) {
-      this.setState({ successfullUploaded: true, uploading: false });
-    }
   };
 
   _sendRequest = file => {
