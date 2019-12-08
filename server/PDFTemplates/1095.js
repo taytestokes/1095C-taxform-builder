@@ -55,7 +55,7 @@ module.exports = ({
 
   return `<!DOCTYPE html>
 <html>
-  <body style="font-size: 8px">
+  <body style="font-size: 8px; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
     <img
       src="http://localhost:8080/1095cPDF.png"
       style="width: 100%; max-height: 200%;"
@@ -69,7 +69,7 @@ module.exports = ({
     <div style="position: absolute; top: 128px; left: 190px">
       ${employeeLast}
     </div>
-    <div style="position: absolute; top: 128px; left: 325px">
+    <div style="position: absolute; top: 128px; left: 300px">
     ${employees_2}
     </div>
     <div style="position: absolute; top: 128px; left: 433px">
