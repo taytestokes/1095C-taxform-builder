@@ -57,16 +57,23 @@ class Dashboard extends Component {
   // Filter Documents
   _filterDocuments = evt => {
     const { value } = evt.target;
-    const { documents } = this.state;
 
-    if (value === "") return this._getDocuments();
+    axios.get("/documents/all").then(response => {
+      const { data } = response;
 
-    const filteredDocuments = documents.filter(document =>
-      document.name.includes(value)
-    );
+      if (value === "") {
+        return this.setState({
+          documents: data
+        });
+      }
 
-    this.setState({
-      document: filteredDocuments
+      const filteredDocuments = data.filter(document =>
+        document.name.includes(value)
+      );
+
+      this.setState({
+        documents: filteredDocuments
+      });
     });
   };
 

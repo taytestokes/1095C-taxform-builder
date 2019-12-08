@@ -12,7 +12,7 @@ import theme from "../Constants/Theme";
 export default class Documents extends Component {
   render() {
     const styles = this.getStyles();
-    const { documents, removeDocument } = this.props;
+    const { documents, removeDocument, filterDocuments } = this.props;
 
     return (
       <div style={styles.component}>
@@ -22,27 +22,30 @@ export default class Documents extends Component {
             <div style={styles.badge}>{documents.length}</div>
           </div>
         </div>
-        {documents.length < 1 ? (
-          <ZeroState />
-        ) : (
-          <div style={styles.documents}>
-            <div style={styles.searchContainer}>
-              <Icon.Search size={18} />
-              <input
-                type="text"
-                className={styles.search}
-                placeholder="Search..."
-              />
-            </div>
-            {documents.map((document, index) => (
-              <Document
-                removeDocument={removeDocument}
-                document={document}
-                key={document.name + index}
-              />
-            ))}
+        <div style={styles.documents}>
+          <div style={styles.searchContainer}>
+            <Icon.Search size={18} />
+            <input
+              type="text"
+              className={styles.search}
+              placeholder="Search..."
+              onChange={filterDocuments}
+            />
           </div>
-        )}
+          {documents.length < 1 ? (
+            <ZeroState />
+          ) : (
+            <React.Fragment>
+              {documents.map((document, index) => (
+                <Document
+                  removeDocument={removeDocument}
+                  document={document}
+                  key={document.name + index}
+                />
+              ))}
+            </React.Fragment>
+          )}
+        </div>
       </div>
     );
   }
