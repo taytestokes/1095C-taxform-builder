@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { css } from "glamor";
+import * as Icon from "react-feather";
 
 // Components
 import Document from "./Document";
@@ -24,6 +26,14 @@ export default class Documents extends Component {
           <ZeroState />
         ) : (
           <div style={styles.documents}>
+            <div style={styles.searchContainer}>
+              <Icon.Search size={18} />
+              <input
+                type="text"
+                className={styles.search}
+                placeholder="Search..."
+              />
+            </div>
             {documents.map((document, index) => (
               <Document
                 removeDocument={removeDocument}
@@ -78,6 +88,25 @@ export default class Documents extends Component {
       fontWeight: 700,
       fontSize: theme.FontSizes.SMALL
     },
+    searchContainer: {
+      width: "100%",
+      height: "5vh",
+      background: theme.Colors.WHITE,
+      display: "flex",
+      alignItems: "center",
+      border: theme.Border.DEFAULT,
+      borderRadius: theme.BorderRadius.SMALL,
+      padding: theme.Spacing.SMALL
+    },
+    search: css({
+      width: "90%",
+      height: "100%",
+      border: "none",
+      outline: "none",
+      background: "transparent",
+      fontSize: theme.FontSizes.LARGE,
+      marginLeft: theme.Spacing.SMALL
+    }),
     documents: {
       width: "100%",
       height: "92vh",

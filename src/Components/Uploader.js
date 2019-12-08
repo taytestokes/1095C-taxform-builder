@@ -206,8 +206,8 @@ class Uploader extends Component {
       <div style={styles.uploader}>
         <div style={styles.banner}>
           <h2>File Uploader</h2>
-          <button className={styles.logoutButton}>
-            <Icon.LogOut size={16} onClick={this._logout} />
+          <button className={styles.logoutButton} onClick={this._logout}>
+            <Icon.LogOut size={16} />
           </button>
         </div>
         <Dropzone

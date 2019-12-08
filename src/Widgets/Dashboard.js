@@ -54,6 +54,22 @@ class Dashboard extends Component {
     });
   };
 
+  // Filter Documents
+  _filterDocuments = evt => {
+    const { value } = evt.target;
+    const { documents } = this.state;
+
+    if (value === "") return this._getDocuments();
+
+    const filteredDocuments = documents.filter(document =>
+      document.name.includes(value)
+    );
+
+    this.setState({
+      document: filteredDocuments
+    });
+  };
+
   render() {
     const styles = this.getStyles();
 
@@ -61,6 +77,7 @@ class Dashboard extends Component {
       <div style={styles.dashboard}>
         <Documents
           documents={this.state.documents}
+          filterDocuments={this._filterDocuments}
           removeDocument={this._removeDocument}
         />
         <Uploader getDocuments={this._getDocuments} />
