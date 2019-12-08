@@ -3,7 +3,6 @@ import axios from "axios";
 import swal from "@sweetalert/with-react";
 
 // Components
-import SideNavbar from "../Components/SideNavbar";
 import Documents from "../Components/Documents";
 import Uploader from "../Components/Uploader";
 
@@ -60,7 +59,6 @@ class Dashboard extends Component {
 
     return (
       <div style={styles.dashboard}>
-        <SideNavbar />
         <Documents
           documents={this.state.documents}
           removeDocument={this._removeDocument}

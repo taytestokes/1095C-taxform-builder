@@ -23,6 +23,7 @@ class Dropzone extends Component {
   };
 
   onFilesAdded = evt => {
+    console.log("file added");
     // check to see if dropzone is disabled
     if (this.props.disabled) return;
     // take the files  from the event
@@ -96,7 +97,7 @@ class Dropzone extends Component {
   getStyles = () => ({
     dropzone: {
       width: "100%",
-      height: "40%",
+      height: "32vh",
       border: "2px dashed #CCC",
       borderRadius: theme.BorderRadius.SMALL,
       display: "flex",

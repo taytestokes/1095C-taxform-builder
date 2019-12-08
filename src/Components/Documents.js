@@ -24,11 +24,11 @@ export default class Documents extends Component {
           <ZeroState />
         ) : (
           <div style={styles.documents}>
-            {documents.map(document => (
+            {documents.map((document, index) => (
               <Document
                 removeDocument={removeDocument}
                 document={document}
-                key={document.name}
+                key={document.name + index}
               />
             ))}
           </div>
@@ -39,7 +39,7 @@ export default class Documents extends Component {
 
   getStyles = () => ({
     component: {
-      width: "35vw",
+      width: "40vw",
       height: "100vh",
       display: "flex",
       flexDirection: "column",
@@ -57,7 +57,8 @@ export default class Documents extends Component {
       borderBottom: theme.Border.DEFAULT
     },
     title: {
-      fontSize: theme.FontSizes.XLARGE,
+      fontWeight: 700,
+      fontSize: 20,
       color: theme.FontColors.DARK
     },
     subtitle: {
@@ -79,10 +80,12 @@ export default class Documents extends Component {
     },
     documents: {
       width: "100%",
+      height: "92vh",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.MEDIUM}px`
+      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.MEDIUM}px`,
+      overflow: "scroll"
     }
   });
 }

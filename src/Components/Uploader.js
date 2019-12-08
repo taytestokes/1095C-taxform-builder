@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import swal from "@sweetalert/with-react";
+import * as Icon from "react-feather";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 // Components
 import Dropzone from "./Dropzone";
@@ -17,6 +20,7 @@ class Uploader extends Component {
     successfullUpload: false
   };
 
+  // Custom Methods
   onFilesAdded = files => {
     const currentFilesLength = this.state.files.length;
     const fileAmountToCut = 5 - currentFilesLength;
@@ -184,32 +188,46 @@ class Uploader extends Component {
     );
   };
 
+  _logout = () => {
+    axios
+      .get("/auth/logout")
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        if (error) throw error;
+      });
+  };
+
   render() {
     const styles = this.getStyles();
 
     return (
       <div style={styles.uploader}>
+        <div style={styles.banner}>
+          <h2>File Uploader</h2>
+          <button className={styles.logoutButton}>
+            <Icon.LogOut size={16} onClick={this._logout} />
+          </button>
+        </div>
         <Dropzone
           onFilesAdded={this.onFilesAdded}
           disabled={this.state.uploading || this.state.successfullUploaded}
         />
+        <div style={styles.subBanner}>
+          <h2>Uploaded Files</h2>
+        </div>
         <div style={styles.uploadedFiles}>
-          {this.state.files.length < 1 ? (
-            <div>No files uploaded</div>
-          ) : (
-            <React.Fragment>
-              {this.state.files.map((file, index) => {
-                return (
-                  <UploadedFile
-                    file={file}
-                    removeUpload={this._removeUpload}
-                    uploadProgress={this.state.uploadProgress}
-                    key={file.name + index}
-                  />
-                );
-              })}
-            </React.Fragment>
-          )}
+          {this.state.files.map((file, index) => {
+            return (
+              <UploadedFile
+                file={file}
+                removeUpload={this._removeUpload}
+                uploadProgress={this.state.uploadProgress}
+                key={file.name + index}
+              />
+            );
+          })}
         </div>
         <div style={styles.uploadSubmit}>
           <div style={styles.filesAmount}>
@@ -244,14 +262,46 @@ class Uploader extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: theme.Spacing.LARGE
+      padding: theme.Spacing.LARGE,
+      paddingTop: 0
     },
+    banner: {
+      width: "100%",
+      height: "8vh",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      fontWeight: 700,
+      fontSize: 20
+    },
+    subBanner: {
+      width: "100%",
+      height: "8vh",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      fontWeight: 700,
+      fontSize: 20
+    },
+    logoutButton: css({
+      padding: `${theme.Spacing.XSMALL}px ${theme.Spacing.MEDIUM}px`,
+      background: theme.Colors.GRAY,
+      color: theme.FontColors.GRAY,
+      border: "none",
+      borderRadius: theme.BorderRadius.SMALL,
+      outline: "none",
+      transition: "ease .2s",
+      ":hover": {
+        background: theme.Colors.HOVER_GRAY,
+        cursor: "pointer",
+        color: theme.FontColors.DARK
+      }
+    }),
     uploadedFiles: {
       width: "100%",
-      height: "55%",
+      height: "42vh",
       display: "flex",
-      flexDirection: "column",
-      marginTop: theme.Spacing.SMALL
+      flexDirection: "column"
     },
     uploadSubmit: {
       height: "5%",
@@ -307,4 +357,4 @@ class Uploader extends Component {
   });
 }
 
-export default Uploader;
+export default withRouter(Uploader);

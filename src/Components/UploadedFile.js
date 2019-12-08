@@ -61,14 +61,13 @@ export default class UploadedFile extends Component {
   getStyles = () => ({
     fileCard: {
       width: "100%",
-      height: "9vh",
+      height: "8vh",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
       padding: `${theme.Spacing.XSMALL}px 0px`,
       transition: "ease 1s",
       background: theme.Colors.WHITE,
-      marginTop: theme.Spacing.SMALL,
       borderBtoom: theme.Border.DEFAULT
     },
     fileProgress: {

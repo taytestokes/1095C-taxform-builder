@@ -156,7 +156,8 @@ class Register extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      background: "rgb(249, 250, 251)"
     },
     registerContainer: {
       width: "25%",
