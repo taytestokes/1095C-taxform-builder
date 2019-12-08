@@ -8,7 +8,8 @@ import Uploader from "../Components/Uploader";
 
 class Dashboard extends Component {
   state = {
-    documents: []
+    documents: [],
+    loading: true
   };
 
   // Lifecycle Methods
@@ -20,7 +21,8 @@ class Dashboard extends Component {
   _getDocuments = () => {
     axios.get("/documents/all").then(response => {
       this.setState({
-        documents: response.data
+        documents: response.data,
+        loading: false
       });
     });
   };
@@ -85,6 +87,7 @@ class Dashboard extends Component {
         <Documents
           documents={this.state.documents}
           filterDocuments={this._filterDocuments}
+          loading={this.state.loading}
           removeDocument={this._removeDocument}
         />
         <Uploader getDocuments={this._getDocuments} />

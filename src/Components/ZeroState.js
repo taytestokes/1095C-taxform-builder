@@ -12,8 +12,7 @@ export default class DocumentsZeroState extends Component {
       <div style={styles.zerostate}>
         <Icon.AlertCircle size={45} style={{ color: theme.FontColors.GRAY }} />
         <p style={styles.zerostateText}>
-          It looks like you don't have any documents, get started by using the
-          file uploader
+          It looks like we were able to find any documents
         </p>
       </div>
     );

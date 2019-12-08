@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import * as Icon from "react-feather";
+import Loader from "react-loader-spinner";
 
 // Components
 import Document from "./Document";
@@ -12,7 +13,7 @@ import theme from "../Constants/Theme";
 export default class Documents extends Component {
   render() {
     const styles = this.getStyles();
-    const { documents, removeDocument, filterDocuments } = this.props;
+    const { documents, removeDocument, filterDocuments, loading } = this.props;
 
     return (
       <div style={styles.component}>
@@ -22,30 +23,41 @@ export default class Documents extends Component {
             <div style={styles.badge}>{documents.length}</div>
           </div>
         </div>
-        <div style={styles.documents}>
-          <div style={styles.searchContainer}>
-            <Icon.Search size={18} />
-            <input
-              type="text"
-              className={styles.search}
-              placeholder="Search..."
-              onChange={filterDocuments}
+        {loading ? (
+          <div style={styles.loader}>
+            <Loader
+              type="ThreeDots"
+              height={40}
+              width={40}
+              color={theme.FontColors.DARK}
             />
           </div>
-          {documents.length < 1 ? (
-            <ZeroState />
-          ) : (
-            <React.Fragment>
-              {documents.map((document, index) => (
-                <Document
-                  removeDocument={removeDocument}
-                  document={document}
-                  key={document.name + index}
-                />
-              ))}
-            </React.Fragment>
-          )}
-        </div>
+        ) : (
+          <div style={styles.documents}>
+            <div style={styles.searchContainer}>
+              <Icon.Search size={18} />
+              <input
+                type="text"
+                className={styles.search}
+                placeholder="Search..."
+                onChange={filterDocuments}
+              />
+            </div>
+            {documents.length < 1 ? (
+              <ZeroState />
+            ) : (
+              <React.Fragment>
+                {documents.map((document, index) => (
+                  <Document
+                    removeDocument={removeDocument}
+                    document={document}
+                    key={document.name + index}
+                  />
+                ))}
+              </React.Fragment>
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -90,6 +102,14 @@ export default class Documents extends Component {
       color: theme.FontColors.GRAY,
       fontWeight: 700,
       fontSize: theme.FontSizes.SMALL
+    },
+    loader: {
+      height: "100%",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-around",
+      flexDirection: "column"
     },
     searchContainer: {
       width: "100%",
