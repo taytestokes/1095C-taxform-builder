@@ -23,6 +23,12 @@ class MasterWidget extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   window.addEventListener("resize", evt => {
+
+  //   });
+  // }
+
   render() {
     const styles = this.getStyles();
     const { browserSize } = this.state;
@@ -32,7 +38,7 @@ class MasterWidget extends Component {
         <div style={styles.alert}>
           <div style={styles.card}>
             <Icon.AlertCircle size={30} />
-            <p style={styles.cardText}>Broswer size is not supported!</p>
+            <p style={styles.cardText}>Browser size is not supported!</p>
           </div>
         </div>
       );

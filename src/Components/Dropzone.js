@@ -18,16 +18,13 @@ class Dropzone extends Component {
 
   // uses ref to select a hidden element to open file dialog
   openFileDialog = () => {
-    if (this.props.disabled) return;
     this.fileInputRef.current.click();
   };
 
   onFilesAdded = evt => {
-    console.log("file added");
-    // check to see if dropzone is disabled
-    if (this.props.disabled) return;
     // take the files  from the event
-    const files = evt.target.files;
+    const { files } = evt.target;
+    console.log(files);
     // if method is available
     if (this.props.onFilesAdded) {
       // transform the file list to an array
@@ -47,7 +44,6 @@ class Dropzone extends Component {
 
   onDragOver = evt => {
     evt.preventDefault();
-    if (this.props.disabled) return;
     this.setState({ highlight: true });
   };
 
@@ -57,7 +53,6 @@ class Dropzone extends Component {
 
   onDrop = evt => {
     evt.preventDefault();
-    if (this.props.disabled) return;
     const files = evt.dataTransfer.files;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
@@ -87,6 +82,7 @@ class Dropzone extends Component {
           type="file"
           multiple
           name="files"
+          onClick={event => (event.target.value = null)}
           onChange={this.onFilesAdded}
           style={styles.fileInput}
         />

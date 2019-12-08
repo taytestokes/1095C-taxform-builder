@@ -111,10 +111,10 @@ class Uploader extends Component {
       formData.append("file", file, file.name);
 
       req.open("POST", "/documents/upload");
-      req.send(formData);
+      return req.send(formData);
     })
       .then(() => {
-        return this.props.getDocuments();
+        this.props.getDocuments();
       })
       .then(() => {
         this.setState({
@@ -210,10 +210,7 @@ class Uploader extends Component {
             <Icon.LogOut size={16} />
           </button>
         </div>
-        <Dropzone
-          onFilesAdded={this.onFilesAdded}
-          disabled={this.state.uploading || this.state.successfullUploaded}
-        />
+        <Dropzone onFilesAdded={this.onFilesAdded} />
         <div style={styles.subBanner}>
           <h2>Uploaded Files</h2>
         </div>
