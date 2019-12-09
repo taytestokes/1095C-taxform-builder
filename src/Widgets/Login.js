@@ -1,6 +1,5 @@
 // Packages
 import React, { Component } from "react";
-import * as Icon from "react-feather";
 import { css } from "glamor";
 import { Link } from "react-router-dom";
 import axios from "axios";
