@@ -296,7 +296,7 @@ class Uploader extends Component {
     }),
     uploadedFiles: {
       width: "100%",
-      height: "42vh",
+      height: "45vh",
       display: "flex",
       flexDirection: "column"
     },

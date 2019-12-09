@@ -123,7 +123,7 @@ export default class Documents extends Component {
     },
     search: css({
       width: "90%",
-      height: "100%",
+      height: "5vh",
       border: "none",
       outline: "none",
       background: "transparent",

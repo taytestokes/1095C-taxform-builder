@@ -50,14 +50,14 @@ class Login extends Component {
       });
       return swal({
         text: "Email and Password are required",
-        button: "OKAY"
+        button: "Okay"
       });
     }
     // Check if email is in valid format
     if (!isEmail(email)) {
       return swal({
         text: "Invalid email format, please try again.",
-        button: "OKAY"
+        button: "Okay"
       });
     }
     // Make post request to login
@@ -109,38 +109,28 @@ class Login extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
-          <div style={styles.label}>
-            <Icon.Mail size={15} />
-            <p style={styles.labelName}>Email</p>
-          </div>
           <input
             className={css(styles.input)}
             name="email"
             onChange={this._handleChange}
+            placeholder="Email"
           />
-          <div style={styles.label}>
-            <Icon.Lock size={15} />
-            <p style={styles.labelName}>Password</p>
-          </div>
           <input
             className={css(styles.input)}
             name="password"
             onChange={this._handleChange}
             type="password"
+            placeholder="Password"
           />
           <button className={css(styles.login)} onClick={this._handleLogin}>
             {loading ? (
               <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
             ) : (
-              "SIGN IN"
+              "Sign In"
             )}
           </button>
-          <div style={styles.label}>
-            <Icon.HelpCircle size={15} />
-            <p style={styles.labelName}>Don't have an account?</p>
-          </div>
           <Link className={css(styles.register)} to="/register">
-            REGISTER
+            Register
           </Link>
         </div>
       </div>
@@ -158,57 +148,48 @@ class Login extends Component {
       background: "rgb(249, 250, 251)"
     },
     loginContainer: {
-      width: "25%",
-      height: "45%",
+      width: 300,
+      height: 350,
       padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-between",
-      backgroundColor: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD,
-      borderRadius: theme.BorderRadius.MEDIUM
+      justifyContent: "center"
     },
-    input: {
-      width: "90%",
+    input: css({
+      width: "100%",
+      height: "13%",
       outline: "none",
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.XSMALL,
+      marginTop: theme.Spacing.SMALL,
+      transition: "ease .2s",
+      fontSize: theme.FontSizes.MEDIUM,
       ":focus": {
         border: theme.Border.FOCUS
       }
-    },
-    label: {
-      width: "90%",
-      display: "flex",
-      alignItems: "center",
-      color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.MEDIUM
-    },
-    labelName: {
-      marginLeft: theme.Spacing.SMALL,
-      fontSize: theme.FontSizes.MEDIUM
-    },
+    }),
     login: {
-      width: "90%",
+      width: "100%",
       outline: "none",
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
       padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
       border: "none",
-      marginTop: theme.Spacing.XLARGE,
+      marginTop: theme.Spacing.SMALL,
       fontSize: theme.FontSizes.SMALL,
+      transition: "ease .2s",
+      fontWeight: 700,
       ":hover": {
         cursor: "pointer",
-        opacity: 0.8
+        background: theme.Colors.HOVER_PRIMARY
       }
     },
     register: {
-      width: "90%",
+      width: "100%",
       outline: "none",
       backgroundColor: theme.Colors.GRAY,
       color: theme.FontColors.GRAY,
@@ -219,9 +200,11 @@ class Login extends Component {
       display: "flex",
       justifyContent: "space-around",
       fontSize: theme.FontSizes.SMALL,
+      transition: "ease .2s",
+      fontWeight: 700,
       ":hover": {
         cursor: "pointer",
-        opacity: 0.8
+        background: theme.Colors.HOVER_GRAY
       }
     }
   });

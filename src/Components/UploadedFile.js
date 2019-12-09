@@ -61,7 +61,7 @@ export default class UploadedFile extends Component {
   getStyles = () => ({
     fileCard: {
       width: "100%",
-      height: "8vh",
+      height: "9vh",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
