@@ -110,19 +110,19 @@ class Login extends Component {
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
           <input
-            className={css(styles.input)}
+            className={styles.input}
             name="email"
             onChange={this._handleChange}
             placeholder="Email"
           />
           <input
-            className={css(styles.input)}
+            className={styles.input}
             name="password"
             onChange={this._handleChange}
             type="password"
             placeholder="Password"
           />
-          <button className={css(styles.login)} onClick={this._handleLogin}>
+          <button className={styles.login} onClick={this._handleLogin}>
             {loading ? (
               <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
             ) : (
@@ -144,8 +144,7 @@ class Login extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
-      background: "rgb(249, 250, 251)"
+      justifyContent: "space-around"
     },
     loginContainer: {
       width: 300,
@@ -171,14 +170,14 @@ class Login extends Component {
         border: theme.Border.FOCUS
       }
     }),
-    login: {
+    login: css({
       width: "100%",
       outline: "none",
       backgroundColor: theme.Colors.PRIMARY,
       color: theme.FontColors.LIGHT,
       padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
-      border: "none",
+      border: `1px solid ${theme.Colors.PRIMARY}`,
       marginTop: theme.Spacing.SMALL,
       fontSize: theme.FontSizes.SMALL,
       transition: "ease .2s",
@@ -187,13 +186,14 @@ class Login extends Component {
         cursor: "pointer",
         background: theme.Colors.HOVER_PRIMARY
       }
-    },
-    register: {
+    }),
+    register: css({
       width: "100%",
       outline: "none",
       backgroundColor: theme.Colors.GRAY,
       color: theme.FontColors.GRAY,
       padding: theme.Spacing.MEDIUM,
+      border: `1px solid ${theme.Colors.GRAY}`,
       borderRadius: theme.BorderRadius.SMALL,
       marginTop: theme.Spacing.SMALL,
       textDecoration: "none",
@@ -204,9 +204,10 @@ class Login extends Component {
       fontWeight: 700,
       ":hover": {
         cursor: "pointer",
-        background: theme.Colors.HOVER_GRAY
+        background: theme.Colors.HOVER_GRAY,
+        border: `1px solid ${theme.Colors.HOVER_GRAY}`
       }
-    }
+    })
   });
 }
 

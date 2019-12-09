@@ -108,41 +108,28 @@ class Register extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.registerContainer}>
-          <div style={styles.label}>
-            <Icon.Mail size={15} />
-            <p style={styles.labelName}>Email</p>
-          </div>
           <input
-            className={css(styles.input)}
+            className={styles.input}
             name="email"
             onChange={this._handleChange}
+            placeholder="Email"
           />
-          <div style={styles.label}>
-            <Icon.Lock size={15} />
-            <p style={styles.labelName}>Password</p>
-          </div>
           <input
-            className={css(styles.input)}
+            className={styles.input}
             name="password"
             onChange={this._handleChange}
             type="password"
+            placeholder="Password"
           />
-          <button
-            className={css(styles.register)}
-            onClick={this._handleRegister}
-          >
+          <button className={styles.register} onClick={this._handleRegister}>
             {loading ? (
               <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
             ) : (
-              "REGISTER"
+              "Register"
             )}
           </button>
-          <div style={styles.label}>
-            <Icon.HelpCircle size={15} />
-            <p style={styles.labelName}>Already have an account?</p>
-          </div>
           <Link className={css(styles.login)} to="/">
-            SIGN IN
+            Sign In
           </Link>
         </div>
       </div>
@@ -156,76 +143,71 @@ class Register extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
-      background: "rgb(249, 250, 251)"
+      justifyContent: "space-around"
     },
     registerContainer: {
-      width: "25%",
-      height: "50%",
-      padding: theme.Spacing.XLARGE,
+      width: 300,
+      height: 350,
+      padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD,
-      borderRadius: theme.BorderRadius.MEDIUM
+      justifyContent: "center"
     },
-    input: {
-      width: "90%",
+    input: css({
+      width: "100%",
+      height: "13%",
       outline: "none",
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
       borderRadius: theme.BorderRadius.SMALL,
       border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.XSMALL,
+      marginTop: theme.Spacing.SMALL,
+      transition: "ease .2s",
+      fontSize: theme.FontSizes.MEDIUM,
       ":focus": {
         border: theme.Border.FOCUS
       }
-    },
-    label: {
-      width: "90%",
-      display: "flex",
-      alignItems: "center",
-      color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.MEDIUM
-    },
-    labelName: {
-      marginLeft: theme.Spacing.SMALL,
-      fontSize: theme.FontSizes.MEDIUM
-    },
-    register: {
-      width: "90%",
+    }),
+    register: css({
+      width: "100%",
       outline: "none",
-      backgroundColor: theme.Colors.PRIMARY,
-      color: theme.FontColors.LIGHT,
+      backgroundColor: "transparent",
+      color: theme.Colors.PRIMARY,
       padding: theme.Spacing.MEDIUM,
       borderRadius: theme.BorderRadius.SMALL,
-      border: "none",
-      marginTop: theme.Spacing.XLARGE,
+      border: `1px solid ${theme.Colors.PRIMARY}`,
+      marginTop: theme.Spacing.SMALL,
       fontSize: theme.FontSizes.SMALL,
+      transition: "ease .2s",
+      fontWeight: 700,
       ":hover": {
         cursor: "pointer",
-        opacity: 0.8
+        background: theme.Colors.PRIMARY,
+        color: theme.Colors.WHITE
       }
-    },
-    login: {
-      width: "90%",
+    }),
+    login: css({
+      width: "100%",
       outline: "none",
       backgroundColor: theme.Colors.GRAY,
       color: theme.FontColors.GRAY,
       padding: theme.Spacing.MEDIUM,
+      border: `1px solid ${theme.Colors.GRAY}`,
       borderRadius: theme.BorderRadius.SMALL,
       marginTop: theme.Spacing.SMALL,
       textDecoration: "none",
       display: "flex",
       justifyContent: "space-around",
       fontSize: theme.FontSizes.SMALL,
+      transition: "ease .2s",
+      fontWeight: 700,
       ":hover": {
         cursor: "pointer",
-        opacity: 0.8
+        background: theme.Colors.HOVER_GRAY,
+        border: `1px solid ${theme.Colors.HOVER_GRAY}`
       }
-    }
+    })
   });
 }
 
