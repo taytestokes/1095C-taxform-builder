@@ -12,7 +12,7 @@ export default class DocumentsZeroState extends Component {
       <div style={styles.zerostate}>
         <Icon.AlertCircle size={45} style={{ color: theme.FontColors.GRAY }} />
         <p style={styles.zerostateText}>
-          It looks like we were able to find any documents
+          It looks like we weren't able to find any documents
         </p>
       </div>
     );
