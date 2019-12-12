@@ -18,7 +18,7 @@
     "filesize": "^6.0.1",
     "formidable": "^1.2.1",
     "glamor": "^2.20.40",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "2.1.0",
     "massive": "^6.1.1",
     "moment": "^2.24.0",
     "multer": "^1.4.2",
