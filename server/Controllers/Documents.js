@@ -199,7 +199,8 @@ exports.createPDF = (req, res) => {
         console.log(response);
         if (error) {
           const errorMessage = new Error(error);
-          res.send(errorMessage);
+          // res.send(errorMessage);
+          console.log(errorMessage);
         } else {
           res.send("PDF created!");
         }
