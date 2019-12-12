@@ -67,7 +67,7 @@ class Login extends Component {
           loading: false
         });
         // On success redirectd
-        this.props.history.push("/dashboard/documents");
+        this.props.history.push("/dashboard");
       })
       .catch(err => {
         this.setState({

@@ -95,7 +95,7 @@ class Register extends Component {
   _checkForSession = () => {
     axios.get("/auth/session").then(({ data }) => {
       if (data.user) {
-        this.props.history.push("/dashboard/documents");
+        this.props.history.push("/dashboard");
       }
     });
   };
