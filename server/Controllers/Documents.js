@@ -195,7 +195,8 @@ exports.createPDF = (req, res) => {
     .create(pdfTemplate(req.body), pdfOptions)
     .toFile(
       `${__dirname}/PDF/${req.body.name}${req.body.created}.pdf`,
-      error => {
+      (error, response) => {
+        console.log(response);
         if (error) {
           const errorMessage = new Error(error);
           res.send(errorMessage);
