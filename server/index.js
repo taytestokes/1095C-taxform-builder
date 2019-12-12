@@ -2,7 +2,7 @@ require("dotenv").config();
 require("./Auth/Passport");
 const express = require("express");
 const port = process.env.PORT || 8080;
-const middleware = require("./Middleware/Provider");
+const middleware = require("./Middleware/provider");
 const database = require("../db/utils/connect");
 const router = require("./Routers/Router");
 const path = require("path");
