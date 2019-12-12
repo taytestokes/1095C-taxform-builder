@@ -6,14 +6,22 @@ import FileIcon from "react-file-icon";
 import filesize from "filesize";
 import moment from "moment";
 import { css } from "glamor";
+import Loader from "react-loader-spinner";
 
 // Theme
 import theme from "../Constants/Theme";
 import swal from "sweetalert";
 
 export default class Document extends Component {
+  state = {
+    loading: false
+  };
+
   _downloadPDF = () => {
     const { document } = this.props;
+    this.setState({
+      loading: true
+    });
 
     axios
       .post("/documents/createPDF", document)
@@ -28,12 +36,8 @@ export default class Document extends Component {
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         fileSaver.saveAs(pdfBlob, `${document.name}.pdf`);
-      })
-      .catch(error => {
-        const errorMessage = new Error(error);
-        swal({
-          text: errorMessage,
-          button: "Okay"
+        this.setState({
+          loading: false
         });
       });
   };
@@ -81,6 +85,12 @@ export default class Document extends Component {
             onClick={this._downloadPDF}
           />
         </div>
+
+        {this.state.loading ? (
+          <div style={styles.downloading}>
+            <Loader type="ThreeDots" height={40} width={50} color="#FFF" />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -145,6 +155,19 @@ export default class Document extends Component {
         color: theme.FontColors.DARK,
         cursor: "pointer"
       }
+    },
+    downloading: {
+      height: "100vh",
+      width: "100vw",
+      background: "rgba(0,0,0,.5)",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+      flexDirection: "column",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      zIndex: 5
     }
   });
 }
