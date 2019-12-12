@@ -221,8 +221,8 @@ exports.deletePDF = (req, res) => {
     if (error) {
       const errorMessage = new Error(error);
       return res.send(errorMessage);
+    } else {
+      res.send("PDF file deleted!");
     }
-    // send a response on success
-    res.send("PDF file deleted!");
   });
 };
