@@ -105,112 +105,112 @@ module.exports = ({
     <div style="position: absolute; top: 174px; left: 675px">
       ${employers_13}
     </div>
-    <div style="position: absolute; top: 222px; left: 175px">
+    <div style="position: absolute; top: 215px; left: 185px">
       ${jan_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 225px">
+    <div style="position: absolute; top: 215px; left: 235px">
       ${feb_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 280px">
+    <div style="position: absolute; top: 215px; left: 290px">
       ${mar_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 330px">
+    <div style="position: absolute; top: 215px; left: 343px">
       ${apr_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 385px">
+    <div style="position: absolute; top: 215px; left: 395px">
       ${may_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 435px">
+    <div style="position: absolute; top: 215px; left: 447px">
       ${jun_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 488px">
+    <div style="position: absolute; top: 215px; left: 500px">
       ${jul_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 540px">
+    <div style="position: absolute; top: 215px; left: 553px">
       ${aug_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 593px">
+    <div style="position: absolute; top: 215px; left: 605px">
       ${sep_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 647px">
+    <div style="position: absolute; top: 215px; left: 658px">
       ${oct_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 698px">
+    <div style="position: absolute; top: 215px; left: 711px">
       ${nov_14}
     </div>
-    <div style="position: absolute; top: 222px; left: 750px">
+    <div style="position: absolute; top: 215px; left: 763px">
       ${dec_14}
     </div>
-    <div style="position: absolute; top: 258px; left: 175px">
+    <div style="position: absolute; top: 256px; left: 173px">
       ${jan_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 225px">
+    <div style="position: absolute; top: 256px; left: 225px">
       ${feb_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 280px">
+    <div style="position: absolute; top: 256px; left: 278px">
       ${mar_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 330px">
+    <div style="position: absolute; top: 256px; left: 330px">
       ${apr_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 385px">
+    <div style="position: absolute; top: 256px; left: 383px">
       ${may_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 435px">
+    <div style="position: absolute; top: 256px; left: 435px">
       ${jun_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 488px">
+    <div style="position: absolute; top: 256px; left: 487px">
       ${jul_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 540px">
+    <div style="position: absolute; top: 256px; left: 540px">
         ${aug_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 593px">
+    <div style="position: absolute; top: 256px; left: 593px">
       ${sep_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 647px">
+    <div style="position: absolute; top: 256px; left: 645px">
       ${oct_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 698px">
+    <div style="position: absolute; top: 256px; left: 698px">
       ${nov_15}
     </div>
-    <div style="position: absolute; top: 258px; left: 750px">
+    <div style="position: absolute; top: 256px; left: 751px">
       ${dec_15}
     </div>
-    <div style="position: absolute; top: 294px; left: 175px">
+    <div style="position: absolute; top: 280px; left: 185px">
       ${jan_14}
     </div>
-    <div style="position: absolute; top: 294px; left: 225px">
+    <div style="position: absolute; top: 280px; left: 235px">
       ${feb_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 280px">
+    <div style="position: absolute; top: 280px; left: 290px">
       ${mar_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 330px">
+    <div style="position: absolute; top: 280px; left: 343px">
       ${apr_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 385px">
+    <div style="position: absolute; top: 280px; left: 395px">
       ${may_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 435px">
+    <div style="position: absolute; top: 280px; left: 447px">
       ${jun_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 488px">
+    <div style="position: absolute; top: 280px; left: 500px">
       ${jul_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 540px">
+    <div style="position: absolute; top: 280px; left: 553px">
       ${aug_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 593px">
+    <div style="position: absolute; top: 280px; left: 605px">
       ${sep_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 647px">
+    <div style="position: absolute; top: 280px; left: 658px">
       ${oct_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 698px">
+    <div style="position: absolute; top: 280px; left: 711px">
       ${nov_16}
     </div>
-    <div style="position: absolute; top: 294px; left: 750px">
+    <div style="position: absolute; top: 280px; left: 763px">
       ${dec_16}
     </div>
   </body>
