@@ -9,6 +9,7 @@ import { css } from "glamor";
 
 // Theme
 import theme from "../Constants/Theme";
+import swal from "sweetalert";
 
 export default class Document extends Component {
   _downloadPDF = () => {
@@ -27,6 +28,13 @@ export default class Document extends Component {
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         fileSaver.saveAs(pdfBlob, `${document.name}.pdf`);
+      })
+      .catch(error => {
+        const errorMessage = new Error(error);
+        swal({
+          text: errorMessage,
+          button: "Okay"
+        });
       });
   };
 
