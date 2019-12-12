@@ -10,7 +10,6 @@ import Loader from "react-loader-spinner";
 
 // Theme
 import theme from "../Constants/Theme";
-import swal from "sweetalert";
 
 export default class Document extends Component {
   state = {
