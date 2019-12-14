@@ -165,24 +165,27 @@ exports.deleteDocument = (req, res) => {
   const { path } = req.body;
   const db = req.app.get("db");
 
-  fs.unlink(path, error => {
-    // Check for any errors
-    if (error) {
-      const errorMessage = new Error(error);
-      res.send(errorMessage);
-    }
-    // If no errors remove from DB
-    db.delete_user_document([id])
-      .then(() => {
-        return db.get_users_documents([req.session.user.id]);
-      })
-      .then(documents => {
-        res.send(documents);
-      })
-      .catch(error => {
-        res.send(error);
-      });
-  });
+  if (fs.existsSync(path)) {
+    fs.unlink(path, error => {
+      if (error) {
+        const errorMessage = new Error(error);
+        res.send(errorMessage);
+      }
+
+      db.delete_user_document([id])
+        .then(() => {
+          return db.get_users_documents([req.session.user.id]);
+        })
+        .then(documents => {
+          res.send(documents);
+        })
+        .catch(error => {
+          console.log(error)
+          res.send(error);
+        });
+    });
+  }
+
 };
 
 exports.createPDF = (req, res) => {
@@ -213,14 +216,18 @@ exports.fetchPDF = (req, res) => {
 
 exports.deletePDF = (req, res) => {
   const { name } = req.params;
+  const filePath = `${__dirname}/PDF/${name}.pdf`;
 
-  fs.unlink(`${__dirname}/PDF/${name}.pdf`, error => {
-    // check for any errors
-    if (error) {
-      const errorMessage = new Error(error);
-      return res.send(errorMessage);
-    } else {
-      res.send("PDF file deleted!");
-    }
-  });
+  if (fs.existsSync(filePath)) {
+    fs.unlink(filePath, error => {
+      if (error) {
+        const errorMessage = new Error(error);
+        return res.send(errorMessage);
+      } else {
+        res.send("PDF file deleted!");
+      }
+    });
+  } else {
+    res.send('PDF was not found, but operations continued execution.')
+  }
 };

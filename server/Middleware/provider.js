@@ -27,7 +27,7 @@ exports.provider = app => {
       secret: SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: false, maxAge: 6000000 }
+      cookie: { secure: false }
     })
   );
 };

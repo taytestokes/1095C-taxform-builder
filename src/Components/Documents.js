@@ -33,31 +33,31 @@ export default class Documents extends Component {
             />
           </div>
         ) : (
-          <div style={styles.documents}>
-            <div style={styles.searchContainer}>
-              <Icon.Search size={18} />
-              <input
-                type="text"
-                className={styles.search}
-                placeholder="Search..."
-                onChange={filterDocuments}
-              />
+            <div style={styles.documents}>
+              <div style={styles.searchContainer}>
+                <Icon.Search size={18} />
+                <input
+                  type="text"
+                  className={styles.search}
+                  placeholder="Search..."
+                  onChange={filterDocuments}
+                />
+              </div>
+              {documents.length < 1 ? (
+                <ZeroState />
+              ) : (
+                  <React.Fragment>
+                    {documents.map((document, index) => (
+                      <Document
+                        removeDocument={removeDocument}
+                        document={document}
+                        key={document.name + index}
+                      />
+                    ))}
+                  </React.Fragment>
+                )}
             </div>
-            {documents.length < 1 ? (
-              <ZeroState />
-            ) : (
-              <React.Fragment>
-                {documents.map((document, index) => (
-                  <Document
-                    removeDocument={removeDocument}
-                    document={document}
-                    key={document.name + index}
-                  />
-                ))}
-              </React.Fragment>
-            )}
-          </div>
-        )}
+          )}
       </div>
     );
   }

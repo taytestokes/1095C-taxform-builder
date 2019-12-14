@@ -24,3 +24,9 @@ yarn-error.log*
 
 .env
 .env.prod
+
+# Uploaded Documents
+/server/Uploads
+
+# PDF Files
+/server/Controllers/PDF

@@ -23,12 +23,6 @@ class MasterWidget extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   window.addEventListener("resize", evt => {
-
-  //   });
-  // }
-
   render() {
     const styles = this.getStyles();
     const { browserSize } = this.state;

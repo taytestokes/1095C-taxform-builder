@@ -24,7 +24,6 @@ class Dropzone extends Component {
   onFilesAdded = evt => {
     // take the files  from the event
     const { files } = evt.target;
-    console.log(files);
     // if method is available
     if (this.props.onFilesAdded) {
       // transform the file list to an array

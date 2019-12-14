@@ -43,11 +43,9 @@ class Dashboard extends Component {
           return axios
             .post(`/documents/delete/${id}`, { path })
             .then(response => {
-              // update state
               this.setState({
                 documents: response.data
               });
-              // make request to remove PDF file
               return axios.delete(`/documents/deletePDF/${name}${created}`);
             });
         default:
