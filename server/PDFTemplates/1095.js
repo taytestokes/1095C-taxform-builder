@@ -55,7 +55,7 @@ module.exports = ({
 
   return `<!DOCTYPE html>
 <html>
-  <body style="font-size: 8px; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+  <body style="font-size: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
     <img
       src="http://localhost:8080/1095cPDF.png"
       style="width: 100%; max-height: 200%;"
