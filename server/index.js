@@ -32,7 +32,7 @@ if (cluster.isMaster && environment === 'production') {
   // Modules
   const express = require("express");
   const port = process.env.PORT || 8080;
-  const middleware = require("./Middleware/provider");
+  const middleware = require("./Middleware/Provider");
   const database = require("../db/utils/connect");
   const router = require("./Routers/Router");
   const path = require("path");
