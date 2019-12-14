@@ -6,7 +6,7 @@ const chalk = require("chalk");
 const environment = process.env.NODE_ENV;
 
 /* Check Master Cluster and Create Child Workers */
-if (cluster.isMaster && environment !== 'development') {
+if (cluster.isMaster && environment === 'production') {
   // Define number of CPU
   const numOfCpus = os.cpus().length;
 
@@ -28,8 +28,8 @@ if (cluster.isMaster && environment !== 'development') {
     console.log(chalk.green("Starting a new worker"));
     cluster.fork();
   });
-
 } else {
+  // Modules
   const express = require("express");
   const port = process.env.PORT || 8080;
   const middleware = require("./Middleware/provider");
@@ -49,9 +49,6 @@ if (cluster.isMaster && environment !== 'development') {
 
   // Endpoints
   router.addRoutes(app);
-
-  // Public Serve Build Folder For Client
-  app.use(express.static(`${__dirname}/../build`));
 
   // Static Route
   app.get("*", (req, res) => {

@@ -19,6 +19,7 @@ exports.provider = app => {
   app.use(express.static("server/Uploads"));
   app.use(express.static("server/Assets"));
   app.use(express.static("server/Controllers/PDF"));
+  app.use(express.static(`${__dirname}/../../build`));
   app.use(cors(corsOptions));
   app.use(passport.initialize());
   app.use(
