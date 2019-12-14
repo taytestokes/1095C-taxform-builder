@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
+const MemoryStore = require('memorystore')(session);
 
 // Variables from process environment
 const { SESSION_SECRET } = process.env;
@@ -27,7 +28,10 @@ exports.provider = app => {
       secret: SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: false }
+      cookie: { secure: false },
+      store: new MemoryStore({
+        checkPeriod: 86400000
+      })
     })
   );
 };
