@@ -34,7 +34,7 @@ exports.upload = async (req, res) => {
     const employeesInfo = [Employee1, Employee2, Employee3, Employee4, Employee5, Employee6, Employee7, Employee8, Employee9, Employee10];
 
     for (let i = 0; i < employeesInfo.length; i++) {
-      const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].A}`.split(' ').join('');
+      const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].A}1095c`.split(' ').join('');
 
       db.documents.insert({
         user_id: id,
