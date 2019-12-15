@@ -20,7 +20,6 @@ class Dashboard extends Component {
   // Get Users Documents
   _getDocuments = () => {
     axios.get("/documents/all").then(response => {
-      console.log(response)
       this.setState({
         documents: response.data,
         loading: false

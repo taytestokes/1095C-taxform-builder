@@ -168,7 +168,6 @@ exports.createPDF = (req, res) => {
 
 exports.fetchPDF = (req, res) => {
   const { name } = req.params;
-  console.log(req.params)
   res.sendFile(`${__dirname}/PDF/${name}.pdf`);
 };
 
