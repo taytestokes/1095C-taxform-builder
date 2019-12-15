@@ -15,7 +15,6 @@ exports.upload = async (req, res) => {
   const db = req.app.get("db");
 
   await upload(req, res, error => {
-    console.log(req.files)
     const { size, path } = req.files[0];
     const createdDate = Date.now();
     const {
