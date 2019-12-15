@@ -26,7 +26,7 @@ class Progress extends Component {
       background: theme.Colors.PRIMARY,
       height: 8,
       borderRadius: theme.BorderRadius.MEDIUM,
-      transition: "ease .4s"
+      transition: "ease .2s"
     }
   });
 }
