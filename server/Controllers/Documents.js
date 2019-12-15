@@ -33,7 +33,7 @@ exports.upload = (req, res) => {
     const employeesInfo = [Employee1, Employee2, Employee3, Employee4, Employee5, Employee6, Employee7, Employee8, Employee9, Employee10];
 
     for (let i = 0; i < employeesInfo.length; i++) {
-      const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].C}`.split(' ').join('');
+      const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].A}`.split(' ').join('');
 
       await db.documents.insert({
         user_id: id,
@@ -56,18 +56,18 @@ exports.upload = (req, res) => {
         employers_city: employeesInfo[i][3].E,
         employers_state: employeesInfo[i][3].F,
         employers_zipcode: employeesInfo[i][3].G,
-        jan_14: `${employeesInfo[i][5].A}`,
-        feb_14: `${employeesInfo[i][5].B}`,
-        mar_14: `${employeesInfo[i][5].C}`,
-        apr_14: `${employeesInfo[i][5].D}`,
-        may_14: `${employeesInfo[i][5].E}`,
-        jun_14: `${employeesInfo[i][5].F}`,
-        jul_14: `${employeesInfo[i][5].G}`,
-        aug_14: `${employeesInfo[i][5].H}`,
-        sep_14: `${employeesInfo[i][5].I}`,
-        oct_14: `${employeesInfo[i][5].J}`,
-        nov_14: `${employeesInfo[i][5].K}`,
-        dec_14: `${employeesInfo[i][5].L}`,
+        jan_14: employeesInfo[i][5].A,
+        feb_14: employeesInfo[i][5].B,
+        mar_14: employeesInfo[i][5].C,
+        apr_14: employeesInfo[i][5].D,
+        may_14: employeesInfo[i][5].E,
+        jun_14: employeesInfo[i][5].F,
+        jul_14: employeesInfo[i][5].G,
+        aug_14: employeesInfo[i][5].H,
+        sep_14: employeesInfo[i][5].I,
+        oct_14: employeesInfo[i][5].J,
+        nov_14: employeesInfo[i][5].K,
+        dec_14: employeesInfo[i][5].L,
         jan_15: employeesInfo[i][7].A,
         feb_15: employeesInfo[i][7].B,
         mar_15: employeesInfo[i][7].C,

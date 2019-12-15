@@ -44,8 +44,8 @@ export default class Document extends Component {
   render() {
     const styles = this.getStyles();
     const { document, removeDocument } = this.props;
-    const fileSize = filesize(document.size);
-    const createdDate = moment(+document.created).format("MMM DD, YYYY");
+    const fileSize = filesize(document.filesize);
+    const createdDate = moment(+document.createddate).format("MMM DD, YYYY");
 
     return (
       <div style={styles.documentCard}>
@@ -58,7 +58,7 @@ export default class Document extends Component {
         />
 
         <div style={styles.documentCardInfo}>
-          <div style={styles.text}>{document.name}</div>
+          <div style={styles.text}>{document.filename}</div>
           <div style={styles.documentCardStats}>
             <div>{fileSize}</div>
             <div>{createdDate}</div>
