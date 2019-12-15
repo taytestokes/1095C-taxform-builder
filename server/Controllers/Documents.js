@@ -14,136 +14,88 @@ exports.upload = (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
 
-  upload(req, res, error => {
-    const { Sheet1 } = exceltojson({ sourceFile: req.file.path });
-    const fileName = req.file.originalname.split(".")[0];
+  upload(req, res, async error => {
     const { size, path } = req.file;
-    const date = Date.now();
+    const createdDate = Date.now();
+    const {
+      Employee1,
+      Employee2,
+      Employee3,
+      Employee4,
+      Employee5,
+      Employee6,
+      Employee7,
+      Employee8,
+      Employee9,
+      Employee10
+    } = exceltojson({ sourceFile: req.file.path });
 
-    const employees = {
-      1: Sheet1[2].B || "",
-      2: Sheet1[2].C || "",
-      3: Sheet1[2].D || "",
-      4: Sheet1[2].E || "",
-      5: Sheet1[2].F || "",
-      6: Sheet1[2].G || ""
-    };
+    const employeesInfo = [Employee1, Employee2, Employee3, Employee4, Employee5, Employee6, Employee7, Employee8, Employee9, Employee10];
 
-    const employers = {
-      7: Sheet1[5].B || "",
-      8: Sheet1[5].C || "",
-      9: Sheet1[5].D || "",
-      10: Sheet1[5].E || "",
-      11: Sheet1[5].F || "",
-      12: Sheet1[5].G || "",
-      13: Sheet1[5].H || ""
-    };
+    for (let i = 0; i < employeesInfo.length; i++) {
+      const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].C}`.split(' ').join('');
 
-    const fourTeenth = {
-      Jan: Sheet1[2].J || "",
-      Feb: Sheet1[2].K || "",
-      Mar: Sheet1[2].L || "",
-      Apr: Sheet1[2].M || "",
-      May: Sheet1[2].N || "",
-      Jun: Sheet1[2].O || "",
-      Jul: Sheet1[2].P || "",
-      Aug: Sheet1[2].Q || "",
-      Sep: Sheet1[2].R || "",
-      Oct: Sheet1[2].S || "",
-      Nov: Sheet1[2].T || "",
-      Dec: Sheet1[2].U || ""
-    };
-
-    const fifthTeenth = {
-      Jan: Sheet1[4].J || "",
-      Feb: Sheet1[4].K || "",
-      Mar: Sheet1[4].L || "",
-      Apr: Sheet1[4].M || "",
-      May: Sheet1[4].N || "",
-      Jun: Sheet1[4].O || "",
-      Jul: Sheet1[4].P || "",
-      Aug: Sheet1[4].Q || "",
-      Sep: Sheet1[4].R || "",
-      Oct: Sheet1[4].S || "",
-      Nov: Sheet1[4].T || "",
-      Dec: Sheet1[4].U || ""
-    };
-
-    const sixthTeenth = {
-      Jan: Sheet1[6].J || "",
-      Feb: Sheet1[6].K || "",
-      Mar: Sheet1[6].L || "",
-      Apr: Sheet1[6].M || "",
-      May: Sheet1[6].N || "",
-      Jun: Sheet1[6].O || "",
-      Jul: Sheet1[6].P || "",
-      Aug: Sheet1[6].Q || "",
-      Sep: Sheet1[6].R || "",
-      Oct: Sheet1[6].S || "",
-      Nov: Sheet1[6].T || "",
-      Dec: Sheet1[6].U || ""
-    };
-
-    db.documents
-      .insert({
+      await db.documents.insert({
         user_id: id,
-        name: fileName,
-        size,
-        created: date,
-        path,
-        employees_1: employees["1"],
-        employees_2: employees["2"],
-        employees_3: employees["3"],
-        employees_4: employees["4"],
-        employees_5: employees["5"],
-        employees_6: employees["6"],
-        employers_7: employers["7"],
-        employers_8: employers["8"],
-        employers_9: employers["9"],
-        employers_10: employers["10"],
-        employers_11: employers["11"],
-        employers_12: employers["12"],
-        employers_13: employers["13"],
-        jan_14: fourTeenth["Jan"],
-        feb_14: fourTeenth["Feb"],
-        mar_14: fourTeenth["Mar"],
-        apr_14: fourTeenth["Apr"],
-        may_14: fourTeenth["May"],
-        jun_14: fourTeenth["Jun"],
-        jul_14: fourTeenth["Jul"],
-        aug_14: fourTeenth["Aug"],
-        sep_14: fourTeenth["Sep"],
-        oct_14: fourTeenth["Oct"],
-        nov_14: fourTeenth["Nov"],
-        dec_14: fourTeenth["Dec"],
-        jan_15: fifthTeenth["Jan"],
-        feb_15: fifthTeenth["Feb"],
-        mar_15: fifthTeenth["Mar"],
-        apr_15: fifthTeenth["Apr"],
-        may_15: fifthTeenth["May"],
-        jun_15: fifthTeenth["Jun"],
-        jul_15: fifthTeenth["Jul"],
-        aug_15: fifthTeenth["Aug"],
-        sep_15: fifthTeenth["Sep"],
-        oct_15: fifthTeenth["Oct"],
-        nov_15: fifthTeenth["Nov"],
-        dec_15: fifthTeenth["Dec"],
-        jan_16: sixthTeenth["Jan"],
-        feb_16: sixthTeenth["Feb"],
-        mar_16: sixthTeenth["Mar"],
-        apr_16: sixthTeenth["Apr"],
-        may_16: sixthTeenth["May"],
-        jun_16: sixthTeenth["Jun"],
-        jul_16: sixthTeenth["Jul"],
-        aug_16: sixthTeenth["Aug"],
-        sep_16: sixthTeenth["Sep"],
-        oct_16: sixthTeenth["Oct"],
-        nov_16: sixthTeenth["Nov"],
-        dec_16: sixthTeenth["Dec"]
+        filename: fileName,
+        filepath: path,
+        filesize: size,
+        createddate: createdDate,
+        employee_first_name: employeesInfo[i][1].A,
+        employee_middle_initial: employeesInfo[i][1].B,
+        employee_last_name: employeesInfo[i][1].C,
+        employee_ssn: employeesInfo[i][1].D,
+        employee_address: employeesInfo[i][1].E,
+        employee_city: employeesInfo[i][1].F,
+        employee_state: employeesInfo[i][1].G,
+        employee_zipcode: employeesInfo[i][1].H,
+        employers_name: employeesInfo[i][3].A,
+        employers_id: employeesInfo[i][3].B,
+        employers_address: employeesInfo[i][3].C,
+        employers_phone_number: employeesInfo[i][3].D,
+        employers_city: employeesInfo[i][3].E,
+        employers_state: employeesInfo[i][3].F,
+        employers_zipcode: employeesInfo[i][3].G,
+        jan_14: `${employeesInfo[i][5].A}`,
+        feb_14: `${employeesInfo[i][5].B}`,
+        mar_14: `${employeesInfo[i][5].C}`,
+        apr_14: `${employeesInfo[i][5].D}`,
+        may_14: `${employeesInfo[i][5].E}`,
+        jun_14: `${employeesInfo[i][5].F}`,
+        jul_14: `${employeesInfo[i][5].G}`,
+        aug_14: `${employeesInfo[i][5].H}`,
+        sep_14: `${employeesInfo[i][5].I}`,
+        oct_14: `${employeesInfo[i][5].J}`,
+        nov_14: `${employeesInfo[i][5].K}`,
+        dec_14: `${employeesInfo[i][5].L}`,
+        jan_15: employeesInfo[i][7].A,
+        feb_15: employeesInfo[i][7].B,
+        mar_15: employeesInfo[i][7].C,
+        apr_15: employeesInfo[i][7].D,
+        may_15: employeesInfo[i][7].E,
+        jun_15: employeesInfo[i][7].F,
+        jul_15: employeesInfo[i][7].G,
+        aug_15: employeesInfo[i][7].H,
+        sep_15: employeesInfo[i][7].I,
+        oct_15: employeesInfo[i][7].J,
+        nov_15: employeesInfo[i][7].K,
+        dec_15: employeesInfo[i][7].L,
+        jan_16: employeesInfo[i][9].A,
+        feb_16: employeesInfo[i][9].B,
+        mar_16: employeesInfo[i][9].C,
+        apr_16: employeesInfo[i][9].D,
+        may_16: employeesInfo[i][9].E,
+        jun_16: employeesInfo[i][9].F,
+        jul_16: employeesInfo[i][9].G,
+        aug_16: employeesInfo[i][9].H,
+        sep_16: employeesInfo[i][9].I,
+        oct_16: employeesInfo[i][9].J,
+        nov_16: employeesInfo[i][9].K,
+        dec_16: employeesInfo[i][9].L
       })
-      .then(() => {
-        res.send("Files uploaded!");
-      });
+    }
+
+    res.send('files uploaded!')
   });
 };
 
@@ -180,7 +132,6 @@ exports.deleteDocument = (req, res) => {
           res.send(documents);
         })
         .catch(error => {
-          console.log(error)
           res.send(error);
         });
     });
