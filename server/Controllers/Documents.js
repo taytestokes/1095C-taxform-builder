@@ -114,11 +114,11 @@ exports.getDocuments = (req, res) => {
 
 exports.deleteDocument = (req, res) => {
   const { id } = req.params;
-  const { path } = req.body;
+  const { filepath } = req.body;
   const db = req.app.get("db");
 
   if (fs.existsSync(path)) {
-    fs.unlink(path, error => {
+    fs.unlink(filepath, error => {
       if (error) {
         const errorMessage = new Error(error);
         res.send(errorMessage);
@@ -148,7 +148,7 @@ exports.createPDF = (req, res) => {
   pdf
     .create(pdfTemplate(req.body), pdfOptions)
     .toFile(
-      `${__dirname}/PDF/${req.body.name}${req.body.created}.pdf`,
+      `${__dirname}/PDF/${req.body.filename}${req.body.createddate}.pdf`,
       (error, response) => {
         if (error) {
           const errorMessage = new Error(error);
@@ -161,13 +161,13 @@ exports.createPDF = (req, res) => {
 };
 
 exports.fetchPDF = (req, res) => {
-  const { name } = req.params;
-  res.sendFile(`${__dirname}/PDF/${name}.pdf`);
+  const { filename } = req.params;
+  res.sendFile(`${__dirname}/PDF/${filename}.pdf`);
 };
 
 exports.deletePDF = (req, res) => {
-  const { name } = req.params;
-  const filePath = `${__dirname}/PDF/${name}.pdf`;
+  const { filename } = req.params;
+  const filePath = `${__dirname}/PDF/${filename}.pdf`;
 
   if (fs.existsSync(filePath)) {
     fs.unlink(filePath, error => {

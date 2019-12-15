@@ -26,7 +26,7 @@ export default class Document extends Component {
       .post("/documents/createPDF", document)
       .then(() => {
         return axios.get(
-          `/documents/fetchPDF/${document.name}${document.created}`,
+          `/documents/fetchPDF/${document.filename}${document.createddate}`,
           {
             responseType: "blob"
           }
@@ -34,7 +34,7 @@ export default class Document extends Component {
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
-        fileSaver.saveAs(pdfBlob, `${document.name}.pdf`);
+        fileSaver.saveAs(pdfBlob, `${document.filename}.pdf`);
         this.setState({
           loading: false
         });
