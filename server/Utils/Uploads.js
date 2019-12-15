@@ -12,4 +12,4 @@ const storage = multer.diskStorage({
 });
 
 // Multer Middleware
-exports.upload = multer({ storage }).single("file");
+exports.upload = multer({ storage }).array("file");

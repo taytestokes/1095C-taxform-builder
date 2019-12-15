@@ -51,7 +51,7 @@ export default class Documents extends Component {
                       <Document
                         removeDocument={removeDocument}
                         document={document}
-                        key={document.name + index}
+                        key={Math.floor(Math.random() * Math.floor(5000))}
                       />
                     ))}
                   </React.Fragment>

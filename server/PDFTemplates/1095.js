@@ -1,17 +1,19 @@
 module.exports = ({
-  employees_1,
-  employees_2,
-  employees_3,
-  employees_4,
-  employees_5,
-  employees_6,
-  employers_7,
-  employers_8,
-  employers_9,
-  employers_10,
-  employers_11,
-  employers_12,
-  employers_13,
+  employee_first_name,
+  employee_middle_initial,
+  employee_last_name,
+  employee_ssn,
+  employee_address,
+  employee_city,
+  employee_state,
+  employee_zipcode,
+  employers_name,
+  employers_id,
+  employers_address,
+  employers_phone_number,
+  employers_city,
+  employers_state,
+  employers_zipcode,
   jan_14,
   feb_14,
   mar_14,
@@ -49,10 +51,6 @@ module.exports = ({
   nov_16,
   dec_16
 }) => {
-  const employeeFirst = employees_1.split(" ")[0];
-  const employeeMiddle = employees_1.split(" ")[1];
-  const employeeLast = employees_1.split(" ")[2];
-
   return `<!DOCTYPE html>
 <html>
   <body style="font-size: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
@@ -61,49 +59,49 @@ module.exports = ({
       style="width: 100%; max-height: 200%;"
     />
     <div style="position: absolute; top: 128px; left: 57px">
-      ${employeeFirst}
+      ${employee_first_name}
     </div>
     <div style="position: absolute; top: 128px; left: 162px">
-      ${employeeMiddle}
+      ${employee_middle_initial}
     </div>
     <div style="position: absolute; top: 128px; left: 190px">
-      ${employeeLast}
+      ${employee_last_name}
     </div>
     <div style="position: absolute; top: 128px; left: 300px">
-    ${employees_2}
+    ${employee_ssn}
     </div>
     <div style="position: absolute; top: 128px; left: 433px">
-      ${employers_7}
+      ${employers_name}
     </div>
     <div style="position: absolute; top: 128px; left: 675px">
-      ${employers_8}
+      ${employers_id}
     </div>
     <div style="position: absolute; top: 151px; left: 57px">
-      ${employees_3}
+      ${employee_address}
     </div>
     <div style="position: absolute; top: 151px; left: 433px">
-      ${employers_9}
+      ${employers_address}
     </div>
     <div style="position: absolute; top: 151px; left: 675px">
-      ${employers_10}
+      ${employers_phone_number}
     </div>
     <div style="position: absolute; top: 174px; left: 57px">
-      ${employees_4}
+      ${employee_city}
     </div>
     <div style="position: absolute; top: 174px; left: 168px">
-      ${employees_5}
+      ${employee_state}
     </div>
     <div style="position: absolute; top: 174px; left: 297px">
-      ${employees_6}
+      ${employee_zipcode}
     </div>
     <div style="position: absolute; top: 174px; left: 433px">
-        ${employers_11}
+        ${employers_city}
     </div>
     <div style="position: absolute; top: 174px; left: 549px">
-      ${employers_12}
+      ${employers_state}
     </div>
     <div style="position: absolute; top: 174px; left: 675px">
-      ${employers_13}
+      ${employers_zipcode}
     </div>
     <div style="position: absolute; top: 215px; left: 185px">
       ${jan_14}

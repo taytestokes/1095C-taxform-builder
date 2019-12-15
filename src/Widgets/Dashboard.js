@@ -20,6 +20,7 @@ class Dashboard extends Component {
   // Get Users Documents
   _getDocuments = () => {
     axios.get("/documents/all").then(response => {
+      console.log(response)
       this.setState({
         documents: response.data,
         loading: false
@@ -28,7 +29,7 @@ class Dashboard extends Component {
   };
 
   // Remove A Users Document
-  _removeDocument = (id, path, name, created) => {
+  _removeDocument = (id, filepath, filename, createddate) => {
     swal("Are you sure you want to remove this upload?", {
       buttons: {
         cancel: "Nevermind",
@@ -41,12 +42,12 @@ class Dashboard extends Component {
       switch (value) {
         case "confirm":
           return axios
-            .post(`/documents/delete/${id}`, { path })
+            .post(`/documents/delete/${id}`, { filepath })
             .then(response => {
               this.setState({
                 documents: response.data
               });
-              return axios.delete(`/documents/deletePDF/${name}${created}`);
+              return axios.delete(`/documents/deletePDF/${filename}${createddate}`);
             });
         default:
           return;
@@ -68,7 +69,7 @@ class Dashboard extends Component {
       }
 
       const filteredDocuments = data.filter(document =>
-        document.name.includes(value)
+        document.filename.includes(value)
       );
 
       this.setState({

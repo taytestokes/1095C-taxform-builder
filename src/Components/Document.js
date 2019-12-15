@@ -72,9 +72,9 @@ export default class Document extends Component {
             onClick={() =>
               removeDocument(
                 document.id,
-                document.path,
-                document.name,
-                document.created
+                document.filepath,
+                document.filename,
+                document.createddate
               )
             }
           />

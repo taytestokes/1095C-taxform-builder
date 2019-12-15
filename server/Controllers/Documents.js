@@ -10,12 +10,13 @@ const { upload } = require("../Utils/Uploads");
 const pdfTemplate = require("../PDFTemplates/1095");
 
 // Controller Methods
-exports.upload = (req, res) => {
+exports.upload = async (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
 
-  upload(req, res, async error => {
-    const { size, path } = req.file;
+  await upload(req, res, error => {
+    console.log(req.files)
+    const { size, path } = req.files[0];
     const createdDate = Date.now();
     const {
       Employee1,
@@ -28,14 +29,14 @@ exports.upload = (req, res) => {
       Employee8,
       Employee9,
       Employee10
-    } = exceltojson({ sourceFile: req.file.path });
+    } = exceltojson({ sourceFile: path });
 
     const employeesInfo = [Employee1, Employee2, Employee3, Employee4, Employee5, Employee6, Employee7, Employee8, Employee9, Employee10];
 
     for (let i = 0; i < employeesInfo.length; i++) {
       const fileName = `${employeesInfo[i][1].A}${employeesInfo[i][1].C}${employeesInfo[i][3].A}`.split(' ').join('');
 
-      await db.documents.insert({
+      db.documents.insert({
         user_id: id,
         filename: fileName,
         filepath: path,
@@ -94,9 +95,9 @@ exports.upload = (req, res) => {
         dec_16: employeesInfo[i][9].L
       })
     }
+  })
 
-    res.send('files uploaded!')
-  });
+  res.send('Files uploaded to database!')
 };
 
 exports.getDocuments = (req, res) => {
@@ -117,25 +118,30 @@ exports.deleteDocument = (req, res) => {
   const { filepath } = req.body;
   const db = req.app.get("db");
 
-  if (fs.existsSync(path)) {
-    fs.unlink(filepath, error => {
-      if (error) {
-        const errorMessage = new Error(error);
-        res.send(errorMessage);
-      }
+  /* 
+  * Keeping this commented out for now
+  * Don't want to remove the documents from the FS until new update
+  *  
+  * if (fs.existsSync(filepath)) {
+  *  fs.unlink(filepath, error => {
+  *   if (error) {
+  *     const errorMessage = new Error(error);
+  *     res.send(errorMessage);
+  *   }
+  * });
+  *}
+  */
 
-      db.delete_user_document([id])
-        .then(() => {
-          return db.get_users_documents([req.session.user.id]);
-        })
-        .then(documents => {
-          res.send(documents);
-        })
-        .catch(error => {
-          res.send(error);
-        });
+  db.delete_user_document([id])
+    .then(() => {
+      return db.get_users_documents([req.session.user.id]);
+    })
+    .then(documents => {
+      res.send(documents);
+    })
+    .catch(error => {
+      res.send(error);
     });
-  }
 
 };
 
@@ -161,13 +167,14 @@ exports.createPDF = (req, res) => {
 };
 
 exports.fetchPDF = (req, res) => {
-  const { filename } = req.params;
-  res.sendFile(`${__dirname}/PDF/${filename}.pdf`);
+  const { name } = req.params;
+  console.log(req.params)
+  res.sendFile(`${__dirname}/PDF/${name}.pdf`);
 };
 
 exports.deletePDF = (req, res) => {
-  const { filename } = req.params;
-  const filePath = `${__dirname}/PDF/${filename}.pdf`;
+  const { name } = req.params;
+  const filePath = `${__dirname}/PDF/${name}.pdf`;
 
   if (fs.existsSync(filePath)) {
     fs.unlink(filePath, error => {

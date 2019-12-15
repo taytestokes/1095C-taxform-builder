@@ -113,7 +113,8 @@ class Uploader extends Component {
       req.open("POST", "/documents/upload");
       return req.send(formData);
     })
-      .then(() => {
+      .then(response => {
+        console.log(response)
         this.props.getDocuments();
       })
       .then(() => {
