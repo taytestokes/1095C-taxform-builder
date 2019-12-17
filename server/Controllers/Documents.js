@@ -10,11 +10,11 @@ const { upload } = require("../Utils/Uploads");
 const pdfTemplate = require("../PDFTemplates/1095");
 
 // Controller Methods
-exports.upload = async (req, res) => {
+exports.upload = (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
 
-  await upload(req, res, error => {
+  upload(req, res, error => {
     const { size, path } = req.files[0];
     const createdDate = Date.now();
     const {
@@ -95,8 +95,7 @@ exports.upload = async (req, res) => {
       })
     }
   })
-
-  res.send('Files uploaded to database!')
+  res.send('docuemnts created!')
 };
 
 exports.getDocuments = (req, res) => {

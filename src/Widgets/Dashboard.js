@@ -19,12 +19,13 @@ class Dashboard extends Component {
 
   // Get Users Documents
   _getDocuments = () => {
-    axios.get("/documents/all").then(response => {
-      this.setState({
-        documents: response.data,
-        loading: false
-      });
-    });
+    axios.get("/documents/all")
+      .then(response => {
+        this.setState({
+          documents: response.data,
+          loading: false
+        })
+      })
   };
 
   // Remove A Users Document
