@@ -24,9 +24,9 @@ class Navbar extends Component {
 
         return (
             <div style={styles.component}>
-                <button className={styles.logoutButton} onClick={this._logout}>
+                {/* <button className={styles.logoutButton} onClick={this._logout}>
                     <Icon.LogOut size={16} />
-                </button>
+                </button> */}
             </div>
         )
     }

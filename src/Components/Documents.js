@@ -70,7 +70,7 @@ class Documents extends Component {
     },
     banner: {
       width: "100%",
-      padding: theme.Spacing.MEDIUM,
+      padding: theme.Spacing.SEMI_SMALL,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",

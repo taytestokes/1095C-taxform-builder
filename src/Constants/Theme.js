@@ -39,6 +39,7 @@ module.exports = {
     XLARGE: 30,
     LARGE: 20,
     MEDIUM: 15,
+    SEMI_SMALL: 12,
     SMALL: 10,
     XSMALL: 5
   },

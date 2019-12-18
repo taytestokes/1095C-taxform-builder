@@ -61,7 +61,7 @@ export default class Document extends Component {
           <div style={styles.text}>{document.filename}</div>
           <div style={styles.documentCardStats}>
             <div>{fileSize}</div>
-            <div>{createdDate}</div>
+            <div style={styles.createdDate}>{createdDate}</div>
           </div>
         </div>
 
@@ -114,22 +114,23 @@ export default class Document extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "left",
-      justifyContent: "space-between",
+      justifyContent: "center",
       marginLeft: theme.Spacing.SMALL
     },
     text: {
       color: theme.FontColors.DARK,
-      fontSize: theme.FontSizes.LARGE,
-      marginBottom: theme.Spacing.XSMALL
+      fontSize: theme.FontSizes.MEDIUM,
+      fontWeight: 700,
+      marginBottom: theme.Spacing.XSMALL,
     },
     documentCardStats: {
       width: "100%",
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
-      fontSize: theme.FontSizes.MEDIUM,
+      fontSize: theme.FontSizes.SMALL,
+      fontWeight: 600,
       color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.XSMALL
+      marginTop: theme.Spacing.XSMALL,
     },
     optionsContainer: {
       width: "5%",
@@ -167,6 +168,9 @@ export default class Document extends Component {
       top: 0,
       left: 0,
       zIndex: 5
+    },
+    createdDate: {
+      marginLeft: theme.Spacing.SMALL,
     }
   });
 }
