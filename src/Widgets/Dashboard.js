@@ -5,6 +5,8 @@ import swal from "@sweetalert/with-react";
 // Components
 import Documents from "../Components/Documents";
 import Uploader from "../Components/Uploader";
+import DocumentCreater from '../Components/DocumentCreater';
+import Navbar from '../Components/Navbar';
 
 class Dashboard extends Component {
   state = {
@@ -83,13 +85,16 @@ class Dashboard extends Component {
 
     return (
       <div style={styles.dashboard}>
-        <Documents
-          documents={this.state.documents}
-          filterDocuments={this._filterDocuments}
-          loading={this.state.loading}
-          removeDocument={this._removeDocument}
-        />
-        <Uploader getDocuments={this._getDocuments} />
+        <Navbar />
+        <div style={styles.contentContainer}>
+          <DocumentCreater />
+          <Documents
+            documents={this.state.documents}
+            filterDocuments={this._filterDocuments}
+            loading={this.state.loading}
+            removeDocument={this._removeDocument}
+          />
+        </div>
       </div>
     );
   }
@@ -99,8 +104,13 @@ class Dashboard extends Component {
       width: "100vw",
       height: "100vh",
       display: "flex",
-      justifyContent: "flex-start",
+      flexDirection: 'column',
       alignItems: "center"
+    },
+    contentContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      height: '95vh'
     }
   });
 }

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { css } from "glamor";
 import swal from "@sweetalert/with-react";
 import * as Icon from "react-feather";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
 
 // Components
 import Dropzone from "./Dropzone";
@@ -188,17 +186,6 @@ class Uploader extends Component {
     );
   };
 
-  _logout = () => {
-    axios
-      .get("/auth/logout")
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(error => {
-        if (error) throw error;
-      });
-  };
-
   render() {
     const styles = this.getStyles();
 
@@ -255,7 +242,7 @@ class Uploader extends Component {
     uploader: {
       width: "60vw",
       height: "100vh",
-      borderLeft: theme.Border.DEFAULT,
+      borderRight: theme.Border.DEFAULT,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -354,4 +341,4 @@ class Uploader extends Component {
   });
 }
 
-export default withRouter(Uploader);
+export default Uploader;

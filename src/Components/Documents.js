@@ -10,7 +10,7 @@ import ZeroState from "./ZeroState";
 // Theme
 import theme from "../Constants/Theme";
 
-export default class Documents extends Component {
+class Documents extends Component {
   render() {
     const styles = this.getStyles();
     const { documents, removeDocument, filterDocuments, loading } = this.props;
@@ -18,9 +18,14 @@ export default class Documents extends Component {
     return (
       <div style={styles.component}>
         <div style={styles.banner}>
-          <h1 style={styles.title}>My Documents</h1>
-          <div style={styles.subtitle}>
-            <div style={styles.badge}>{documents.length}</div>
+          <div style={styles.searchContainer}>
+            <Icon.Search size={18} />
+            <input
+              type="text"
+              className={styles.search}
+              placeholder="Search..."
+              onChange={filterDocuments}
+            />
           </div>
         </div>
         {loading ? (
@@ -34,15 +39,7 @@ export default class Documents extends Component {
           </div>
         ) : (
             <div style={styles.documents}>
-              <div style={styles.searchContainer}>
-                <Icon.Search size={18} />
-                <input
-                  type="text"
-                  className={styles.search}
-                  placeholder="Search..."
-                  onChange={filterDocuments}
-                />
-              </div>
+
               {documents.length < 1 ? (
                 <ZeroState />
               ) : (
@@ -65,7 +62,7 @@ export default class Documents extends Component {
   getStyles = () => ({
     component: {
       width: "40vw",
-      height: "100vh",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -73,7 +70,6 @@ export default class Documents extends Component {
     },
     banner: {
       width: "100%",
-      height: "8vh",
       padding: theme.Spacing.MEDIUM,
       display: "flex",
       justifyContent: "space-between",
@@ -132,12 +128,15 @@ export default class Documents extends Component {
     }),
     documents: {
       width: "100%",
-      height: "92vh",
+      height: "92%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.MEDIUM}px`,
+      paddingTop: 0,
       overflow: "scroll"
-    }
+    },
   });
 }
+
+export default Documents;
