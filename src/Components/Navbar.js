@@ -34,12 +34,13 @@ class Navbar extends Component {
     getStyles = () => ({
         component: {
             width: "100vw",
-            height: '6vh',
+            height: '8vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
             background: '#1b1c1d',
             padding: theme.Spacing.MEDIUM,
+            color: 'color: rgba(255,255,255,.9)'
         },
         logoutButton: css({
             padding: `${theme.Spacing.XSMALL}px ${theme.Spacing.MEDIUM}px`,

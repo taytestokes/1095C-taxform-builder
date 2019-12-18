@@ -48,7 +48,7 @@ export default class Document extends Component {
     const createdDate = moment(+document.createddate).format("MMM DD, YYYY");
 
     return (
-      <div style={styles.documentCard}>
+      <div className={styles.documentCard}>
         <FileIcon
           extension="PDF"
           fold={true}
@@ -95,10 +95,11 @@ export default class Document extends Component {
   }
 
   getStyles = () => ({
-    documentCard: {
+    documentCard: css({
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
-      boxShadow: theme.Shadows.CARD,
+      // boxShadow: theme.Shadows.CARD,
+      border: theme.Border.DEFAULT,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.MEDIUM,
@@ -106,8 +107,12 @@ export default class Document extends Component {
       display: "flex",
       alignItems: "center",
       marginLeft: theme.Spacing.XSMALL,
-      marginRight: theme.Spacing.XSMALL
-    },
+      marginRight: theme.Spacing.XSMALL,
+      transition: "ease .2s",
+      ":hover": {
+        background: "#f9fafb",
+      }
+    }),
     documentCardInfo: {
       width: "70%",
       height: "100%",

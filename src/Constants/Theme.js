@@ -62,3 +62,6 @@ module.exports = {
       "rgba(0,0,0,0.1) 1px 0px 3px 0px, rgba(0, 0, 0, 0.06) 1px 0px 2px 0px"
   }
 };
+
+
+// "#f9fafb"

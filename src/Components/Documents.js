@@ -66,7 +66,7 @@ class Documents extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      background: "#f9fafb"
+      background: theme.Colors.WHITE,
     },
     banner: {
       width: "100%",
@@ -132,9 +132,9 @@ class Documents extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.MEDIUM}px`,
+      padding: `${theme.Spacing.SMALL}px ${theme.Spacing.SEMI_SMALL}px`,
       paddingTop: 0,
-      overflow: "scroll"
+      overflow: "scroll",
     },
   });
 }

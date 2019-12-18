@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { css } from "glamor";
 
 // Components
 import DocumentForm from '../Components/DocumentForm';
@@ -7,6 +8,10 @@ import DocumentForm from '../Components/DocumentForm';
 import theme from "../Constants/Theme";
 
 class DocumentCreater extends Component {
+    state = {
+        step: 1,
+    };
+
     render() {
         const styles = this.getStyles();
 
@@ -14,7 +19,7 @@ class DocumentCreater extends Component {
             <div style={styles.component}>
                 <div style={styles.banner}>
                     <div style={styles.innerBanner}>
-
+                        <h2>My Documents</h2>
                     </div>
                 </div>
                 <div style={styles.panel}>
@@ -28,24 +33,27 @@ class DocumentCreater extends Component {
         component: {
             width: "60vw",
             height: "100%",
-            borderRight: theme.Border.DEFAULT,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingTop: 0
+            paddingTop: 0,
+            background: '#f9fafb',
+            borderRight: theme.Border.DEFAULT,
         },
         banner: {
             width: '100%',
             padding: theme.Spacing.SEMI_SMALL,
             borderBottom: theme.Border.DEFAULT,
+            background: theme.Colors.WHITE,
         },
         innerBanner: {
-            height: '5vh'
+            height: '5vh',
+            display: 'flex',
+            alignItems: 'center',
         },
         panel: {
             height: '100%',
             width: '100%',
-            padding: theme.Spacing.SEMI_SMALL,
         }
     })
 }
