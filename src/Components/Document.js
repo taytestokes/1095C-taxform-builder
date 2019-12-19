@@ -66,23 +66,26 @@ export default class Document extends Component {
         </div>
 
         <div style={styles.optionsContainer}>
-          <Icon.Delete
-            size={14}
-            className={css(styles.delete)}
-            onClick={() =>
-              removeDocument(
-                document.id,
-                document.filepath,
-                document.filename,
-                document.createddate
-              )
-            }
-          />
-          <Icon.Download
-            size={14}
-            className={css(styles.download)}
-            onClick={this._downloadPDF}
-          />
+          <div>
+            <Icon.Delete
+              size={14}
+              className={css(styles.delete)}
+              onClick={() =>
+                removeDocument(
+                  document.id,
+                  document.filepath,
+                  document.filename,
+                  document.createddate
+                )
+              }
+            />
+          </div>
+          <div className={styles.downloadContainer} onClick={this._downloadPDF}>
+            <h3 style={styles.downloadText}>Download</h3>
+            <Icon.Download
+              size={14}
+            />
+          </div>
         </div>
 
         {this.state.loading ? (
@@ -98,7 +101,6 @@ export default class Document extends Component {
     documentCard: css({
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
-      // boxShadow: theme.Shadows.CARD,
       border: theme.Border.DEFAULT,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
@@ -109,9 +111,6 @@ export default class Document extends Component {
       marginLeft: theme.Spacing.XSMALL,
       marginRight: theme.Spacing.XSMALL,
       transition: "ease .2s",
-      ":hover": {
-        background: "#f9fafb",
-      }
     }),
     documentCardInfo: {
       width: "70%",
@@ -138,28 +137,38 @@ export default class Document extends Component {
       marginTop: theme.Spacing.XSMALL,
     },
     optionsContainer: {
-      width: "5%",
+      width: "15%",
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-end",
       justifyContent: "space-between",
-      marginLeft: "auto"
+      marginLeft: "auto",
+      color: theme.FontColors.DARK,
+      ":hover": {
+        cursor: "pointer",
+      }
     },
     delete: {
       marginBottom: theme.Spacing.XSMALL,
       transition: "ease .2s",
-      ":hover": {
-        color: theme.FontColors.DARK,
-        cursor: "pointer"
+      ':hover': {
+        cursor: 'pointer',
       }
     },
-    download: {
-      marginTop: theme.Spacing.XSMALL,
+    downloadContainer: css({
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      fontSize: theme.FontSizes.SMALL,
       transition: "ease .2s",
       ":hover": {
-        color: theme.FontColors.DARK,
+        color: theme.Colors.PRIMARY,
         cursor: "pointer"
       }
+    }),
+    downloadText: {
+      marginRight: theme.Spacing.XSMALL,
     },
     downloading: {
       height: "100vh",
@@ -172,7 +181,7 @@ export default class Document extends Component {
       position: "fixed",
       top: 0,
       left: 0,
-      zIndex: 5
+      zIndex: 15
     },
     createdDate: {
       marginLeft: theme.Spacing.SMALL,

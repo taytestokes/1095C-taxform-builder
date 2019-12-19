@@ -4,9 +4,12 @@ import swal from "@sweetalert/with-react";
 
 // Components
 import Documents from "../Components/Documents";
-import Uploader from "../Components/Uploader";
+import NewDocuments from '../Components/NewDocuments';
 import DocumentCreater from '../Components/DocumentCreater';
 import Navbar from '../Components/Navbar';
+
+// Theme
+import theme from "../Constants/Theme";
 
 class Dashboard extends Component {
   state = {
@@ -87,13 +90,13 @@ class Dashboard extends Component {
       <div style={styles.dashboard}>
         <Navbar />
         <div style={styles.contentContainer}>
-          <DocumentCreater />
           <Documents
             documents={this.state.documents}
             filterDocuments={this._filterDocuments}
             loading={this.state.loading}
             removeDocument={this._removeDocument}
           />
+          <NewDocuments />
         </div>
       </div>
     );
@@ -107,11 +110,24 @@ class Dashboard extends Component {
       flexDirection: 'column',
       alignItems: "center"
     },
+    banner: {
+      width: '12vw',
+      height: '100%',
+      background: theme.Colors.WHITE,
+      borderRight: theme.Border.DEFAULT,
+      padding: theme.Spacing.SEMI_SMALL,
+    },
+    innerBanner: {
+      width: '100%',
+      height: '5vh',
+    },
     contentContainer: {
       display: 'flex',
       alignItems: 'center',
-      height: '95vh'
-    }
+      height: '92vh',
+      width: '100%',
+      background: '#f9fafb',
+    },
   });
 }
 

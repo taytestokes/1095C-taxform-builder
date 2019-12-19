@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { css } from "glamor";
 
 // Components
-import DocumentForm from '../Components/DocumentForm';
+import DocumentForm from './Form/DocumentForm';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -17,11 +17,6 @@ class DocumentCreater extends Component {
 
         return (
             <div style={styles.component}>
-                <div style={styles.banner}>
-                    <div style={styles.innerBanner}>
-                        <h2>My Documents</h2>
-                    </div>
-                </div>
                 <div style={styles.panel}>
                     <DocumentForm />
                 </div>
@@ -31,14 +26,13 @@ class DocumentCreater extends Component {
 
     getStyles = () => ({
         component: {
-            width: "60vw",
+            width: "100%",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             paddingTop: 0,
-            background: '#f9fafb',
-            borderRight: theme.Border.DEFAULT,
+            // background: '#f9fafb',
         },
         banner: {
             width: '100%',

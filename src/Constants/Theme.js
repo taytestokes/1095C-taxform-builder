@@ -43,6 +43,9 @@ module.exports = {
     SMALL: 10,
     XSMALL: 5
   },
+  Padding: {
+    INPUT: "10px 10px"
+  },
   Border: {
     DEFAULT: "1px solid #e6e6e6",
     FOCUS: "1px solid #2185d0",

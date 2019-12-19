@@ -38,7 +38,7 @@ class Documents extends Component {
             />
           </div>
         ) : (
-            <div style={styles.documents}>
+            <div className={styles.documents}>
 
               {documents.length < 1 ? (
                 <ZeroState />
@@ -61,12 +61,12 @@ class Documents extends Component {
 
   getStyles = () => ({
     component: {
-      width: "40vw",
+      width: "50vw",
       height: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      background: theme.Colors.WHITE,
+      // background: theme.Colors.WHITE,
     },
     banner: {
       width: "100%",
@@ -105,10 +105,12 @@ class Documents extends Component {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-around",
-      flexDirection: "column"
+      flexDirection: "column",
+      borderRight: theme.Border.DEFAULT
+
     },
     searchContainer: {
-      width: "100%",
+      width: "50%",
       height: "5vh",
       background: theme.Colors.WHITE,
       display: "flex",
@@ -118,15 +120,14 @@ class Documents extends Component {
       padding: theme.Spacing.SMALL
     },
     search: css({
-      width: "90%",
-      height: "5vh",
+      width: "100%",
       border: "none",
       outline: "none",
       background: "transparent",
       fontSize: theme.FontSizes.LARGE,
       marginLeft: theme.Spacing.SMALL
     }),
-    documents: {
+    documents: css({
       width: "100%",
       height: "92%",
       display: "flex",
@@ -135,7 +136,11 @@ class Documents extends Component {
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.SEMI_SMALL}px`,
       paddingTop: 0,
       overflow: "scroll",
-    },
+      borderRight: theme.Border.DEFAULT,
+      '::-webkit-scrollbar': {
+        display: 'none'
+      }
+    }),
   });
 }
 
