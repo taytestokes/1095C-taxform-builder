@@ -61,7 +61,7 @@ class Documents extends Component {
 
   getStyles = () => ({
     component: {
-      width: "50vw",
+      width: "40vw",
       height: "100%",
       display: "flex",
       flexDirection: "column",

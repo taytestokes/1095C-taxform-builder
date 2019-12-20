@@ -24,7 +24,7 @@ class NewDocuments extends Component {
 
     getStyles = () => ({
         component: {
-            width: '50vw',
+            width: '60vw',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',

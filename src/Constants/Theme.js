@@ -44,7 +44,7 @@ module.exports = {
     XSMALL: 5
   },
   Padding: {
-    INPUT: "10px 10px"
+    INPUT: 10
   },
   Border: {
     DEFAULT: "1px solid #e6e6e6",

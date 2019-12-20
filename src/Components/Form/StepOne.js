@@ -10,30 +10,27 @@ class StepOne extends Component {
 
         return (
             <div style={styles.component}>
-                <div style={styles.category}>
-                    <h2 style={styles.categoryTitle}>Employee Information</h2>
-                </div>
-                <h2 style={styles.label}>Name</h2>
+                <h2 style={styles.label}>Employee Name</h2>
                 <div style={styles.inputContainer}>
                     <input
                         placeholder="First Name"
                         className={styles.input}
                         style={{
-                            width: '45%'
+                            width: '47%'
                         }}
                     />
                     <input
                         placeholder="M"
                         className={styles.input}
                         style={{
-                            width: '5%'
+                            width: '4%'
                         }}
                     />
                     <input
                         placeholder="Last Name"
                         className={styles.input}
                         style={{
-                            width: '45%'
+                            width: '47%'
                         }}
                     />
                 </div>
@@ -45,7 +42,7 @@ class StepOne extends Component {
                 }}>
                     <div style={{
                         ...styles.veticalInputContainer,
-                        width: '68%',
+                        width: '69%',
                     }}>
                         <h2 style={styles.label}>Billing Address</h2>
                         <input
@@ -80,7 +77,7 @@ class StepOne extends Component {
                 }}>
                     <div style={{
                         ...styles.veticalInputContainer,
-                        width: '50%',
+                        width: '55%',
                     }}>
                         <h2 style={styles.label}>City or Town</h2>
                         <input
@@ -111,7 +108,7 @@ class StepOne extends Component {
 
                     <div style={{
                         ...styles.veticalInputContainer,
-                        width: '30%',
+                        width: '28%',
                     }}>
                         <h2 style={styles.label}>Zipcode</h2>
                         <input
@@ -141,8 +138,9 @@ class StepOne extends Component {
             padding: `${theme.Spacing.XSMALL}px 0px`
         },
         categoryTitle: {
-            fontSize: theme.FontSizes.LARGE,
+            fontSize: theme.FontSizes.XLARGE,
             fontWeight: 600,
+            marginTop: theme.Spacing.MEDIUM,
         },
         label: {
             fontSize: theme.FontSizes.MEDIUM,
@@ -172,9 +170,6 @@ class StepOne extends Component {
             display: 'flex',
             flexDirection: 'column',
         },
-        dropdown: {
-
-        }
     })
 }
 

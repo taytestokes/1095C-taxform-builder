@@ -10,7 +10,7 @@ import StepTwo from './StepTwo';
 
 class DocumentForm extends Component {
     state = {
-        step: 1,
+        step: 2,
     }
 
     render() {
@@ -43,10 +43,30 @@ class DocumentForm extends Component {
                     <div style={{
                         ...styles.step,
                         ...step >= 2 ? { background: '#f3f4f5' } : {},
+                        borderRight: theme.Border.DEFAULT,
                     }}>
                         <div style={{
                             ...styles.stepCircle,
                             ...step >= 2 ? {
+                                background: theme.Colors.PRIMARY,
+                                border: `3px solid ${theme.Colors.PRIMARY}`
+                            } : {}
+                        }}>
+                            <Icon.Check size={10} style={styles.stepCheck} />
+                        </div>
+                        <h2 style={styles.stepTitle}>Employer Information</h2>
+                        <div style={{
+                            ...styles.stepPoint,
+                            ...step >= 2 ? { background: '#f3f4f5' } : {},
+                        }} />
+                    </div>
+                    <div style={{
+                        ...styles.step,
+                        ...step >= 3 ? { background: '#f3f4f5' } : {},
+                    }}>
+                        <div style={{
+                            ...styles.stepCircle,
+                            ...step >= 3 ? {
                                 background: theme.Colors.PRIMARY,
                                 border: `3px solid ${theme.Colors.PRIMARY}`
                             } : {}
