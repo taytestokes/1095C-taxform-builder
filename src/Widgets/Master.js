@@ -27,21 +27,50 @@ class MasterWidget extends Component {
     const styles = this.getStyles();
     const { browserSize } = this.state;
 
-    if (browserSize === "small") {
-      return (
-        <div style={styles.alert}>
-          <div style={styles.card}>
-            <Icon.AlertCircle size={30} />
-            <p style={styles.cardText}>Browser size is not supported!</p>
-          </div>
-        </div>
-      );
-    }
+    //   if (browserSize === "small") {
+    //     return (
+    //       <div style={styles.alert}>
+    //         <div style={styles.card}>
+    //           <Icon.AlertCircle size={30} />
+    //           <p style={styles.cardText}>Browser size is not supported!</p>
+    //         </div>
+    //       </div>
+    //     );
+    //   }
 
-    return <div style={styles.widget}>{MasterRouter}</div>;
+    //   return <div style={styles.widget}>{MasterRouter}</div>;
+    // }
+
+    return <div style={styles.app}>
+      <div style={styles.info}>
+        <Icon.AlertTriangle size={30} />
+        <p style={{
+          fontSize: theme.FontSizes.LARGE,
+          marginTop: theme.Spacing.LARGE,
+          textAlign: 'center'
+        }}>Sorry, the site is currently under construction. Please try again later!</p>
+      </div>
+    </div>
   }
 
   getStyles = () => ({
+    app: {
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      background: '#f9fafb',
+      fontFamily: theme.FontFamily.PRIMARY,
+      color: theme.FontColors.GRAY,
+    },
+    info: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: theme.Spacing.LARGE,
+    },
     widget: {
       width: "100vw",
       height: "100vh",
