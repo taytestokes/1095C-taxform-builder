@@ -98,7 +98,7 @@ exports.upload = (req, res) => {
   res.send('docuemnts created!')
 };
 
-exports.getDocuments = (req, res) => {
+exports.getUserDocuments = (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
 
@@ -185,4 +185,13 @@ exports.deletePDF = (req, res) => {
   } else {
     res.send('PDF was not found, but operations continued execution.')
   }
+};
+
+exports.getDocuments = (req, res) => {
+  const db = req.app.get("db");
+
+  db.get_documents()
+    .then(({ data }) => {
+      res.send(data)
+    })
 };

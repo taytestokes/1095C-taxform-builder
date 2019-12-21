@@ -53,7 +53,7 @@ class SideNavbar extends Component {
             background: '#1b1c1d',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'flex-end',
         },
         logo: {
             width: 50,
@@ -70,7 +70,8 @@ class SideNavbar extends Component {
             color: theme.Colors.GRAY,
             fontSize: theme.FontSizes.MEDIUM,
             fontWeight: 600,
-            borderRadius: theme.BorderRadius.SMALL,
+            borderRadius: `3px 0 0 3px`,
+            borderRight: '5px solid transparent',
             transition: 'ease .2s',
             marginTop: theme.Spacing.SMALL,
             ":hover": {
@@ -80,6 +81,7 @@ class SideNavbar extends Component {
         activeNavlink: css({
             color: theme.Colors.WHITE,
             background: '#f3f4f525',
+            borderRight: `5px solid ${theme.Colors.PRIMARY}`
         }),
         navText: {
             marginLeft: theme.Spacing.SMALL,
