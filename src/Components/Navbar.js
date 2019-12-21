@@ -8,16 +8,6 @@ import { withRouter } from "react-router-dom";
 import theme from "../Constants/Theme";
 
 class Navbar extends Component {
-    _logout = () => {
-        axios
-            .get("/auth/logout")
-            .then(() => {
-                this.props.history.push("/");
-            })
-            .catch(error => {
-                if (error) throw error;
-            });
-    };
 
     render() {
         const styles = this.getStyles();
@@ -38,9 +28,9 @@ class Navbar extends Component {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            background: '#1b1c1d',
+            background: theme.Colors.WHITE,
             padding: theme.Spacing.MEDIUM,
-            color: 'color: rgba(255,255,255,.9)'
+            borderBottom: theme.Border.DEFAULT,
         },
         logoutButton: css({
             padding: `${theme.Spacing.XSMALL}px ${theme.Spacing.MEDIUM}px`,

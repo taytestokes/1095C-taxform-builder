@@ -5,6 +5,7 @@ CREATE TABLE documents (
     filePath TEXT,
     fileSize TEXT,
     createdDate TEXT,
+    createdBy TEXT,
     employee_first_name TEXT,
     employee_middle_initial TEXT,
     employee_last_name TEXT,

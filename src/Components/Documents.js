@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { css } from "glamor";
 import * as Icon from "react-feather";
 import Loader from "react-loader-spinner";
+import axios from 'axios';
 
 // Components
 import Document from "./Document";
@@ -11,9 +12,30 @@ import ZeroState from "./ZeroState";
 import theme from "../Constants/Theme";
 
 class Documents extends Component {
+  /* State */
+  state = {
+    documents: [],
+    loading: false,
+  };
+
+  /* Lifecycle Methods */
+  componentDidMount() {
+    this._getDocuments();
+  };
+
+  /* Custom Methods */
+  _getDocuments = () => {
+    axios.get("/documents/all")
+      .then(response => {
+        this.setState({
+          documents: response.data,
+          loading: false
+        })
+      });
+  };
+
   render() {
     const styles = this.getStyles();
-    const { documents, removeDocument, filterDocuments, loading } = this.props;
 
     return (
       <div style={styles.component}>
@@ -24,11 +46,10 @@ class Documents extends Component {
               type="text"
               className={styles.search}
               placeholder="Search..."
-              onChange={filterDocuments}
             />
           </div>
         </div>
-        {loading ? (
+        {this.state.loading ? (
           <div style={styles.loader}>
             <Loader
               type="ThreeDots"
@@ -39,14 +60,12 @@ class Documents extends Component {
           </div>
         ) : (
             <div className={styles.documents}>
-
-              {documents.length < 1 ? (
+              {this.state.documents.length < 1 ? (
                 <ZeroState />
               ) : (
                   <React.Fragment>
-                    {documents.map((document, index) => (
+                    {this.state.documents.map((document, index) => (
                       <Document
-                        removeDocument={removeDocument}
                         document={document}
                         key={Math.floor(Math.random() * Math.floor(5000))}
                       />
@@ -61,12 +80,11 @@ class Documents extends Component {
 
   getStyles = () => ({
     component: {
-      width: "40vw",
+      width: "100%",
       height: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      // background: theme.Colors.WHITE,
     },
     banner: {
       width: "100%",
@@ -106,8 +124,6 @@ class Documents extends Component {
       alignItems: "center",
       justifyContent: "space-around",
       flexDirection: "column",
-      borderRight: theme.Border.DEFAULT
-
     },
     searchContainer: {
       width: "50%",
@@ -136,7 +152,6 @@ class Documents extends Component {
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.SEMI_SMALL}px`,
       paddingTop: 0,
       overflow: "scroll",
-      borderRight: theme.Border.DEFAULT,
       '::-webkit-scrollbar': {
         display: 'none'
       }
