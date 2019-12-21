@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as Icon from "react-feather";
+import { Form } from 'semantic-ui-react';
 
 // Theme
 import theme from "../../Constants/Theme";
@@ -10,7 +11,7 @@ import StepTwo from './StepTwo';
 
 class DocumentForm extends Component {
     state = {
-        step: 2,
+        step: 1,
     }
 
     render() {
@@ -19,71 +20,55 @@ class DocumentForm extends Component {
 
         return (
             <div style={styles.component}>
-                <div style={styles.stepContainer}>
-                    <div style={{
-                        ...styles.step,
-                        ...step >= 1 ? { background: '#f3f4f5' } : {},
-                        borderRight: theme.Border.DEFAULT,
-                    }}>
-                        <div style={{
-                            ...styles.stepCircle,
-                            ...step >= 1 ? {
-                                background: theme.Colors.PRIMARY,
-                                border: `3px solid ${theme.Colors.PRIMARY}`
-                            } : {}
-                        }}>
-                            <Icon.Check size={10} style={styles.stepCheck} />
-                        </div>
-                        <h2 style={styles.stepTitle}>Employee Information</h2>
-                        <div style={{
-                            ...styles.stepPoint,
-                            ...step >= 1 ? { background: '#f3f4f5' } : {},
-                        }} />
-                    </div>
-                    <div style={{
-                        ...styles.step,
-                        ...step >= 2 ? { background: '#f3f4f5' } : {},
-                        borderRight: theme.Border.DEFAULT,
-                    }}>
-                        <div style={{
-                            ...styles.stepCircle,
-                            ...step >= 2 ? {
-                                background: theme.Colors.PRIMARY,
-                                border: `3px solid ${theme.Colors.PRIMARY}`
-                            } : {}
-                        }}>
-                            <Icon.Check size={10} style={styles.stepCheck} />
-                        </div>
-                        <h2 style={styles.stepTitle}>Employer Information</h2>
-                        <div style={{
-                            ...styles.stepPoint,
-                            ...step >= 2 ? { background: '#f3f4f5' } : {},
-                        }} />
-                    </div>
-                    <div style={{
-                        ...styles.step,
-                        ...step >= 3 ? { background: '#f3f4f5' } : {},
-                    }}>
-                        <div style={{
-                            ...styles.stepCircle,
-                            ...step >= 3 ? {
-                                background: theme.Colors.PRIMARY,
-                                border: `3px solid ${theme.Colors.PRIMARY}`
-                            } : {}
-                        }}>
-                            <Icon.Check size={10} style={styles.stepCheck} />
-                        </div>
-                        <h2 style={styles.stepTitle}>Offer of Coverage</h2>
+                <div style={styles.banner}>
+                    <div style={{ height: '5vh' }}>
+
                     </div>
                 </div>
-                <div style={styles.formContainer}>
-                    {step === 1 && (
-                        <StepOne />
-                    )}
-
-                    {step === 2 && (
-                        <StepTwo />
-                    )}
+                <div style={styles.form}>
+                    {/* Employee Section */}
+                    <div style={styles.formSection}>
+                        <div style={styles.labelContainer}>
+                            <h2 style={styles.label}>Employee Information</h2>
+                        </div>
+                        <Form size={'tiny'} style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                            <Form.Group>
+                                <Form.Input width={6} required label="First" placeholder="First Name" />
+                                <Form.Input width={6} required label="Middle" placeholder="Middle Name" />
+                                <Form.Input width={6} required label="Last" placeholder="Last Name" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Input required width={4} label="Social Security" placeholder="SSN" />
+                                <Form.Input required width={12} label="Street Address" placeholder="Street Address" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Input width={6} required label="City" placeholder="City or Town" />
+                                <Form.Input width={6} required label="State" placeholder="State or Province" />
+                                <Form.Input width={6} required label="Zipcode" placeholder="Zipcode" />
+                            </Form.Group>
+                        </Form>
+                    </div>
+                    {/* Employer Section */}
+                    <div style={styles.formSection}>
+                        <div style={styles.labelContainer}>
+                            <h2 style={styles.label}>Employer Information</h2>
+                        </div>
+                        <Form size={'tiny'} style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                            <Form.Group>
+                                <Form.Input required width={6} label="Name" placeholder="Name" />
+                                <Form.Input required width={10} label="Identification Number" placeholder="Identification Number" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Input required width={12} label="Street Address" placeholder="Street Address" />
+                                <Form.Input required width={4} label="Phone Number" placeholder="Phone Number" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Input required width={6} label="City" placeholder="City or Town" />
+                                <Form.Input required width={6} label="State" placeholder="State or Province" />
+                                <Form.Input required width={6} label="Zipcode" placeholder="Zipcode" />
+                            </Form.Group>
+                        </Form>
+                    </div>
                 </div>
             </div>
         )
@@ -97,63 +82,36 @@ class DocumentForm extends Component {
             flexDirection: 'column',
             alignItems: 'center',
         },
-        stepContainer: {
+        banner: {
             width: '100%',
-            height: '8%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
+            padding: theme.Spacing.SEMI_SMALL,
             borderBottom: theme.Border.DEFAULT,
             background: theme.Colors.WHITE,
         },
-        step: {
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
+        form: {
+            width: '75%',
+            // background: theme.Colors.WHITE,
         },
-        stepCircle: {
-            width: 15,
+        formInput: {
             height: 15,
-            background: theme.Spacing.WHITE,
-            border: `3px solid ${theme.Colors.GRAY}`,
-            borderRadius: '50%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-around',
+            fontFamily: theme.FontFamily.DEFAULT,
         },
-        stepCheck: {
-            color: theme.Colors.WHITE,
-            marginTop: 1
-        },
-        stepTitle: {
-            color: theme.FontColors.DARK,
-            fontSize: theme.FontSizes.MEDIUM,
-            fontWeight: 700,
-            marginLeft: theme.Spacing.XSMALL,
-        },
-        stepPoint: {
-            width: 12,
-            height: 12,
-            borderTop: theme.Border.DEFAULT,
-            borderRight: theme.Border.DEFAULT,
-            transform: 'rotate(45deg)',
-            position: 'absolute',
-            top: '40%',
-            right: -7,
-            background: theme.Colors.WHITE,
-            zIndex: 10,
-        },
-        formContainer: {
+        formSection: {
             width: '100%',
-            height: '92%',
             display: 'flex',
-            flexDirection: 'column',
-            padding: `${theme.Spacing.SMALL}px ${theme.Spacing.LARGE}px`,
+            justifyContent: 'space-between',
+            padding: theme.Spacing.SEMI_SMALL,
+            paddingBottom: 0,
+            borderBottom: theme.Border.DEFAULT,
+            marginTop: theme.Spacing.SMALL,
         },
+        labelContainer: {
+            width: '30%',
+        },
+        label: {
+            fontSize: theme.FontSizes.XLARGE,
+            fontWeight: 600,
+        }
     })
 }
 

@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { css } from "glamor";
+
 
 // Theme
 import theme from "../../Constants/Theme";
@@ -10,117 +11,7 @@ class StepOne extends Component {
 
         return (
             <div style={styles.component}>
-                <h2 style={styles.label}>Employee Name</h2>
-                <div style={styles.inputContainer}>
-                    <input
-                        placeholder="First Name"
-                        className={styles.input}
-                        style={{
-                            width: '47%'
-                        }}
-                    />
-                    <input
-                        placeholder="M"
-                        className={styles.input}
-                        style={{
-                            width: '4%'
-                        }}
-                    />
-                    <input
-                        placeholder="Last Name"
-                        className={styles.input}
-                        style={{
-                            width: '47%'
-                        }}
-                    />
-                </div>
 
-
-                <div style={{
-                    ...styles.inputContainer,
-                    marginTop: '0px',
-                }}>
-                    <div style={{
-                        ...styles.veticalInputContainer,
-                        width: '69%',
-                    }}>
-                        <h2 style={styles.label}>Billing Address</h2>
-                        <input
-                            placeholder="Street Adress"
-                            className={styles.input}
-                            style={{
-                                width: '100%',
-                                marginTop: theme.Spacing.XSMALL,
-                            }}
-                        />
-                    </div>
-
-                    <div style={{
-                        ...styles.veticalInputContainer,
-                        width: '30%',
-                    }}>
-                        <h2 style={styles.label}>Social Security Number</h2>
-                        <input
-                            placeholder="SSN"
-                            className={styles.input}
-                            style={{
-                                width: '100%',
-                                marginTop: theme.Spacing.XSMALL,
-                            }}
-                        />
-                    </div>
-                </div>
-
-                <div style={{
-                    ...styles.inputContainer,
-                    marginTop: '0px',
-                }}>
-                    <div style={{
-                        ...styles.veticalInputContainer,
-                        width: '55%',
-                    }}>
-                        <h2 style={styles.label}>City or Town</h2>
-                        <input
-                            placeholder="City or Town"
-                            className={styles.input}
-                            style={{
-                                width: '100%',
-                                marginTop: theme.Spacing.XSMALL,
-                            }}
-                        />
-                    </div>
-
-                    <div style={{
-                        ...styles.veticalInputContainer,
-                        width: '15%',
-                    }}>
-                        <h2 style={styles.label}>State</h2>
-                        <input
-                            placeholder="State"
-                            className={styles.input}
-                            style={{
-                                width: '100%',
-                                marginTop: theme.Spacing.XSMALL,
-                            }}
-                        />
-
-                    </div>
-
-                    <div style={{
-                        ...styles.veticalInputContainer,
-                        width: '28%',
-                    }}>
-                        <h2 style={styles.label}>Zipcode</h2>
-                        <input
-                            placeholder="Zipcode"
-                            className={styles.input}
-                            style={{
-                                width: '100%',
-                                marginTop: theme.Spacing.XSMALL,
-                            }}
-                        />
-                    </div>
-                </div>
             </div>
         )
     }
@@ -132,6 +23,9 @@ class StepOne extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'left',
+        },
+        formInput: {
+            height: '4vh',
         },
         category: {
             borderBottom: theme.Border.DEFAULT,

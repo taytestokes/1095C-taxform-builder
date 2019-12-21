@@ -8,6 +8,7 @@ import NewDocuments from '../Components/NewDocuments';
 import DocumentCreater from '../Components/DocumentCreater';
 import Navbar from '../Components/Navbar';
 import SideNavbar from '../Components/SideNavbar';
+import Uploader from '../Components/Uploader';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -84,13 +85,6 @@ class Dashboard extends Component {
       <div style={styles.dashboard}>
         <SideNavbar />
         <div style={styles.contentContainer}>
-          {/* <Documents
-            documents={this.state.documents}
-            filterDocuments={this._filterDocuments}
-            loading={this.state.loading}
-            removeDocument={this._removeDocument}
-          />
-          <NewDocuments /> */}
           {DashboardRouter}
         </div>
       </div>

@@ -184,7 +184,7 @@ exports.deletePDF = (req, res) => {
     });
   } else {
     res.send('PDF was not found, but operations continued execution.')
-  }
+  };
 };
 
 exports.getDocuments = (req, res) => {
