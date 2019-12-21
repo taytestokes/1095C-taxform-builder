@@ -67,7 +67,7 @@ class Login extends Component {
           loading: false
         });
         // On success redirectd
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
         this.setState({
@@ -125,8 +125,8 @@ class Login extends Component {
             {loading ? (
               <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
             ) : (
-              "Sign In"
-            )}
+                "Sign In"
+              )}
           </button>
           <Link className={css(styles.register)} to="/register">
             Register

@@ -66,7 +66,7 @@ class Register extends Component {
           loading: false
         });
 
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/home");
       })
       .catch(err => {
         this.setState({
@@ -124,8 +124,8 @@ class Register extends Component {
             {loading ? (
               <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
             ) : (
-              "Register"
-            )}
+                "Register"
+              )}
           </button>
           <Link className={css(styles.login)} to="/">
             Sign In
