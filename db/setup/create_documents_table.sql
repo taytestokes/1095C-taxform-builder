@@ -7,7 +7,7 @@ CREATE TABLE documents (
     createdDate TEXT,
     createdBy TEXT,
     employee_first_name TEXT,
-    employee_middle_initial TEXT,
+    employee_middle_name TEXT,
     employee_last_name TEXT,
     employee_ssn TEXT,
     employee_address TEXT,

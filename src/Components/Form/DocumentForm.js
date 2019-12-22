@@ -59,7 +59,8 @@ class DocumentForm extends Component {
         sep_16: '',
         oct_16: '',
         nov_16: '',
-        dec_16: ''
+        dec_16: '',
+        showModal: false,
     };
 
     _handleInputChange = evt => {
@@ -90,12 +91,6 @@ class DocumentForm extends Component {
 
         return (
             <div style={styles.component}>
-                {/* <div style={styles.banner}>
-                    <div style={{ height: '5vh' }}>
-
-                    </div>
-                </div> */}
-
                 <div className={styles.formContainer}>
                     <Form size="tiny" style={styles.form}>
                         {/* Part One: Employee Section */}
@@ -235,12 +230,6 @@ class DocumentForm extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-        },
-        banner: {
-            width: '100%',
-            padding: theme.Spacing.SEMI_SMALL,
-            borderBottom: theme.Border.DEFAULT,
-            background: theme.Colors.WHITE,
         },
         formContainer: css({
             width: '100%',
