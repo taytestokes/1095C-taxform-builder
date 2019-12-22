@@ -10,7 +10,7 @@ exports.RegisterStrategy = new LocalStrategy(
   (req, email, password, done) => {
     const db = req.app.get("db");
     const hashedPass = bcrypt.hashSync(password, 15);
-    const { firstName, lastName } = req.body;
+    const { first_name, last_name } = req.body;
 
     db.users
       .find({ email })
@@ -23,8 +23,8 @@ exports.RegisterStrategy = new LocalStrategy(
         return db.users.insert({
           email,
           password: hashedPass,
-          first_name: firstName,
-          last_name: lastName
+          first_name: first_name,
+          last_name: last_name
         });
       })
       .then(user => {

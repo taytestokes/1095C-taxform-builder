@@ -15,12 +15,10 @@ class Register extends Component {
   state = {
     email: "",
     password: "",
+    first_name: '',
+    last_name: '',
     loading: false
   };
-
-  componentDidMount() {
-    this._checkForSession();
-  }
 
   _handleChange = event => {
     const { name, value } = event.target;
@@ -31,11 +29,13 @@ class Register extends Component {
   };
 
   _handleRegister = () => {
-    const { email, password } = this.state;
+    const { email, password, first_name, last_name } = this.state;
 
     const userInfo = {
       email,
-      password
+      password,
+      first_name,
+      last_name
     };
 
     this.setState({
@@ -92,14 +92,6 @@ class Register extends Component {
       });
   };
 
-  _checkForSession = () => {
-    axios.get("/auth/session").then(({ data }) => {
-      if (data.user) {
-        this.props.history.push("/dashboard");
-      }
-    });
-  };
-
   render() {
     const styles = this.getStyles();
     const { loading } = this.state;
@@ -119,6 +111,18 @@ class Register extends Component {
             onChange={this._handleChange}
             type="password"
             placeholder="Password"
+          />
+          <input
+            className={styles.input}
+            name="first_name"
+            onChange={this._handleChange}
+            placeholder="First Name"
+          />
+          <input
+            className={styles.input}
+            name="last_name"
+            onChange={this._handleChange}
+            placeholder="Last Name"
           />
           <button className={styles.register} onClick={this._handleRegister}>
             {loading ? (

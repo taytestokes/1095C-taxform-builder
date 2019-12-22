@@ -8,7 +8,6 @@ const UploadController = require("../Controllers/Documents");
 const UploadRouter = express.Router();
 
 // Routes
-UploadRouter.post("/upload", UploadController.upload);
 UploadRouter.post('/create', UploadController.createDocument);
 UploadRouter.get("/user", UploadController.getUserDocuments);
 UploadRouter.get('/all', UploadController.getDocuments);
