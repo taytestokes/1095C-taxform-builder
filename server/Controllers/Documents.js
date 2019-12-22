@@ -116,20 +116,6 @@ exports.deleteDocument = (req, res) => {
   const { filepath } = req.body;
   const db = req.app.get("db");
 
-  /* 
-  * Keeping this commented out for now
-  * Don't want to remove the documents from the FS until new update
-  *  
-  * if (fs.existsSync(filepath)) {
-  *  fs.unlink(filepath, error => {
-  *   if (error) {
-  *     const errorMessage = new Error(error);
-  *     res.send(errorMessage);
-  *   }
-  * });
-  *}
-  */
-
   db.delete_user_document([id])
     .then(() => {
       return db.get_users_documents([req.session.user.id]);

@@ -8,30 +8,27 @@ exports.RegisterStrategy = new LocalStrategy(
     passReqToCallback: true
   },
   (req, email, password, done) => {
-    // get an instance of the db
     const db = req.app.get("db");
-    // create a hashed password to store in the db
     const hashedPass = bcrypt.hashSync(password, 15);
-    // validate if there is a user already in the db
+    const { firstName, lastName } = req.body;
+
     db.users
       .find({ email })
       .then(userResults => {
-        // check if there are any results
         if (userResults.length > 0) {
           return done(null, false, {
             message: "Username is already taken, please try again!"
           });
         }
-        // if the user isn't found, create a new user
         return db.users.insert({
           email,
-          password: hashedPass
+          password: hashedPass,
+          first_name: firstName,
+          last_name: lastName
         });
       })
       .then(user => {
-        // remove the password from the user before sending it
         delete user.password;
-        // send user back
         done(null, user);
       })
       .catch(error => {

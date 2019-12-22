@@ -1,3 +1,4 @@
+-- Creates documents table
 CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
