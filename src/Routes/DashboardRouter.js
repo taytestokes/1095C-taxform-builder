@@ -13,6 +13,6 @@ export default (
     <Switch>
         <Route exact path="/dashboard/home" component={Home} />
         <Route exact path="/dashboard/documents" component={Documents} />
-        <Route exact path="/dashboard/upload" component={Upload} />
+        <Route exact path="/dashboard/create" component={Upload} />
     </Switch>
 );

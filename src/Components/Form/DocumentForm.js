@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react';
 import { css } from 'glamor';
+import axios from 'axios';
 
 // Constants
 import theme from "../../Constants/Theme";
@@ -75,16 +76,25 @@ class DocumentForm extends Component {
         });
     };
 
+    _handleCreateDocument = evt => {
+        evt.preventDefault();
+
+        axios.post("/documents/create", this.state)
+            .then(() => {
+                console.log('form created!')
+            });
+    };
+
     render() {
         const styles = this.getStyles();
-        console.log(this.state)
+
         return (
             <div style={styles.component}>
-                <div style={styles.banner}>
+                {/* <div style={styles.banner}>
                     <div style={{ height: '5vh' }}>
 
                     </div>
-                </div>
+                </div> */}
 
                 <div className={styles.formContainer}>
                     <Form size="tiny" style={styles.form}>

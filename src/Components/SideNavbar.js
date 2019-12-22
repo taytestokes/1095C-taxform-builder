@@ -34,9 +34,9 @@ class SideNavbar extends Component {
                     <Icon.Folder size={14} />
                     <h2 style={styles.navText}>Documents</h2>
                 </NavLink>
-                <NavLink to="/dashboard/upload" className={styles.navlink} activeClassName={styles.activeNavlink}>
+                <NavLink to="/dashboard/create" className={styles.navlink} activeClassName={styles.activeNavlink}>
                     <Icon.FilePlus size={14} />
-                    <h2 style={styles.navText}>Upload</h2>
+                    <h2 style={styles.navText}>Create</h2>
                 </NavLink>
                 <div className={styles.logout} onClick={this._logOut}>
                     <Icon.LogIn size={14} />
