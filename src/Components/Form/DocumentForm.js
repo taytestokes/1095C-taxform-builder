@@ -1,22 +1,13 @@
 import React, { Component } from 'react'
-import * as Icon from "react-feather";
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
+import { css } from 'glamor';
 
 // Theme
 import theme from "../../Constants/Theme";
 
-// Components
-import StepOne from './StepOne';
-import StepTwo from './StepTwo';
-
 class DocumentForm extends Component {
-    state = {
-        step: 1,
-    }
-
     render() {
         const styles = this.getStyles();
-        const { step } = this.state;
 
         return (
             <div style={styles.component}>
@@ -25,50 +16,131 @@ class DocumentForm extends Component {
 
                     </div>
                 </div>
-                <div style={styles.form}>
-                    {/* Employee Section */}
-                    <div style={styles.formSection}>
-                        <div style={styles.labelContainer}>
-                            <h2 style={styles.label}>Employee Information</h2>
+
+                <div className={styles.formContainer}>
+                    <Form size="tiny" style={styles.form}>
+                        {/* Part One: Employee Section */}
+                        <div style={styles.formSection}>
+                            <div style={styles.labelContainer}>
+                                <h2 style={styles.label}>Employee Information</h2>
+                                <h3 style={styles.subLabel}> Part One</h3>
+                            </div>
+                            <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                                <Form.Group>
+                                    <Form.Input width={6} required label="1: First" placeholder="First Name" />
+                                    <Form.Input width={6} required label="1: Middle" placeholder="Middle Name" />
+                                    <Form.Input width={6} required label="1: Last" placeholder="Last Name" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input required width={4} label="2: Social Security" placeholder="SSN" />
+                                    <Form.Input required width={12} label="3: Street Address" placeholder="Street Address" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input width={6} required label="4: City" placeholder="City or Town" />
+                                    <Form.Input width={6} required label="5: State" placeholder="State or Province" />
+                                    <Form.Input width={6} required label="6: Zipcode" placeholder="Zipcode" />
+                                </Form.Group>
+                            </div>
                         </div>
-                        <Form size={'tiny'} style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
-                            <Form.Group>
-                                <Form.Input width={6} required label="First" placeholder="First Name" />
-                                <Form.Input width={6} required label="Middle" placeholder="Middle Name" />
-                                <Form.Input width={6} required label="Last" placeholder="Last Name" />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Input required width={4} label="Social Security" placeholder="SSN" />
-                                <Form.Input required width={12} label="Street Address" placeholder="Street Address" />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Input width={6} required label="City" placeholder="City or Town" />
-                                <Form.Input width={6} required label="State" placeholder="State or Province" />
-                                <Form.Input width={6} required label="Zipcode" placeholder="Zipcode" />
-                            </Form.Group>
-                        </Form>
-                    </div>
-                    {/* Employer Section */}
-                    <div style={styles.formSection}>
-                        <div style={styles.labelContainer}>
-                            <h2 style={styles.label}>Employer Information</h2>
+                        {/* Part One: Employer Section */}
+                        <div style={styles.formSection}>
+                            <div style={styles.labelContainer}>
+                                <h2 style={styles.label}>Employer Information</h2>
+                                <h3 style={styles.subLabel}> Part One</h3>
+                            </div>
+                            <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                                <Form.Group>
+                                    <Form.Input required width={6} label="7: Name" placeholder="Name" />
+                                    <Form.Input required width={10} label="8: Identification Number" placeholder="Identification Number" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input required width={12} label="9: Street Address" placeholder="Street Address" />
+                                    <Form.Input required width={4} label="10: Phone Number" placeholder="Phone Number" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input required width={6} label="11: City" placeholder="City or Town" />
+                                    <Form.Input required width={6} label="12: State" placeholder="State or Province" />
+                                    <Form.Input required width={6} label="13: Zipcode" placeholder="Zipcode" />
+                                </Form.Group>
+                            </div>
                         </div>
-                        <Form size={'tiny'} style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
-                            <Form.Group>
-                                <Form.Input required width={6} label="Name" placeholder="Name" />
-                                <Form.Input required width={10} label="Identification Number" placeholder="Identification Number" />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Input required width={12} label="Street Address" placeholder="Street Address" />
-                                <Form.Input required width={4} label="Phone Number" placeholder="Phone Number" />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Input required width={6} label="City" placeholder="City or Town" />
-                                <Form.Input required width={6} label="State" placeholder="State or Province" />
-                                <Form.Input required width={6} label="Zipcode" placeholder="Zipcode" />
-                            </Form.Group>
-                        </Form>
-                    </div>
+                        {/*  Part Two: Employee Offer of Coverage*/}
+                        <div style={styles.formSection}>
+                            <div style={styles.labelContainer}>
+                                <h2 style={styles.label}>Employee Offer Of Coverage</h2>
+                                <h3 style={styles.subLabel}> Part Two</h3>
+                            </div>
+                            <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                                <Form.Group widths="equal">
+                                    <Form.Select fluid required label="14: Jan" />
+                                    <Form.Select fluid required label="14: Feb" />
+                                    <Form.Select fluid required label="14: Mar" />
+                                    <Form.Select fluid required label="14: Apr" />
+                                    <Form.Select fluid required label="14: May" />
+                                    <Form.Select fluid required label="14: June" />
+                                </Form.Group>
+                                <Form.Group widths="equal">
+                                    <Form.Select fluid required label="14: July" />
+                                    <Form.Select fluid required label="14: Aug" />
+                                    <Form.Select fluid required label="14: Sept" />
+                                    <Form.Select fluid required label="14: Oct" />
+                                    <Form.Select fluid required label="14: Nov" />
+                                    <Form.Select fluid required label="14: Dec" />
+                                </Form.Group>
+                            </div>
+                        </div>
+                        {/* Part Two: Employee Contribution */}
+                        <div style={styles.formSection}>
+                            <div style={styles.labelContainer}>
+                                <h2 style={styles.label}>Employee Required Contribution</h2>
+                                <h3 style={styles.subLabel}> Part Two</h3>
+                            </div>
+                            <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                                <Form.Group>
+                                    <Form.Input required width={4} label="15: Jan" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Feb" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Mar" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Apr" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: May" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: June" placeholder="$0.0" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input required width={4} label="15: July" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Aug" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Sept" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Oct" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Nov" placeholder="$0.0" />
+                                    <Form.Input required width={4} label="15: Dec" placeholder="$0.0" />
+                                </Form.Group>
+                            </div>
+                        </div>
+                        {/* Part Two: Section 4980H */}
+                        {/*  Part Two: Employee Offer of Coverage*/}
+                        <div style={styles.formSection}>
+                            <div style={styles.labelContainer}>
+                                <h2 style={styles.label}>Section 4980H Safe Harbor And Other Relief</h2>
+                                <h3 style={styles.subLabel}>Part Two</h3>
+                            </div>
+                            <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
+                                <Form.Group widths="equal">
+                                    <Form.Select fluid required label="16: Jan" />
+                                    <Form.Select fluid required label="16: Feb" />
+                                    <Form.Select fluid required label="16: Mar" />
+                                    <Form.Select fluid required label="16: Apr" />
+                                    <Form.Select fluid required label="16: May" />
+                                    <Form.Select fluid required label="16: June" />
+                                </Form.Group>
+                                <Form.Group widths="equal">
+                                    <Form.Select fluid required label="16: July" />
+                                    <Form.Select fluid required label="16: Aug" />
+                                    <Form.Select fluid required label="16: Sept" />
+                                    <Form.Select fluid required label="16: Oct" />
+                                    <Form.Select fluid required label="16: Nov" />
+                                    <Form.Select fluid required label="16: Dec" />
+                                </Form.Group>
+                            </div>
+                        </div>
+                    </Form>
                 </div>
             </div>
         )
@@ -88,9 +160,16 @@ class DocumentForm extends Component {
             borderBottom: theme.Border.DEFAULT,
             background: theme.Colors.WHITE,
         },
+        formContainer: css({
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            overflow: 'auto'
+        }),
         form: {
             width: '75%',
-            // background: theme.Colors.WHITE,
         },
         formInput: {
             height: 15,
@@ -101,16 +180,28 @@ class DocumentForm extends Component {
             display: 'flex',
             justifyContent: 'space-between',
             padding: theme.Spacing.SEMI_SMALL,
-            paddingBottom: 0,
+            paddingBottom: theme.Spacing.LARGE,
             borderBottom: theme.Border.DEFAULT,
-            marginTop: theme.Spacing.SMALL,
+            marginTop: theme.Spacing.LARGE,
         },
         labelContainer: {
             width: '30%',
+            display: 'flex',
+            flexDirection: 'column',
         },
         label: {
             fontSize: theme.FontSizes.XLARGE,
             fontWeight: 600,
+        },
+        subLabel: {
+            fontSize: theme.FontSizes.SMALL,
+            color: theme.FontColors.GRAY,
+        },
+        formButtons: {
+            padding: `${theme.Spacing.SEMI_SMALL}px 0`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end'
         }
     })
 }
