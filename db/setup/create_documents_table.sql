@@ -2,8 +2,6 @@ CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     fileName TEXT,
-    filePath TEXT,
-    fileSize TEXT,
     createdDate TEXT,
     createdBy TEXT,
     employee_first_name TEXT,

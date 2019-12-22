@@ -215,7 +215,7 @@ class DocumentForm extends Component {
                         </div>
                         <div style={styles.formButtons}>
                             <Button size="tiny" style={{ marginRight: theme.Spacing.SMALL }}>Cancel</Button>
-                            <Button primary size="tiny">Create</Button>
+                            <Button primary size="tiny" onClick={this._handleCreateDocument}>Create</Button>
                         </div>
                     </Form>
                 </div>

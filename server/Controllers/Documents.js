@@ -251,8 +251,14 @@ exports.createDocument = (req, res) => {
     nov_16,
     dec_16
   } = req.body;
+  const { id } = req.session.user;
+
+  const fileName = `${employee_first_name}${employee_middle_name}${employee_last_name}-${employers_name}-1095`;
 
   db.documents.insert({
+    user_id: id,
+    filename: fileName,
+    createddate: createdDate,
     employee_first_name,
     employee_middle_name,
     employee_last_name,
