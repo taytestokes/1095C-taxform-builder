@@ -225,18 +225,18 @@ class DocumentForm extends Component {
                             </div>
                             <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
                                 <Form.Group>
-                                    <Form.Input width={6} required label="1: First" placeholder="First Name" onChange={this._handleInputChange} name="employee_first_name" />
-                                    <Form.Input width={6} required label="1: Middle" placeholder="Middle Name" onChange={this._handleInputChange} name="employee_middle_name" />
-                                    <Form.Input width={6} required label="1: Last" placeholder="Last Name" onChange={this._handleInputChange} name="employee_last_name" />
+                                    <Form.Input width={6} required label="1: First" placeholder="First Name" onChange={this._handleInputChange} name="employee_first_name" value={this.state.employee_first_name} />
+                                    <Form.Input width={6} required label="1: Middle" placeholder="Middle Name" onChange={this._handleInputChange} name="employee_middle_name" value={this.state.employee_middle_name} />
+                                    <Form.Input width={6} required label="1: Last" placeholder="Last Name" onChange={this._handleInputChange} name="employee_last_name" value={this.state.employee_last_name} />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Input required width={4} label="2: Social Security" placeholder="SSN" onChange={this._handleInputChange} name="employee_ssn" />
-                                    <Form.Input required width={12} label="3: Street Address" placeholder="Street Address" onChange={this._handleInputChange} name="employee_address" />
+                                    <Form.Input required width={4} label="2: Social Security" placeholder="SSN" onChange={this._handleInputChange} name="employee_ssn" value={this.state.employee_ssn} />
+                                    <Form.Input required width={12} label="3: Street Address" placeholder="Street Address" onChange={this._handleInputChange} name="employee_address" value={this.state.employee_address} />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Input width={6} required label="4: City" placeholder="City or Town" onChange={this._handleInputChange} name="employee_city" />
-                                    <Form.Input width={6} required label="5: State" placeholder="State or Province" onChange={this._handleInputChange} name="employee_state" />
-                                    <Form.Input width={6} required label="6: Zipcode" placeholder="Zipcode" onChange={this._handleInputChange} name="employee_zipcode" />
+                                    <Form.Input width={6} required label="4: City" placeholder="City or Town" onChange={this._handleInputChange} name="employee_city" value={this.state.employee_city} />
+                                    <Form.Input width={6} required label="5: State" placeholder="State or Province" onChange={this._handleInputChange} name="employee_state" value={this.state.employee_state} />
+                                    <Form.Input width={6} required label="6: Zipcode" placeholder="Zipcode" onChange={this._handleInputChange} name="employee_zipcode" value={this.state.employee_zipcode} />
                                 </Form.Group>
                             </div>
                         </div>
@@ -248,17 +248,18 @@ class DocumentForm extends Component {
                             </div>
                             <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
                                 <Form.Group>
-                                    <Form.Input required width={6} label="7: Name" placeholder="Name" name="employers_name" onChange={this._handleInputChange} />
-                                    <Form.Input required width={10} label="8: Identification Number" placeholder="Identification Number" name="employers_id" onChange={this._handleInputChange} />
+                                    <Form.Input required width={6} label="7: Name" placeholder="Name" name="employers_name" onChange={this._handleInputChange} value={this.state.employers_name} />
+                                    <Form.Input required width={10} label="8: Identification Number" placeholder="Identification Number" name="employers_id" onChange={this._handleInputChange} value={this.state.employers_id} />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Input required width={12} label="9: Street Address" placeholder="Street Address" name="employers_address" onChange={this._handleInputChange} />
-                                    <Form.Input required width={4} label="10: Phone Number" placeholder="Phone Number" name="employers_phone_number" onChange={this._handleInputChange} />
+                                    <Form.Input required width={12} label="9: Street Address" placeholder="Street Address" name="employers_address" onChange={this._handleInputChange} value={this.state.employers_address} />
+                                    <Form.Input required width={4} label="10: Phone Number" placeholder="Phone Number" name="employers_phone_number" onChange={this._handleInputChange} value={this.state.employers_phone_number} />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Input required width={6} label="11: City" placeholder="City or Town" name="employers_city" onChange={this._handleInputChange} />
-                                    <Form.Input required width={6} label="12: State" placeholder="State or Province" name="employers_state" onChange={this._handleInputChange} />
-                                    <Form.Input required width={6} label="13: Zipcode" placeholder="Zipcode" name="employers_zipcode" onChange={this._handleInputChange} />
+                                    <Form.Input required width={6} label="11: City" placeholder="City or Town" name="employers_city" onChange={this._handleInputChange} value={this.state.employers_city
+                                    } />
+                                    <Form.Input required width={6} label="12: State" placeholder="State or Province" name="employers_state" onChange={this._handleInputChange} value={this.state.employers_state} />
+                                    <Form.Input required width={6} label="13: Zipcode" placeholder="Zipcode" name="employers_zipcode" onChange={this._handleInputChange} value={this.state.employers_zipcode} />
                                 </Form.Group>
                             </div>
                         </div>
@@ -270,20 +271,20 @@ class DocumentForm extends Component {
                             </div>
                             <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
                                 <Form.Group widths="equal">
-                                    <Form.Select fluid required label="14: Jan" placeholder="1A" options={offerOfCoverageOptions} name="jan_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Feb" placeholder="1A" options={offerOfCoverageOptions} name="feb_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Mar" placeholder="1A" options={offerOfCoverageOptions} name="mar_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Apr" placeholder="1A" options={offerOfCoverageOptions} name="apr_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: May" placeholder="1A" options={offerOfCoverageOptions} name="may_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: June" placeholder="1A" options={offerOfCoverageOptions} name="jun_14" onChange={this._handleDropDownChange} />
+                                    <Form.Select fluid required label="14: Jan" placeholder="1A" options={offerOfCoverageOptions} name="jan_14" onChange={this._handleDropDownChange} value={this.state.jan_14} />
+                                    <Form.Select fluid required label="14: Feb" placeholder="1A" options={offerOfCoverageOptions} name="feb_14" onChange={this._handleDropDownChange} value={this.state.feb_14} />
+                                    <Form.Select fluid required label="14: Mar" placeholder="1A" options={offerOfCoverageOptions} name="mar_14" onChange={this._handleDropDownChange} value={this.state.mar_14} />
+                                    <Form.Select fluid required label="14: Apr" placeholder="1A" options={offerOfCoverageOptions} name="apr_14" onChange={this._handleDropDownChange} value={this.state.apr_14} />
+                                    <Form.Select fluid required label="14: May" placeholder="1A" options={offerOfCoverageOptions} name="may_14" onChange={this._handleDropDownChange} value={this.state.may_14} />
+                                    <Form.Select fluid required label="14: June" placeholder="1A" options={offerOfCoverageOptions} name="jun_14" onChange={this._handleDropDownChange} value={this.state.jun_14} />
                                 </Form.Group>
                                 <Form.Group widths="equal">
-                                    <Form.Select fluid required label="14: July" placeholder="1A" options={offerOfCoverageOptions} name="jul_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Aug" placeholder="1A" options={offerOfCoverageOptions} name="aug_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Sept" placeholder="1A" options={offerOfCoverageOptions} name="sep_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Oct" placeholder="1A" options={offerOfCoverageOptions} name="oct_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Nov" placeholder="1A" options={offerOfCoverageOptions} name="nov_14" onChange={this._handleDropDownChange} />
-                                    <Form.Select fluid required label="14: Dec" placeholder="1A" options={offerOfCoverageOptions} name="dec_14" onChange={this._handleDropDownChange} />
+                                    <Form.Select fluid required label="14: July" placeholder="1A" options={offerOfCoverageOptions} name="jul_14" onChange={this._handleDropDownChange} value={this.state.jul_14} />
+                                    <Form.Select fluid required label="14: Aug" placeholder="1A" options={offerOfCoverageOptions} name="aug_14" onChange={this._handleDropDownChange} value={this.state.aug_14} />
+                                    <Form.Select fluid required label="14: Sept" placeholder="1A" options={offerOfCoverageOptions} name="sep_14" onChange={this._handleDropDownChange} value={this.state.sep_14} />
+                                    <Form.Select fluid required label="14: Oct" placeholder="1A" options={offerOfCoverageOptions} name="oct_14" onChange={this._handleDropDownChange} value={this.state.oct_14} />
+                                    <Form.Select fluid required label="14: Nov" placeholder="1A" options={offerOfCoverageOptions} name="nov_14" onChange={this._handleDropDownChange} value={this.state.nov_14} />
+                                    <Form.Select fluid required label="14: Dec" placeholder="1A" options={offerOfCoverageOptions} name="dec_14" onChange={this._handleDropDownChange} value={this.state.dec_14} />
                                 </Form.Group>
                             </div>
                         </div>
@@ -295,20 +296,20 @@ class DocumentForm extends Component {
                             </div>
                             <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
                                 <Form.Group>
-                                    <Form.Input required width={4} label="15: Jan" placeholder="$0.00" onChange={this._handleInputChange} name="jan_15" />
-                                    <Form.Input required width={4} label="15: Feb" placeholder="$0.00" onChange={this._handleInputChange} name="feb_15" />
-                                    <Form.Input required width={4} label="15: Mar" placeholder="$0.00" onChange={this._handleInputChange} name="mar_15" />
-                                    <Form.Input required width={4} label="15: Apr" placeholder="$0.00" onChange={this._handleInputChange} name="apr_15" />
-                                    <Form.Input required width={4} label="15: May" placeholder="$0.00" onChange={this._handleInputChange} name="may_15" />
-                                    <Form.Input required width={4} label="15: June" placeholder="$0.00" onChange={this._handleInputChange} name="jun_15" />
+                                    <Form.Input required width={4} label="15: Jan" placeholder="$0.00" onChange={this._handleInputChange} name="jan_15" value={this.state.jan_15} />
+                                    <Form.Input required width={4} label="15: Feb" placeholder="$0.00" onChange={this._handleInputChange} name="feb_15" value={this.state.feb_15} />
+                                    <Form.Input required width={4} label="15: Mar" placeholder="$0.00" onChange={this._handleInputChange} name="mar_15" value={this.state.mar_15} />
+                                    <Form.Input required width={4} label="15: Apr" placeholder="$0.00" onChange={this._handleInputChange} name="apr_15" value={this.state.apr_15} />
+                                    <Form.Input required width={4} label="15: May" placeholder="$0.00" onChange={this._handleInputChange} name="may_15" value={this.state.may_15} />
+                                    <Form.Input required width={4} label="15: June" placeholder="$0.00" onChange={this._handleInputChange} name="jun_15" value={this.state.jun_15} />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Input required width={4} label="15: July" placeholder="$0.00" onChange={this._handleInputChange} name="jul_15" />
-                                    <Form.Input required width={4} label="15: Aug" placeholder="$0.00" onChange={this._handleInputChange} name="aug_15" />
-                                    <Form.Input required width={4} label="15: Sept" placeholder="$0.00" onChange={this._handleInputChange} name="sep_15" />
-                                    <Form.Input required width={4} label="15: Oct" placeholder="$0.00" onChange={this._handleInputChange} name="oct_15" />
-                                    <Form.Input required width={4} label="15: Nov" placeholder="$0.00" onChange={this._handleInputChange} name="nov_15" />
-                                    <Form.Input required width={4} label="15: Dec" placeholder="$0.00" onChange={this._handleInputChange} name="dec_15" />
+                                    <Form.Input required width={4} label="15: July" placeholder="$0.00" onChange={this._handleInputChange} name="jul_15" value={this.state.jul_15} />
+                                    <Form.Input required width={4} label="15: Aug" placeholder="$0.00" onChange={this._handleInputChange} name="aug_15" value={this.state.aug_15} />
+                                    <Form.Input required width={4} label="15: Sept" placeholder="$0.00" onChange={this._handleInputChange} name="sep_15" value={this.state.sep_15} />
+                                    <Form.Input required width={4} label="15: Oct" placeholder="$0.00" onChange={this._handleInputChange} name="oct_15" value={this.state.oct_15} />
+                                    <Form.Input required width={4} label="15: Nov" placeholder="$0.00" onChange={this._handleInputChange} name="nov_15" value={this.state.nov_15} />
+                                    <Form.Input required width={4} label="15: Dec" placeholder="$0.00" onChange={this._handleInputChange} name="dec_15" value={this.state.dec_15} />
                                 </Form.Group>
                             </div>
                         </div>
@@ -320,26 +321,26 @@ class DocumentForm extends Component {
                             </div>
                             <div style={{ width: '100%', paddingLeft: theme.Spacing.SEMI_SMALL }}>
                                 <Form.Group widths="equal">
-                                    <Form.Select fluid required label="16: Jan" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jan_16" />
-                                    <Form.Select fluid required label="16: Feb" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="feb_16" />
-                                    <Form.Select fluid required label="16: Mar" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="mar_16" />
-                                    <Form.Select fluid required label="16: Apr" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="apr_16" />
-                                    <Form.Select fluid required label="16: May" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="may_16" />
-                                    <Form.Select fluid required label="16: June" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jun_16" />
+                                    <Form.Select fluid required label="16: Jan" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jan_16" value={this.state.jan_16} />
+                                    <Form.Select fluid required label="16: Feb" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="feb_16" value={this.state.feb_16} />
+                                    <Form.Select fluid required label="16: Mar" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="mar_16" value={this.state.mar_16} />
+                                    <Form.Select fluid required label="16: Apr" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="apr_16" value={this.state.apr_16} />
+                                    <Form.Select fluid required label="16: May" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="may_16" value={this.state.may_16} />
+                                    <Form.Select fluid required label="16: June" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jun_16" value={this.state.jun_16} />
                                 </Form.Group>
                                 <Form.Group widths="equal">
-                                    <Form.Select fluid required label="16: July" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jul_16" />
-                                    <Form.Select fluid required label="16: Aug" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="aug_16" />
-                                    <Form.Select fluid required label="16: Sept" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="sep_16" />
-                                    <Form.Select fluid required label="16: Oct" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="oct_16" />
-                                    <Form.Select fluid required label="16: Nov" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="nov_16" />
-                                    <Form.Select fluid required label="16: Dec" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="dec_16" />
+                                    <Form.Select fluid required label="16: July" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="jul_16" value={this.state.jul_16} />
+                                    <Form.Select fluid required label="16: Aug" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="aug_16" value={this.state.aug_16} />
+                                    <Form.Select fluid required label="16: Sept" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="sep_16" value={this.state.sep_16} />
+                                    <Form.Select fluid required label="16: Oct" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="oct_16" value={this.state.oct_16} />
+                                    <Form.Select fluid required label="16: Nov" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="nov_16" value={this.state.nov_16} />
+                                    <Form.Select fluid required label="16: Dec" options={section4980HOptions} placeholder="2A" onChange={this._handleDropDownChange} name="dec_16" value={this.state.dec_16} />
                                 </Form.Group>
                             </div>
                         </div>
                         <div style={styles.actionContainer}>
-                            <Button onClick={this._handleCancel}>Cancel</Button>
-                            <Button primary onClick={this._handleCreateDocument}>Create</Button>
+                            <Button onClick={this._handleCancel} size="tiny">Cancel</Button>
+                            <Button primary onClick={this._handleCreateDocument} size="tiny">Create</Button>
                         </div>
                     </Form>
                 </div>

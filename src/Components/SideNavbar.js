@@ -15,10 +15,6 @@ class SideNavbar extends Component {
                 <div style={styles.logo}>
                     {/* Site Logo Will Be Displayed Here */}
                 </div>
-                <NavLink to="/dashboard/home" className={styles.navlink} activeClassName={styles.activeNavlink}>
-                    <Icon.Home size={14} />
-                    <h2 style={styles.navText}>Home</h2>
-                </NavLink>
                 <NavLink to="/dashboard/documents" className={styles.navlink} activeClassName={styles.activeNavlink}>
                     <Icon.Folder size={14} />
                     <h2 style={styles.navText}>Documents</h2>
