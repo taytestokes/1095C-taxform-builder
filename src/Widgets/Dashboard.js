@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
-import swal from "@sweetalert/with-react";
 
 // Components
-import Documents from "../Components/Documents";
-import NewDocuments from '../Components/NewDocuments';
-import DocumentCreater from '../Components/DocumentCreater';
-import Navbar from '../Components/Navbar';
 import SideNavbar from '../Components/SideNavbar';
-import Uploader from '../Components/Uploader';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -17,17 +10,6 @@ import theme from "../Constants/Theme";
 import DashboardRouter from '../Routes/DashboardRouter';
 
 class Dashboard extends Component {
-  state = {
-    documents: [],
-    loading: true
-  };
-
-  // Lifecycle Methods
-  // componentDidMount() {
-  //   this._getDocuments();
-  // }
-
-
   // Remove A Users Document
   // _removeDocument = (id, filepath, filename, createddate) => {
   //   swal("Are you sure you want to remove this upload?", {
@@ -52,29 +34,6 @@ class Dashboard extends Component {
   //       default:
   //         return;
   //     }
-  //   });
-  // };
-
-  // Filter Documents
-  // _filterDocuments = evt => {
-  //   const { value } = evt.target;
-
-  //   axios.get("/documents/all").then(response => {
-  //     const { data } = response;
-
-  //     if (value === "") {
-  //       return this.setState({
-  //         documents: data
-  //       });
-  //     }
-
-  //     const filteredDocuments = data.filter(document =>
-  //       document.filename.includes(value)
-  //     );
-
-  //     this.setState({
-  //       documents: filteredDocuments
-  //     });
   //   });
   // };
 

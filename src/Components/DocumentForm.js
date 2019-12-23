@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react';
 import { css } from 'glamor';
 import axios from 'axios';
+import swal from "@sweetalert/with-react";
 
 // Constants
 import theme from "../Constants/Theme";
@@ -76,9 +77,7 @@ class DocumentForm extends Component {
         });
     };
 
-    _handleCreateDocument = evt => {
-        evt.preventDefault();
-
+    _handleCreateDocument = () => {
         axios.post("/documents/create", this.state)
             .then(() => {
                 this.setState({
@@ -136,6 +135,80 @@ class DocumentForm extends Component {
                 })
             });
     };
+
+    _handleCancel = evt => {
+        evt.preventDefault()
+
+        swal("Are you sure you want to cancel?", {
+            buttons: {
+                cancel: "Nevermind",
+                confirm: {
+                    text: "Yes",
+                    value: "confirm"
+                }
+            }
+        })
+            .then(value => {
+                switch (value) {
+                    case "confirm":
+                        this.setState({
+                            employee_first_name: '',
+                            employee_middle_name: '',
+                            employee_last_name: '',
+                            employee_ssn: '',
+                            employee_address: '',
+                            employee_city: '',
+                            employee_state: '',
+                            employee_zipcode: '',
+                            employers_name: '',
+                            employers_id: '',
+                            employers_address: '',
+                            employers_phone_number: '',
+                            employers_city: '',
+                            employers_state: '',
+                            employers_zipcode: '',
+                            jan_14: '',
+                            feb_14: '',
+                            mar_14: '',
+                            apr_14: '',
+                            may_14: '',
+                            jun_14: '',
+                            jul_14: '',
+                            aug_14: '',
+                            sep_14: '',
+                            oct_14: '',
+                            nov_14: '',
+                            dec_14: '',
+                            jan_15: '',
+                            feb_15: '',
+                            mar_15: '',
+                            apr_15: '',
+                            may_15: '',
+                            jun_15: '',
+                            jul_15: '',
+                            aug_15: '',
+                            sep_15: '',
+                            oct_15: '',
+                            nov_15: '',
+                            dec_15: '',
+                            jan_16: '',
+                            feb_16: '',
+                            mar_16: '',
+                            apr_16: '',
+                            may_16: '',
+                            jun_16: '',
+                            jul_16: '',
+                            aug_16: '',
+                            sep_16: '',
+                            oct_16: '',
+                            nov_16: '',
+                            dec_16: '',
+                        })
+                    default:
+                        return;
+                }
+            });
+    }
 
     render() {
         const styles = this.getStyles();
@@ -240,7 +313,7 @@ class DocumentForm extends Component {
                             </div>
                         </div>
                         {/* Part Two: Section 4980H */}
-                        <div style={{ ...styles.formSection, borderBottom: 'none' }}>
+                        <div style={styles.formSection}>
                             <div style={styles.labelContainer}>
                                 <h2 style={styles.label}>Section 4980H Safe Harbor And Other Relief</h2>
                                 <h3 style={styles.subLabel}>Part Two</h3>
@@ -264,9 +337,9 @@ class DocumentForm extends Component {
                                 </Form.Group>
                             </div>
                         </div>
-                        <div style={styles.formButtons}>
-                            <Button size="tiny" style={{ marginRight: theme.Spacing.SMALL }}>Cancel</Button>
-                            <Button primary size="tiny" onClick={this._handleCreateDocument}>Create</Button>
+                        <div style={styles.actionContainer}>
+                            <Button onClick={this._handleCancel}>Cancel</Button>
+                            <Button primary onClick={this._handleCreateDocument}>Create</Button>
                         </div>
                     </Form>
                 </div>
@@ -282,6 +355,16 @@ class DocumentForm extends Component {
             flexDirection: 'column',
             alignItems: 'center',
         },
+        actionContainer: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            width: '100%',
+            height: '5vh',
+            marginTop: theme.Spacing.XLARGE,
+            paddingBottom: theme.Spacing.XLARGE,
+
+        },
         formContainer: css({
             width: '100%',
             height: '100%',
@@ -290,7 +373,7 @@ class DocumentForm extends Component {
             alignItems: 'center',
         }),
         form: {
-            width: '75%',
+            width: '80%',
         },
         formInput: {
             height: 15,
@@ -300,7 +383,7 @@ class DocumentForm extends Component {
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between',
-            padding: theme.Spacing.SEMI_SMALL,
+            paddingTop: theme.Spacing.SEMI_SMALL,
             paddingBottom: theme.Spacing.LARGE,
             borderBottom: theme.Border.DEFAULT,
             marginTop: theme.Spacing.LARGE,
@@ -309,6 +392,7 @@ class DocumentForm extends Component {
             width: '30%',
             display: 'flex',
             flexDirection: 'column',
+            paddingRight: theme.Spacing.SEMI_SMALL,
         },
         label: {
             fontSize: theme.FontSizes.XLARGE,
@@ -319,7 +403,7 @@ class DocumentForm extends Component {
             color: theme.FontColors.GRAY,
         },
         formButtons: {
-            padding: `${theme.Spacing.SEMI_SMALL}px 0`,
+            width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end'

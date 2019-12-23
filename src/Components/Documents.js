@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import axios from 'axios';
-import { Input, Transition } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 
 // Components
 import Document from "./Document";
 import Banner from '../Components/Banner';
-import ZeroState from '../Components/DocumentsZeroState';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -44,7 +43,7 @@ class Documents extends Component {
         }
 
         const filteredDocuments = data.filter(document =>
-          document.filename.includes(value)
+          document.filename.toLowerCase().includes(value.toLowerCase())
         );
 
         this.setState({
@@ -61,7 +60,7 @@ class Documents extends Component {
         <Banner />
         <div style={styles.sectionInfo}>
           <h2 style={{ fontSize: theme.FontSizes.JUMBO, }}>Documents</h2>
-          <Input placeholder="Search..." icon="search" size="mini" iconPosition="left" style={{ marginLeft: 'auto', width: '40%' }} onChange={this._filterDocuments} />
+          <Input placeholder="Search..." icon="search" size="tiny" iconPosition="left" style={{ marginLeft: 'auto', width: '40%' }} onChange={this._filterDocuments} />
         </div>
 
         <div className={styles.documents}>
