@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Button, Modal } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { css } from 'glamor';
 import axios from 'axios';
 
 // Constants
-import theme from "../../Constants/Theme";
-import { offerOfCoverageOptions, section4980HOptions } from '../../Constants/Options';
+import theme from "../Constants/Theme";
+import { offerOfCoverageOptions, section4980HOptions } from '../Constants/Options';
 
 class DocumentForm extends Component {
     state = {
@@ -288,7 +288,6 @@ class DocumentForm extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            overflow: 'auto'
         }),
         form: {
             width: '75%',

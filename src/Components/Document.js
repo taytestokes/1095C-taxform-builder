@@ -4,7 +4,7 @@ import fileSaver from "file-saver";
 import FileIcon from "react-file-icon";
 import moment from "moment";
 import { css } from "glamor";
-import { Button } from 'semantic-ui-react';
+import { Button, Popup } from 'semantic-ui-react';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -62,10 +62,9 @@ export default class Document extends Component {
 
   render() {
     const styles = this.getStyles();
-    const { document, removeDocument } = this.props;
+    const { document } = this.props;
     const createdDate = moment(+document.createddate).format("MMM DD, YYYY");
 
-    console.log(document)
     return (
       <div className={styles.documentCard}>
         <FileIcon
@@ -76,16 +75,12 @@ export default class Document extends Component {
           size={40}
         />
 
-        <div style={styles.section}>
-          <p>{document.filename}</p>
-        </div>
-
-        <div style={styles.section}>
-          <p>{document.createdby}</p>
-        </div>
-
-        <div style={styles.section}>
-          <p>{createdDate}</p>
+        <div style={styles.sectionInfo}>
+          <h2>{document.filename}</h2>
+          <div style={styles.innerSectionInfo}>
+            <p>{document.createdby}</p>
+            <p style={{ marginLeft: theme.Spacing.SMALL }}>{createdDate}</p>
+          </div>
         </div>
 
         <div style={styles.section}>
@@ -105,21 +100,40 @@ export default class Document extends Component {
       border: theme.Border.DEFAULT,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.MEDIUM,
+      marginTop: theme.Spacing.SMALL,
       width: "100%",
       display: "flex",
       alignItems: "center",
-      marginLeft: theme.Spacing.XSMALL,
-      marginRight: theme.Spacing.XSMALL,
       transition: "ease .2s",
     }),
+    sectionInfo: {
+      width: '65%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      color: theme.FontColors.DARK,
+      fontSize: theme.FontSizes.LARGE,
+      fontWeight: 600,
+      marginLeft: theme.Spacing.XSMALL,
+      marginTop: theme.Spacing.XSMALL
+    },
+    innerSectionInfo: {
+      width: '100%',
+      display: 'flex',
+      color: theme.FontColors.GRAY,
+      fontSize: theme.FontSizes.MEDIUM,
+      marginTop: theme.Spacing.XSMALL
+    },
     section: {
-      width: '25%',
+      width: '20%',
       height: '100%',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      marginLeft: theme.Spacing.SMALL,
+      justifyContent: 'flex-end',
+      fontSize: theme.FontSizes.MEDIUM,
+      color: theme.FontColors.DARK,
+      marginLeft: 'auto'
     }
   });
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { css } from "glamor";
 
 // Components
-import DocumentForm from './Form/DocumentForm';
+import DocumentForm from './DocumentForm';
 
 // Theme
 import theme from "../Constants/Theme";

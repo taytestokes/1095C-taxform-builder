@@ -27,7 +27,7 @@ module.exports = {
     PDF_RED: "#ff0000"
   },
   FontSizes: {
-    JUMBO: 30,
+    JUMBO: 32,
     XXLARGE: 21,
     XLARGE: 17,
     LARGE: 15,

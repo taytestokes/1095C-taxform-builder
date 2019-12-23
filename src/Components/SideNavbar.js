@@ -2,22 +2,11 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from "react-feather";
 import { css } from "glamor";
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 
 // Theme
 import theme from "../Constants/Theme";
 
 class SideNavbar extends Component {
-    /* Custom Methods */
-    _logOut = () => {
-        axios
-            .get("/auth/logout")
-            .then(() => {
-                this.props.history.push("/");
-            });
-    };
-
     render() {
         const styles = this.getStyles();
 
@@ -38,17 +27,13 @@ class SideNavbar extends Component {
                     <Icon.FilePlus size={14} />
                     <h2 style={styles.navText}>Create</h2>
                 </NavLink>
-                <div className={styles.logout} onClick={this._logOut}>
-                    <Icon.LogIn size={14} />
-                    <h2 style={styles.navText}>Sign Out</h2>
-                </div>
             </div>
         )
     }
 
     getStyles = () => ({
         component: {
-            width: '10vw',
+            width: '15vw',
             height: '100%',
             background: '#1b1c1d',
             display: 'flex',
@@ -63,7 +48,7 @@ class SideNavbar extends Component {
         },
         navlink: css({
             width: '90%',
-            height: '4%',
+            height: '5%',
             display: 'flex',
             alignItems: 'center',
             padding: theme.Spacing.SMALL,
@@ -71,9 +56,7 @@ class SideNavbar extends Component {
             fontSize: theme.FontSizes.MEDIUM,
             fontWeight: 600,
             borderRadius: `3px 0 0 3px`,
-            borderRight: '5px solid transparent',
             transition: 'ease .2s',
-            marginTop: theme.Spacing.SMALL,
             ":hover": {
                 color: theme.Colors.GRAY,
             }
@@ -81,29 +64,11 @@ class SideNavbar extends Component {
         activeNavlink: css({
             color: theme.Colors.WHITE,
             background: '#f3f4f525',
-            borderRight: `5px solid ${theme.Colors.PRIMARY}`
         }),
         navText: {
             marginLeft: theme.Spacing.SMALL,
-        },
-        logout: css({
-            width: '90%',
-            height: '6%',
-            display: 'flex',
-            alignItems: 'center',
-            padding: theme.Spacing.SMALL,
-            color: theme.Colors.GRAY,
-            fontSize: theme.FontSizes.MEDIUM,
-            fontWeight: 600,
-            borderRadius: theme.BorderRadius.SMALL,
-            transition: 'ease .2s',
-            marginTop: 'auto',
-            ":hover": {
-                cursor: 'pointer',
-                color: theme.Colors.PRIMARY,
-            }
-        })
+        }
     })
 }
 
-export default withRouter(SideNavbar);
+export default SideNavbar;

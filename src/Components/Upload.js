@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 // Components
-import DocumentForm from '../Components/Form/DocumentForm';
+import DocumentForm from '../Components/DocumentForm';
+import Banner from '../Components/Banner';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -12,6 +13,7 @@ export default class Upload extends Component {
 
         return (
             <div style={styles.component}>
+                <Banner />
                 <DocumentForm />
             </div>
         )
@@ -21,6 +23,7 @@ export default class Upload extends Component {
         component: {
             width: '100%',
             height: '100%',
+            overflow: 'auto',
         },
     })
 }
