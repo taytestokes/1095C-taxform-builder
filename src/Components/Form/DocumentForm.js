@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Modal } from 'semantic-ui-react';
 import { css } from 'glamor';
 import axios from 'axios';
 
@@ -60,7 +60,6 @@ class DocumentForm extends Component {
         oct_16: '',
         nov_16: '',
         dec_16: '',
-        showModal: false,
     };
 
     _handleInputChange = evt => {
@@ -82,7 +81,59 @@ class DocumentForm extends Component {
 
         axios.post("/documents/create", this.state)
             .then(() => {
-                console.log('form created!')
+                this.setState({
+                    employee_first_name: '',
+                    employee_middle_name: '',
+                    employee_last_name: '',
+                    employee_ssn: '',
+                    employee_address: '',
+                    employee_city: '',
+                    employee_state: '',
+                    employee_zipcode: '',
+                    employers_name: '',
+                    employers_id: '',
+                    employers_address: '',
+                    employers_phone_number: '',
+                    employers_city: '',
+                    employers_state: '',
+                    employers_zipcode: '',
+                    jan_14: '',
+                    feb_14: '',
+                    mar_14: '',
+                    apr_14: '',
+                    may_14: '',
+                    jun_14: '',
+                    jul_14: '',
+                    aug_14: '',
+                    sep_14: '',
+                    oct_14: '',
+                    nov_14: '',
+                    dec_14: '',
+                    jan_15: '',
+                    feb_15: '',
+                    mar_15: '',
+                    apr_15: '',
+                    may_15: '',
+                    jun_15: '',
+                    jul_15: '',
+                    aug_15: '',
+                    sep_15: '',
+                    oct_15: '',
+                    nov_15: '',
+                    dec_15: '',
+                    jan_16: '',
+                    feb_16: '',
+                    mar_16: '',
+                    apr_16: '',
+                    may_16: '',
+                    jun_16: '',
+                    jul_16: '',
+                    aug_16: '',
+                    sep_16: '',
+                    oct_16: '',
+                    nov_16: '',
+                    dec_16: '',
+                })
             });
     };
 

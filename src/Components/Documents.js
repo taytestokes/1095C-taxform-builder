@@ -3,6 +3,7 @@ import { css } from "glamor";
 import * as Icon from "react-feather";
 import Loader from "react-loader-spinner";
 import axios from 'axios';
+import { Pagination } from 'semantic-ui-react';
 
 // Components
 import Document from "./Document";
@@ -26,9 +27,9 @@ class Documents extends Component {
   /* Custom Methods */
   _getDocuments = () => {
     axios.get("/documents/all")
-      .then(response => {
+      .then(({ data }) => {
         this.setState({
-          documents: response.data,
+          documents: data,
           loading: false
         })
       });
@@ -39,6 +40,8 @@ class Documents extends Component {
 
     return (
       <div style={styles.component}>
+
+        {/* Banner */}
         <div style={styles.banner}>
           <div style={styles.searchContainer}>
             <Icon.Search size={18} />
@@ -49,31 +52,30 @@ class Documents extends Component {
             />
           </div>
         </div>
-        {this.state.loading ? (
-          <div style={styles.loader}>
-            <Loader
-              type="ThreeDots"
-              height={40}
-              width={40}
-              color={theme.FontColors.DARK}
-            />
-          </div>
-        ) : (
-            <div className={styles.documents}>
-              {this.state.documents.length < 1 ? (
-                <ZeroState />
-              ) : (
-                  <React.Fragment>
-                    {this.state.documents.map((document, index) => (
-                      <Document
-                        document={document}
-                        key={Math.floor(Math.random() * Math.floor(5000))}
-                      />
-                    ))}
-                  </React.Fragment>
-                )}
-            </div>
-          )}
+
+        {/* Info Bar */}
+        <div style={styles.sectionInfo}>
+          <div>File</div>
+          <div>Name</div>
+          <div>Author</div>
+          <div>Created</div>
+          <div>Actions</div>
+        </div>
+
+        <div className={styles.documents}>
+          {this.state.documents.length < 1 ? (
+            <ZeroState />
+          ) : (
+              <React.Fragment>
+                {this.state.documents.map((document, index) => (
+                  <Document
+                    document={document}
+                    key={Math.floor(Math.random() * Math.floor(5000))}
+                  />
+                ))}
+              </React.Fragment>
+            )}
+        </div>
       </div>
     );
   }
@@ -94,6 +96,14 @@ class Documents extends Component {
       alignItems: "center",
       background: theme.BackgroundColors.LIGHT,
       borderBottom: theme.Border.DEFAULT
+    },
+    sectionInfo: {
+      padding: theme.Spacing.SMALL,
+      color: theme.FontColors.GRAY,
+      fontSize: theme.FontSizes.SMALL,
+      display: 'flex',
+      alignItems: 'center',
+      width: '80%',
     },
     title: {
       fontWeight: 700,
@@ -144,14 +154,14 @@ class Documents extends Component {
       marginLeft: theme.Spacing.SMALL
     }),
     documents: css({
-      width: "100%",
+      width: "80%",
       height: "92%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       padding: `${theme.Spacing.SMALL}px ${theme.Spacing.SEMI_SMALL}px`,
       paddingTop: 0,
-      overflow: "scroll",
+      overflow: "auto",
       '::-webkit-scrollbar': {
         display: 'none'
       }

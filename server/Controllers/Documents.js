@@ -90,8 +90,8 @@ exports.getDocuments = (req, res) => {
   const db = req.app.get("db");
 
   db.get_documents()
-    .then(({ data }) => {
-      res.send(data)
+    .then((documents) => {
+      res.send(documents)
     })
 };
 
@@ -153,7 +153,7 @@ exports.createDocument = (req, res) => {
   } = req.body;
   const { id, first_name, last_name } = req.session.user;
 
-  const date = new Date.now();
+  const date = Date.now();
   const fileName = `${employee_first_name}${employee_middle_name}${employee_last_name}-${employers_name}-1095`;
   const createdBy = `${first_name} ${last_name}`;
 
