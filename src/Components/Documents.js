@@ -30,6 +30,29 @@ class Documents extends Component {
       });
   };
 
+  _filterDocuments = evt => {
+    const { value } = evt.target;
+
+    axios.get("/documents/all")
+      .then(response => {
+        const { data } = response;
+
+        if (value === "") {
+          return this.setState({
+            documents: data
+          });
+        }
+
+        const filteredDocuments = data.filter(document =>
+          document.filename.includes(value)
+        );
+
+        this.setState({
+          documents: filteredDocuments
+        });
+      });
+  };
+
   render() {
     const styles = this.getStyles();
 
@@ -38,18 +61,16 @@ class Documents extends Component {
         <Banner />
         <div style={styles.sectionInfo}>
           <h2 style={{ fontSize: theme.FontSizes.JUMBO, }}>Documents</h2>
-          <Input placeholder="Search..." icon="search" size="mini" iconPosition="left" style={{ marginLeft: 'auto', width: '40%' }} />
+          <Input placeholder="Search..." icon="search" size="mini" iconPosition="left" style={{ marginLeft: 'auto', width: '40%' }} onChange={this._filterDocuments} />
         </div>
 
         <div className={styles.documents}>
-          <Transition.Group duration={150}>
-            {this.state.documents.map(document => (
-              <Document
-                document={document}
-                key={Math.floor(Math.random() * Math.floor(5000))}
-              />
-            ))}
-          </Transition.Group>
+          {this.state.documents.map(document => (
+            <Document
+              document={document}
+              key={Math.floor(Math.random() * Math.floor(5000))}
+            />
+          ))}
         </div>
       </div >
     );

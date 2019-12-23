@@ -156,6 +156,7 @@ exports.createDocument = (req, res) => {
   const date = Date.now();
   const fileName = `${employee_first_name}${employee_middle_name}${employee_last_name}-${employers_name}-1095`;
   const createdBy = `${first_name} ${last_name}`;
+  const middleInitial = employee_middle_name.split('')[0];
 
   db.documents.insert({
     user_id: id,
@@ -163,7 +164,7 @@ exports.createDocument = (req, res) => {
     createddate: date,
     createdby: createdBy,
     employee_first_name,
-    employee_middle_name,
+    employee_middle_name: middleInitial,
     employee_last_name,
     employee_ssn,
     employee_address,
