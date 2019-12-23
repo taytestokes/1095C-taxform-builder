@@ -11,12 +11,16 @@ import theme from "../Constants/Theme";
 
 export default class Document extends Component {
   state = {
-    loading: false,
-    previewPDF: false,
+    dowloading: false,
+    previewing: false,
   };
 
-  _previewPDF = () => {
+  _previewing = () => {
     const { document } = this.props;
+
+    this.setState({
+      previewing: true,
+    });
 
     axios
       .post("/documents/createPDF", document)
@@ -27,30 +31,31 @@ export default class Document extends Component {
         const pdf = new Blob([response.data], { type: "application/pdf" });
         const fileUrl = URL.createObjectURL(pdf);
         window.open(fileUrl);
+
+        this.setState({
+          previewing: false,
+        });
       });
   };
 
   _downloadPDF = () => {
     const { document } = this.props;
+
     this.setState({
-      loading: true
+      downloading: true
     });
 
     axios
       .post("/documents/createPDF", document)
       .then(() => {
-        return axios.get(
-          `/documents/fetchPDF/${document.filename}${document.createddate}`,
-          {
-            responseType: "blob"
-          }
-        );
+        return axios.get(`/documents/fetchPDF/${document.filename}${document.createddate}`, { responseType: "blob" });
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         fileSaver.saveAs(pdfBlob, `${document.filename}.pdf`);
+
         this.setState({
-          loading: true
+          downloading: false,
         });
       });
   };
@@ -85,8 +90,8 @@ export default class Document extends Component {
 
         <div style={styles.section}>
           <Button.Group basic size="mini">
-            <Button icon="eye" onClick={this._previewPDF} />
-            <Button icon="download" />
+            <Button icon="eye" onClick={this._previewing} loading={this.state.previewing} />
+            <Button icon="download" onClick={this._downloadPDF} loading={this.state.downloading} />
           </Button.Group>
         </div>
       </div>

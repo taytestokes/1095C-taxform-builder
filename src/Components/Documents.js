@@ -55,11 +55,11 @@ class Documents extends Component {
 
         {/* Info Bar */}
         <div style={styles.sectionInfo}>
-          <div>File</div>
-          <div>Name</div>
-          <div>Author</div>
-          <div>Created</div>
-          <div>Actions</div>
+          <div style={styles.section}>Type</div>
+          <div style={styles.section}>Name</div>
+          <div style={styles.section}>Author</div>
+          <div style={styles.section}>Created</div>
+          <div style={styles.section}>Actions</div>
         </div>
 
         <div className={styles.documents}>
