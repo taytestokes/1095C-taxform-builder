@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from "react-feather";
 import { css } from "glamor";
+import FileIcon from "react-file-icon";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -13,14 +14,22 @@ class SideNavbar extends Component {
         return (
             <div style={styles.component}>
                 <div style={styles.logo}>
-                    {/* Site Logo Will Be Displayed Here */}
+                    <div style={{ height: '5vh', display: 'flex', alignItems: 'center' }}>
+                        <FileIcon
+                            fold={true}
+                            color={theme.Colors.WHITE}
+                            size={35}
+                            extension="1095C"
+                            labelColor={theme.Colors.PRIMARY}
+                        />
+                    </div>
                 </div>
                 <NavLink to="/dashboard/documents" className={styles.navlink} activeClassName={styles.activeNavlink}>
-                    <Icon.Folder size={14} />
+                    <Icon.Folder size={16} />
                     <h2 style={styles.navText}>Documents</h2>
                 </NavLink>
                 <NavLink to="/dashboard/create" className={styles.navlink} activeClassName={styles.activeNavlink}>
-                    <Icon.FilePlus size={14} />
+                    <Icon.FilePlus size={16} />
                     <h2 style={styles.navText}>Create</h2>
                 </NavLink>
             </div>
@@ -37,10 +46,22 @@ class SideNavbar extends Component {
             alignItems: 'flex-end',
         },
         logo: {
-            width: 50,
-            height: 50,
-            color: theme.Colors.WHITE,
-            marginTop: theme.Spacing.SMALL,
+            width: '90%',
+            padding: theme.Spacing.SEMI_SMALL,
+            display: 'flex',
+            alignItems: 'center',
+            paddingLeft: 0,
+        },
+        logoText: {
+            color: theme.Colors.GRAY,
+            fontSize: theme.FontSizes.LARGE,
+            display: 'flex',
+            flexDirection: 'column',
+            marginLeft: theme.Spacing.XSMALL,
+            height: '100%',
+            justifyContent: 'center',
+            fontWeight: 400,
+            paddingTop: theme.Spacing.XSMALL,
         },
         navlink: css({
             width: '90%',
@@ -49,7 +70,7 @@ class SideNavbar extends Component {
             alignItems: 'center',
             padding: theme.Spacing.SMALL,
             color: theme.Colors.GRAY,
-            fontSize: theme.FontSizes.MEDIUM,
+            fontSize: theme.FontSizes.LARGE,
             fontWeight: 600,
             borderRadius: `3px 0 0 3px`,
             transition: 'ease .2s',

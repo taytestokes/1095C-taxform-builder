@@ -340,7 +340,7 @@ class DocumentForm extends Component {
                         </div>
                         <div style={styles.actionContainer}>
                             <Button onClick={this._handleCancel} size="tiny">Cancel</Button>
-                            <Button primary onClick={this._handleCreateDocument} size="tiny">Create</Button>
+                            <Button primary onClick={this._handleCreateDocument} size="tiny" type="submit">Create</Button>
                         </div>
                     </Form>
                 </div>

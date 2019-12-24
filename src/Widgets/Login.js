@@ -4,7 +4,8 @@ import { css } from "glamor";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
-import Loader from "react-loader-spinner";
+import { Form, Button, } from 'semantic-ui-react';
+import FileIcon from "react-file-icon";
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -25,7 +26,7 @@ class Login extends Component {
 
   _handleChange = event => {
     const { name, value } = event.target;
-    // Set values to state
+
     this.setState({
       [name]: value
     });
@@ -33,16 +34,18 @@ class Login extends Component {
 
   _handleLogin = () => {
     const { email, password } = this.state;
-    // Create body for the request
     const userInfo = {
       email,
       password
     };
-    // Set loading to true
+
+    if (email === '') return;
+    if (password === '') return;
+
     this.setState({
       loading: true
     });
-    // Check to see if email and password fields are empty
+
     if (email === "" || password === "") {
       this.setState({
         loading: false
@@ -52,40 +55,38 @@ class Login extends Component {
         button: "Okay"
       });
     }
-    // Check if email is in valid format
+
     if (!isEmail(email)) {
       return swal({
         text: "Invalid email format, please try again.",
         button: "Okay"
       });
     }
-    // Make post request to login
+
     axios
       .post("/auth/login", userInfo)
       .then(() => {
         this.setState({
           loading: false
         });
-        // On success redirectd
-        this.props.history.push("/dashboard/home");
+        this.props.history.push("/dashboard/documents");
       })
       .catch(err => {
         this.setState({
           loading: false
         });
-        //create the error object
+
         const error = Object.create(err);
-        //modify the error message based off of the response
+
         if (error.response.status === 400) {
-          //if username or password is missing
           error.message = "Username and Password are required";
         } else if (error.response.status === 401) {
-          //if username or password are incorrect
+
           error.message = "Invalid Username or Password";
         } else {
           error.message = "Internal Server Error";
-        }
-        // flash a pop up of the error message
+        };
+
         swal({
           text: error.message,
           button: "Okay"
@@ -108,28 +109,23 @@ class Login extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
-          <input
-            className={styles.input}
-            name="email"
-            onChange={this._handleChange}
-            placeholder="Email"
-          />
-          <input
-            className={styles.input}
-            name="password"
-            onChange={this._handleChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button className={styles.login} onClick={this._handleLogin}>
-            {loading ? (
-              <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
-            ) : (
-                "Sign In"
-              )}
-          </button>
-          <Link className={css(styles.register)} to="/register">
-            Register
+          <div style={styles.logoContainer}>
+            <FileIcon
+              fold={true}
+              color={theme.Colors.WHITE}
+              size={60}
+              extension="1095C"
+              labelColor={theme.Colors.PRIMARY}
+            />
+          </div>
+          <Form style={styles.form} size="small">
+            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
+            <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
+            <Form.Button fluid primary type="submit" onClick={this._handleLogin} loading={loading}>Sign In</Form.Button>
+          </Form>
+          <div style={{ fontSize: theme.FontSizes.MEDIUM, color: theme.FontColors.GRAY, marginTop: theme.Spacing.MEDIUM, fontWeight: 600 }}>OR</div>
+          <Link to="/register" style={{ width: '100%' }}>
+            <Button fluid style={{ marginTop: theme.Spacing.MEDIUM }}>Register</Button>
           </Link>
         </div>
       </div>
@@ -143,70 +139,32 @@ class Login extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      background: '#f9fafb',
     },
     loginContainer: {
       width: 300,
-      height: 350,
+      height: 400,
       padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center"
+      // background: theme.Colors.WHITE,
     },
-    input: css({
-      width: "100%",
-      height: "13%",
-      outline: "none",
-      background: theme.Colors.WHITE,
-      padding: theme.Spacing.SMALL,
-      borderRadius: theme.BorderRadius.SMALL,
-      border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.SMALL,
-      transition: "ease .2s",
-      fontSize: theme.FontSizes.MEDIUM,
-      ":focus": {
-        border: theme.Border.FOCUS
-      }
-    }),
-    login: css({
-      width: "100%",
-      outline: "none",
-      backgroundColor: theme.Colors.PRIMARY,
-      color: theme.FontColors.LIGHT,
-      padding: theme.Spacing.MEDIUM,
-      borderRadius: theme.BorderRadius.SMALL,
-      border: `1px solid ${theme.Colors.PRIMARY}`,
-      marginTop: theme.Spacing.SMALL,
-      fontSize: theme.FontSizes.SMALL,
-      transition: "ease .2s",
-      fontWeight: 700,
-      ":hover": {
-        cursor: "pointer",
-        background: theme.Colors.HOVER_PRIMARY
-      }
-    }),
-    register: css({
-      width: "100%",
-      outline: "none",
-      backgroundColor: theme.Colors.GRAY,
-      color: theme.FontColors.GRAY,
-      padding: theme.Spacing.MEDIUM,
-      border: `1px solid ${theme.Colors.GRAY}`,
-      borderRadius: theme.BorderRadius.SMALL,
-      marginTop: theme.Spacing.SMALL,
-      textDecoration: "none",
+    logoContainer: {
+      background: '#1b1c1d',
       display: "flex",
-      justifyContent: "space-around",
-      fontSize: theme.FontSizes.SMALL,
-      transition: "ease .2s",
-      fontWeight: 700,
-      ":hover": {
-        cursor: "pointer",
-        background: theme.Colors.HOVER_GRAY,
-        border: `1px solid ${theme.Colors.HOVER_GRAY}`
-      }
-    })
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: theme.BorderRadius.SMALL,
+      padding: theme.Spacing.MEDIUM,
+      color: theme.Colors.GRAY,
+    },
+    form: {
+      marginTop: theme.Spacing.LARGE,
+      width: '100%',
+    },
   });
 }
 
