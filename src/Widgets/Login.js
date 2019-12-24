@@ -1,6 +1,5 @@
 // Packages
 import React, { Component } from "react";
-import { css } from "glamor";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
@@ -19,10 +18,6 @@ class Login extends Component {
     password: "",
     loading: false
   };
-
-  componentDidMount() {
-    this._checkForSession();
-  }
 
   _handleChange = event => {
     const { name, value } = event.target;
@@ -94,14 +89,6 @@ class Login extends Component {
       });
   };
 
-  _checkForSession = () => {
-    axios.get("/auth/session").then(({ data }) => {
-      if (data.user) {
-        this.props.history.push("/dashboard");
-      }
-    });
-  };
-
   render() {
     const styles = this.getStyles();
     const { loading } = this.state;
@@ -109,7 +96,7 @@ class Login extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
-          <div style={styles.logoContainer}>
+          {/* <div style={styles.logoContainer}>
             <FileIcon
               fold={true}
               color={theme.Colors.WHITE}
@@ -117,7 +104,7 @@ class Login extends Component {
               extension="1095C"
               labelColor={theme.Colors.PRIMARY}
             />
-          </div>
+          </div> */}
           <Form style={styles.form} size="small">
             <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
@@ -128,6 +115,7 @@ class Login extends Component {
             <Button fluid style={{ marginTop: theme.Spacing.MEDIUM }}>Register</Button>
           </Link>
         </div>
+
       </div>
     );
   }
@@ -149,7 +137,6 @@ class Login extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      // background: theme.Colors.WHITE,
     },
     logoContainer: {
       background: '#1b1c1d',
