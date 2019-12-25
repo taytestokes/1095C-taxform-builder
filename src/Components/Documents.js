@@ -99,6 +99,10 @@ class Documents extends Component {
   };
 
   _removeDocument = (id, filename, createddate) => {
+    const { sortOption } = this.state;
+    let sortedDocuments;
+    let comparison;
+
     swal("Are you sure you want to remove this upload?", {
       buttons: {
         cancel: "Nevermind",
@@ -112,10 +116,42 @@ class Documents extends Component {
         case "confirm":
           return axios
             .post(`/documents/delete/${id}`)
-            .then(response => {
+            .then(({ data }) => {
+
+              if (sortOption === 'Newest') {
+                sortedDocuments = data.sort((a, b) => b.createddate - a.createddate);
+              };
+
+              if (sortOption === 'Oldest') {
+                sortedDocuments = data.sort((a, b) => a.createddate - b.createddate);
+              };
+
+              if (sortOption === 'A-Z') {
+                sortedDocuments = data.sort((a, b) => {
+                  if (a.filename.toUpperCase() > b.filename.toUpperCase()) {
+                    comparison = 1;
+                  } else if (a.filename.toUpperCase() < b.filename.toUpperCase()) {
+                    comparison = -1;
+                  }
+                  return comparison;
+                });
+              };
+
+              if (sortOption === 'Z-A') {
+                sortedDocuments = data.sort((a, b) => {
+                  if (b.filename.toUpperCase() > a.filename.toUpperCase()) {
+                    comparison = 1;
+                  } else if (b.filename.toUpperCase() < a.filename.toUpperCase()) {
+                    comparison = -1;
+                  }
+                  return comparison;
+                });
+              }
+
               this.setState({
-                documents: response.data
+                documents: data
               });
+
               return axios.delete(`/documents/deletePDF/${filename}${createddate}`);
             });
         default:
