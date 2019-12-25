@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import * as Icon from "react-feather";
 import { css } from "glamor";
 import FileIcon from "react-file-icon";
+import { Header } from 'semantic-ui-react';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -15,22 +16,22 @@ class SideNavbar extends Component {
             <div style={styles.component}>
                 <div style={styles.logo}>
                     <div style={{ height: '5vh', display: 'flex', alignItems: 'center' }}>
-                        <FileIcon
+                        {/* <FileIcon
                             fold={true}
                             color={theme.Colors.WHITE}
                             size={35}
                             extension="1095C"
                             labelColor={theme.Colors.PRIMARY}
-                        />
+                        /> */}
                     </div>
                 </div>
                 <NavLink to="/dashboard/documents" className={styles.navlink} activeClassName={styles.activeNavlink}>
                     <Icon.Folder size={16} />
-                    <h2 style={styles.navText}>Documents</h2>
+                    <Header as="h5" style={styles.navText}>Documents</Header>
                 </NavLink>
                 <NavLink to="/dashboard/create" className={styles.navlink} activeClassName={styles.activeNavlink}>
                     <Icon.FilePlus size={16} />
-                    <h2 style={styles.navText}>Create</h2>
+                    <Header as="h5" style={styles.navText}>Create</Header>
                 </NavLink>
             </div>
         )
@@ -84,6 +85,8 @@ class SideNavbar extends Component {
         }),
         navText: {
             marginLeft: theme.Spacing.SMALL,
+            marginTop: 0,
+            color: theme.Colors.GRAY
         }
     })
 }

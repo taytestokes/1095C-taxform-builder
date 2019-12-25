@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import axios from 'axios';
-import { Input } from 'semantic-ui-react';
+import { Input, Pagination, Icon, Button } from 'semantic-ui-react';
 
 // Components
 import Document from "./Document";
@@ -14,6 +14,8 @@ class Documents extends Component {
   state = {
     documents: [],
     loading: true,
+    currentPage: 1,
+    documentsPerPage: 8,
   };
 
   componentDidMount() {
@@ -52,19 +54,41 @@ class Documents extends Component {
       });
   };
 
+  _handlePageChange = (evt, data) => {
+    this.setState({
+      currentPage: data.activePage
+    });
+  };
+
   render() {
     const styles = this.getStyles();
+    const indexOfLastDocument = this.state.currentPage * this.state.documentsPerPage;
+    const indexOfFirstDocument = indexOfLastDocument - this.state.documentsPerPage;
+    const currentDocuments = this.state.documents.slice(indexOfFirstDocument, indexOfLastDocument);
+    const amountOfPages = Math.ceil(this.state.documents.length / this.state.documentsPerPage);
+
 
     return (
       <div style={styles.component}>
         <Banner />
         <div style={styles.sectionInfo}>
-          <h2 style={{ fontSize: theme.FontSizes.JUMBO, }}>Documents</h2>
-          <Input placeholder="Search..." icon="search" size="tiny" iconPosition="left" style={{ marginLeft: 'auto', width: '40%' }} onChange={this._filterDocuments} />
+          <Input icon="search" placeholder="Search..." iconPosition="left" onChange={this._filterDocuments} size="mini" style={styles.search} />
+          <Pagination
+            boundaryRange={0}
+            defaultActivePage={1}
+            ellipsisItem={null}
+            firstItem={null}
+            lastItem={null}
+            siblingRange={1}
+            totalPages={amountOfPages}
+            style={styles.pagination}
+            size="mini"
+            onPageChange={this._handlePageChange}
+          />
         </div>
 
         <div className={styles.documents}>
-          {this.state.documents.map(document => (
+          {currentDocuments.map(document => (
             <Document
               document={document}
               key={Math.floor(Math.random() * Math.floor(5000))}
@@ -73,7 +97,7 @@ class Documents extends Component {
         </div>
       </div >
     );
-  }
+  };
 
   getStyles = () => ({
     component: {
@@ -95,18 +119,20 @@ class Documents extends Component {
       color: theme.FontColors.GRAY,
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'flex-end',
       width: '80%',
-      height: '5vh',
+      height: '10vh',
       marginTop: theme.Spacing.LARGE,
     },
-    search: css({
-      width: "100%",
-      border: "none",
-      outline: "none",
-      background: "transparent",
-      fontSize: theme.FontSizes.LARGE,
-      marginLeft: theme.Spacing.SMALL
-    }),
+    pagination: {
+      boxShadow: 'none',
+      outline: 'none'
+    },
+    search: {
+      width: '50%',
+      height: 37,
+      marginRight: 'auto'
+    },
     documents: css({
       width: "80%",
       height: '90%',

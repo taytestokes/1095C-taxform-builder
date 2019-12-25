@@ -15,8 +15,6 @@ class Register extends Component {
   state = {
     email: "",
     password: "",
-    first_name: '',
-    last_name: '',
     loading: false
   };
 
@@ -29,16 +27,14 @@ class Register extends Component {
   };
 
   _handleRegister = () => {
-    const { email, password, first_name, last_name } = this.state;
+    const { email, password } = this.state;
 
     const userInfo = {
       email,
       password,
-      first_name,
-      last_name
     };
 
-    if (email === "" || password === "" || first_name === "" || last_name === "") return;
+    if (email === "" || password === "") return;
 
     this.setState({
       loading: true
@@ -46,14 +42,25 @@ class Register extends Component {
 
     if (!isEmail(email)) {
       this.setState({
-        loading: true,
+        loading: false,
       });
 
       return swal({
         text: "Invalid email format, please try again.",
-        button: "OKAY"
+        button: "Okay"
       });
     };
+
+    if (password.length < 6) {
+      this.setState({
+        loading: false,
+      });
+
+      return swal({
+        text: 'Password must be atleast 6 characters long.',
+        button: 'Okay'
+      })
+    }
 
     axios
       .post("/auth/register", userInfo)
@@ -62,7 +69,7 @@ class Register extends Component {
           loading: false
         });
 
-        this.props.history.push("/dashboard/dashboard");
+        this.props.history.push("/dashboard/documents");
       })
       .catch(err => {
         this.setState({
@@ -93,7 +100,7 @@ class Register extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.registerContainer}>
-          {/* <div style={styles.logoContainer}>
+          <div style={styles.logoContainer}>
             <FileIcon
               fold={true}
               color={theme.Colors.WHITE}
@@ -101,7 +108,7 @@ class Register extends Component {
               extension="1095C"
               labelColor={theme.Colors.PRIMARY}
             />
-          </div> */}
+          </div>
           <Form style={styles.form} size="small">
             <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
@@ -155,8 +162,8 @@ class Register extends Component {
       width: '100%',
       fontSize: theme.FontSizes.LARGE,
       color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.MEDIUM,
-      fontWeight: 600,
+      marginTop: theme.Spacing.LARGE,
+      fontWeight: 500,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
