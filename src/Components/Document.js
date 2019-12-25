@@ -78,8 +78,8 @@ export default class Document extends Component {
         <div style={styles.sectionInfo}>
           <h2>{document.filename}</h2>
           <div style={styles.innerSectionInfo}>
-            <p>{document.createdby}</p>
-            <p style={{ marginLeft: theme.Spacing.SMALL }}>{createdDate}</p>
+            <p>Created:</p>
+            <p style={{ marginLeft: theme.Spacing.XSMALL }}>{createdDate}</p>
           </div>
         </div>
 
