@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import axios from 'axios';
-import { Input, Pagination, Icon, Button } from 'semantic-ui-react';
+import { Input, Pagination, Button, Loader } from 'semantic-ui-react';
 
 // Components
 import Document from "./Document";
@@ -23,10 +23,11 @@ class Documents extends Component {
   };
 
   _getDocuments = () => {
-    axios.get("/documents/all")
+    axios.get("/documents/user")
       .then(({ data }) => {
         this.setState({
           documents: data,
+          loading: false,
         })
       });
   };
@@ -34,7 +35,7 @@ class Documents extends Component {
   _filterDocuments = evt => {
     const { value } = evt.target;
 
-    axios.get("/documents/all")
+    axios.get("/documents/user")
       .then(response => {
         const { data } = response;
 
@@ -71,30 +72,38 @@ class Documents extends Component {
     return (
       <div style={styles.component}>
         <Banner />
-        <div style={styles.sectionInfo}>
-          <Input icon="search" placeholder="Search..." iconPosition="left" onChange={this._filterDocuments} size="mini" style={styles.search} />
-          <Pagination
-            boundaryRange={0}
-            defaultActivePage={1}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            siblingRange={1}
-            totalPages={amountOfPages}
-            style={styles.pagination}
-            size="mini"
-            onPageChange={this._handlePageChange}
-          />
-        </div>
+        {this.state.loading ? (
+          <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+            <Loader active style={{ position: 'absolute' }} />
+          </div>
+        ) : (
+            <React.Fragment>
+              <div style={styles.sectionInfo}>
+                <Input icon="search" placeholder="Search..." iconPosition="left" onChange={this._filterDocuments} size="mini" style={styles.search} />
+                <Pagination
+                  boundaryRange={0}
+                  defaultActivePage={1}
+                  ellipsisItem={null}
+                  firstItem={null}
+                  lastItem={null}
+                  siblingRange={1}
+                  totalPages={amountOfPages}
+                  style={styles.pagination}
+                  size="mini"
+                  onPageChange={this._handlePageChange}
+                />
+              </div>
 
-        <div className={styles.documents}>
-          {currentDocuments.map(document => (
-            <Document
-              document={document}
-              key={Math.floor(Math.random() * Math.floor(5000))}
-            />
-          ))}
-        </div>
+              <div className={styles.documents}>
+                {currentDocuments.map(document => (
+                  <Document
+                    document={document}
+                    key={Math.floor(Math.random() * Math.floor(5000))}
+                  />
+                ))}
+              </div>
+            </React.Fragment>
+          )}
       </div >
     );
   };
