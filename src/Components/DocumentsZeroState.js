@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import * as Icon from "react-feather";
-import { Button } from 'semantic-ui-react';
 
-// Theme
+// Constants
 import theme from "../Constants/Theme";
 
 class DocumentsZeroState extends Component {

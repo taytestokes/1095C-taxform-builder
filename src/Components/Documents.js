@@ -7,6 +7,7 @@ import swal from "@sweetalert/with-react";
 // Components
 import Document from "./Document";
 import Banner from '../Components/Banner';
+import DocumentZeroState from '../Components/DocumentsZeroState';
 
 // Constants
 import theme from "../Constants/Theme";
@@ -241,13 +242,19 @@ class Documents extends Component {
               </div>
 
               <div className={styles.documents}>
-                {currentDocuments.map(document => (
-                  <Document
-                    document={document}
-                    removeDocument={this._removeDocument}
-                    key={Math.floor(Math.random() * Math.floor(5000))}
-                  />
-                ))}
+                {currentDocuments.length === 0 ? (
+                  <DocumentZeroState />
+                ) : (
+                    <React.Fragment>
+                      {currentDocuments.map(document => (
+                        <Document
+                          document={document}
+                          removeDocument={this._removeDocument}
+                          key={Math.floor(Math.random() * Math.floor(5000))}
+                        />
+                      ))}
+                    </React.Fragment>
+                  )}
               </div>
             </React.Fragment>
           )}
