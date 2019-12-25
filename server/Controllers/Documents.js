@@ -25,7 +25,6 @@ exports.getUserDocuments = (req, res) => {
 
 exports.deleteDocument = (req, res) => {
   const { id } = req.params;
-  const { filepath } = req.body;
   const db = req.app.get("db");
 
   db.delete_user_document([id])
@@ -38,7 +37,6 @@ exports.deleteDocument = (req, res) => {
     .catch(error => {
       res.send(error);
     });
-
 };
 
 exports.createPDF = (req, res) => {
@@ -81,7 +79,7 @@ exports.deletePDF = (req, res) => {
       }
     });
   } else {
-    res.send('PDF was not found, but operations continued execution.')
+    res.send('PDF was not found, but operations continued execution')
   };
 };
 

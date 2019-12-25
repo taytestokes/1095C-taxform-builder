@@ -85,7 +85,7 @@ export default class Document extends Component {
 
         <div style={styles.section}>
           <Button.Group basic size="mini">
-            <Button icon="trash" />
+            <Button icon="trash" onClick={() => this.props.removeDocument(document.id, document.filename, document.createddate)} />
             <Button icon="eye" onClick={this._previewing} loading={this.state.previewing} />
             <Button icon="download" onClick={this._downloadPDF} loading={this.state.downloading} />
           </Button.Group>

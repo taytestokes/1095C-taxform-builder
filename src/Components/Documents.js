@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { css } from "glamor";
 import axios from 'axios';
 import { Input, Pagination, Button, Loader } from 'semantic-ui-react';
+import swal from "@sweetalert/with-react";
 
 // Components
 import Document from "./Document";
@@ -43,21 +44,47 @@ class Documents extends Component {
           return this.setState({
             documents: data
           });
+        } else {
+          const filteredDocuments = data.filter(document =>
+            document.filename.toLowerCase().includes(value.toLowerCase())
+          );
+
+          return this.setState({
+            documents: filteredDocuments
+          });
         }
-
-        const filteredDocuments = data.filter(document =>
-          document.filename.toLowerCase().includes(value.toLowerCase())
-        );
-
-        this.setState({
-          documents: filteredDocuments
-        });
       });
   };
 
   _handlePageChange = (evt, data) => {
     this.setState({
       currentPage: data.activePage
+    });
+  };
+
+  _removeDocument = (id, filename, createddate) => {
+    swal("Are you sure you want to remove this upload?", {
+      buttons: {
+        cancel: "Nevermind",
+        confirm: {
+          text: "Yes",
+          value: "confirm"
+        }
+      }
+    }).then(value => {
+      switch (value) {
+        case "confirm":
+          return axios
+            .post(`/documents/delete/${id}`)
+            .then(response => {
+              this.setState({
+                documents: response.data
+              });
+              return axios.delete(`/documents/deletePDF/${filename}${createddate}`);
+            });
+        default:
+          return;
+      }
     });
   };
 
@@ -98,6 +125,7 @@ class Documents extends Component {
                 {currentDocuments.map(document => (
                   <Document
                     document={document}
+                    removeDocument={this._removeDocument}
                     key={Math.floor(Math.random() * Math.floor(5000))}
                   />
                 ))}

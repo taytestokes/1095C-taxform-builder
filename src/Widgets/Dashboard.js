@@ -10,33 +10,6 @@ import theme from "../Constants/Theme";
 import DashboardRouter from '../Routes/DashboardRouter';
 
 class Dashboard extends Component {
-  // Remove A Users Document
-  // _removeDocument = (id, filepath, filename, createddate) => {
-  //   swal("Are you sure you want to remove this upload?", {
-  //     buttons: {
-  //       cancel: "Nevermind",
-  //       confirm: {
-  //         text: "Yes",
-  //         value: "confirm"
-  //       }
-  //     }
-  //   }).then(value => {
-  //     switch (value) {
-  //       case "confirm":
-  //         return axios
-  //           .post(`/documents/delete/${id}`, { filepath })
-  //           .then(response => {
-  //             this.setState({
-  //               documents: response.data
-  //             });
-  //             return axios.delete(`/documents/deletePDF/${filename}${createddate}`);
-  //           });
-  //       default:
-  //         return;
-  //     }
-  //   });
-  // };
-
   render() {
     const styles = this.getStyles();
 
