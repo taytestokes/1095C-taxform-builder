@@ -1,1 +1,2 @@
-SELECT * FROM documents;
+SELECT * FROM documents
+ORDER BY createddate DESC;

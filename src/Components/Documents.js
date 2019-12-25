@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { css } from "glamor";
 import axios from 'axios';
-import { Input, Pagination, Button, Loader } from 'semantic-ui-react';
+import { Input, Pagination, Dropdown, Loader } from 'semantic-ui-react';
 import swal from "@sweetalert/with-react";
 
 // Components
 import Document from "./Document";
 import Banner from '../Components/Banner';
 
-// Theme
+// Constants
 import theme from "../Constants/Theme";
+import { documentSortOptions } from '../Constants/Options';
 
 class Documents extends Component {
   state = {
@@ -17,6 +18,7 @@ class Documents extends Component {
     loading: true,
     currentPage: 1,
     documentsPerPage: 8,
+    sortOption: 'Newest',
   };
 
   componentDidMount() {
@@ -33,19 +35,52 @@ class Documents extends Component {
       });
   };
 
-  _filterDocuments = evt => {
+  _searchDocuments = evt => {
+    const { sortOption } = this.state;
     const { value } = evt.target;
+    let sortedDocuments;
+    let comparison;
 
     axios.get("/documents/user")
       .then(response => {
         const { data } = response;
 
+        if (sortOption === 'Newest') {
+          sortedDocuments = data.sort((a, b) => b.createddate - a.createddate);
+        };
+
+        if (sortOption === 'Oldest') {
+          sortedDocuments = data.sort((a, b) => a.createddate - b.createddate);
+        };
+
+        if (sortOption === 'A-Z') {
+          sortedDocuments = data.sort((a, b) => {
+            if (a.filename.toUpperCase() > b.filename.toUpperCase()) {
+              comparison = 1;
+            } else if (a.filename.toUpperCase() < b.filename.toUpperCase()) {
+              comparison = -1;
+            }
+            return comparison;
+          });
+        };
+
+        if (sortOption === 'Z-A') {
+          sortedDocuments = data.sort((a, b) => {
+            if (b.filename.toUpperCase() > a.filename.toUpperCase()) {
+              comparison = 1;
+            } else if (b.filename.toUpperCase() < a.filename.toUpperCase()) {
+              comparison = -1;
+            }
+            return comparison;
+          });
+        }
+
         if (value === "") {
           return this.setState({
-            documents: data
+            documents: sortedDocuments
           });
         } else {
-          const filteredDocuments = data.filter(document =>
+          const filteredDocuments = sortedDocuments.filter(document =>
             document.filename.toLowerCase().includes(value.toLowerCase())
           );
 
@@ -88,6 +123,63 @@ class Documents extends Component {
     });
   };
 
+  _sortDocuments = (evt, result) => {
+    const { value } = result;
+    const { documents } = this.state;
+    let sortedDocuments;
+    let comparison;
+
+    if (value === 'Newest') {
+      sortedDocuments = documents.sort((a, b) => b.createddate - a.createddate);
+
+      this.setState({
+        sortOption: value,
+        documents: sortedDocuments
+      });
+    };
+
+    if (value === 'Oldest') {
+      sortedDocuments = documents.sort((a, b) => a.createddate - b.createddate);
+
+      this.setState({
+        sortOption: value,
+        documents: sortedDocuments
+      });
+    };
+
+    if (value === 'A-Z') {
+      sortedDocuments = documents.sort((a, b) => {
+        if (a.filename.toUpperCase() > b.filename.toUpperCase()) {
+          comparison = 1;
+        } else if (a.filename.toUpperCase() < b.filename.toUpperCase()) {
+          comparison = -1;
+        }
+        return comparison;
+      });
+
+      this.setState({
+        sortOption: value,
+        documents: sortedDocuments
+      });
+    };
+
+    if (value === 'Z-A') {
+      sortedDocuments = documents.sort((a, b) => {
+        if (b.filename.toUpperCase() > a.filename.toUpperCase()) {
+          comparison = 1;
+        } else if (b.filename.toUpperCase() < a.filename.toUpperCase()) {
+          comparison = -1;
+        }
+        return comparison;
+      });
+
+      this.setState({
+        sortOption: value,
+        documents: sortedDocuments
+      });
+    };
+  };
+
   render() {
     const styles = this.getStyles();
     const indexOfLastDocument = this.state.currentPage * this.state.documentsPerPage;
@@ -106,7 +198,34 @@ class Documents extends Component {
         ) : (
             <React.Fragment>
               <div style={styles.sectionInfo}>
-                <Input icon="search" placeholder="Search..." iconPosition="left" onChange={this._filterDocuments} size="mini" style={styles.search} />
+                <div style={styles.dropdown}>
+                  <Dropdown
+                    options={documentSortOptions}
+                    icon="filter"
+                    basic
+                    button
+                    labeled
+                    value={this.state.sortOption}
+                    onChange={this._sortDocuments}
+                    className='icon'
+                    style={{ width: '100%', height: '100%' }}
+                    size="mini"
+                  />
+                </div>
+
+                <div style={styles.search}>
+                  <Input
+                    placeholder="Search By Name..."
+                    onChange={this._searchDocuments}
+                    size="tiny"
+                    style={{ width: '100%', height: '100%' }}
+                    type="text"
+                    icon="search"
+                    iconPosition="left"
+                    fluid
+                  />
+                </div>
+
                 <Pagination
                   boundaryRange={0}
                   defaultActivePage={1}
@@ -163,12 +282,18 @@ class Documents extends Component {
     },
     pagination: {
       boxShadow: 'none',
-      outline: 'none'
+      outline: 'none',
+      marginLeft: 'auto',
+      height: 41
     },
     search: {
       width: '50%',
-      height: 37,
-      marginRight: 'auto'
+      height: 41,
+      marginLeft: theme.Spacing.SMALL,
+    },
+    dropdown: {
+      background: theme.Colors.WHITE,
+      width: '15%'
     },
     documents: css({
       width: "80%",

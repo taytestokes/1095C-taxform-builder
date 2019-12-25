@@ -26,3 +26,12 @@ export const section4980HOptions = [
     { key: '2H', value: '2H', text: '2H' },
     { key: '2I', value: '2I', text: '2I' },
 ];
+
+// Document Sort Options
+export const documentSortOptions = [
+    { key: 'Newest', value: 'Newest', text: 'Newest' },
+    { key: 'Oldest', value: 'Oldest', text: 'Oldest' },
+    { key: 'A-Z', value: 'A-Z', text: 'A - Z' },
+    { key: 'Z-A', value: 'Z-A', text: 'Z - A' },
+
+];
