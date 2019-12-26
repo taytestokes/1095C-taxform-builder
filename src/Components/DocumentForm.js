@@ -78,6 +78,10 @@ class DocumentForm extends Component {
     };
 
     _handleCreateDocument = () => {
+        const stateValues = Object.values(this.state);
+
+        if (stateValues.includes('')) return;
+
         axios.post("/documents/create", this.state)
             .then(() => {
                 this.setState({

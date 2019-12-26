@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 // Components
-import DocumentForm from '../Components/DocumentForm';
-import Banner from '../Components/Banner';
+import DocumentForm from './DocumentForm';
+import Banner from './Banner';
 
-// Theme
+// Constants
 import theme from "../Constants/Theme";
 
 export default class Upload extends Component {
