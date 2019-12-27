@@ -123,12 +123,11 @@ class Login extends Component {
     },
     loginContainer: {
       width: 300,
-      height: 400,
       padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
+      background: theme.Colors.WHITE
     },
     logoContainer: {
       background: '#1b1c1d',

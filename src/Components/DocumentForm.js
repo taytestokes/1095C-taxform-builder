@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Feed, Icon } from 'semantic-ui-react';
+import { Form, Button, Feed, Icon, Loader } from 'semantic-ui-react';
 import { css } from 'glamor';
 import axios from 'axios';
 import swal from "@sweetalert/with-react";
@@ -61,7 +61,12 @@ class DocumentForm extends Component {
         oct_16: '',
         nov_16: '',
         dec_16: '',
-        step: 1
+        step: 1,
+        loading: true,
+    };
+
+    componentDidMount() {
+        setTimeout(() => this.setState({ loading: false }), 800);
     };
 
     _handleInputChange = evt => {
@@ -137,14 +142,21 @@ class DocumentForm extends Component {
                     oct_16: '',
                     nov_16: '',
                     dec_16: '',
+                    step: 1,
                 })
-            });
+            })
+            .then(() => {
+                swal({
+                    text: 'Document has been created!',
+                    button: 'Okay'
+                })
+            })
     };
 
     _handleCancel = evt => {
         evt.preventDefault()
 
-        swal("Are you sure you want to cancel?", {
+        swal("Are you sure you want to reset?", {
             buttons: {
                 cancel: "Nevermind",
                 confirm: {
@@ -238,7 +250,11 @@ class DocumentForm extends Component {
 
         return (
             <div style={styles.component}>
-                <div className={styles.formContainer}>
+                {this.state.loading ? (
+                    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                        <Loader active style={{ position: 'absolute' }} />
+                    </div>
+                ) : (<div className={styles.formContainer}>
                     <Form size="tiny" style={styles.form}>
                         {this.state.step === 1 && (
                             <div style={styles.leftContainer}>
@@ -287,14 +303,6 @@ class DocumentForm extends Component {
                                             <Form.Input required width={6} label="13: Zipcode" placeholder="Zipcode" name="employers_zipcode" onChange={this._handleInputChange} value={this.state.employers_zipcode} />
                                         </Form.Group>
                                     </div>
-                                </div>
-                                <div style={styles.stepController}>
-                                    <Button.Group size="tiny">
-                                        <Button icon labelPosition='right' onClick={this._handleNextStep}>
-                                            Part Two
-                                        <Icon name='right arrow' />
-                                        </Button>
-                                    </Button.Group>
                                 </div>
                             </div>
                         )}
@@ -376,60 +384,30 @@ class DocumentForm extends Component {
                                         </Form.Group>
                                     </div>
                                 </div>
-                                <div style={styles.stepController}>
-                                    <Button.Group style={{ marginRight: 'auto' }} size="tiny">
-                                        <Button icon labelPosition='left' onClick={this._handlePreviousStep}>
-                                            Part One
-                                        <Icon name='left arrow' />
-                                        </Button>
-                                    </Button.Group>
-                                </div>
                             </div>
                         )}
 
                         <div style={styles.rightColumn}>
                             <div style={styles.formAction}>
                                 <div style={styles.labelContainer}>
-                                    <h2 style={styles.label}>1095C Generator</h2>
-                                    <h3 style={styles.subLabel}>Create 1095C Documents</h3>
+                                    <h2 style={styles.label}>Form Steps</h2>
+                                    <h3 style={styles.subLabel}>Currently on step {this.state.step} of 2</h3>
                                 </div>
-                                <Feed style={styles.feed}>
-                                    <Feed.Event>
-                                        <Feed.Label>
-                                            <Icon name={this.state.step >= 1 ? 'check circle' : 'circle outline'} color={this.state.step >= 1 ? 'blue' : 'basic'} />
-                                        </Feed.Label>
-                                        <Feed.Content>
-                                            <Feed.Summary>
-                                                Part One
-                                        </Feed.Summary>
-                                            <Feed.Meta>
-                                                Employee and Employer Information
-                                        </Feed.Meta>
-                                        </Feed.Content>
-                                    </Feed.Event>
-                                    <Feed.Event>
-                                        <Feed.Label>
-                                            <Icon name={this.state.step >= 2 ? 'check circle' : 'circle outline'} color={this.state.step >= 2 ? 'blue' : 'basic'} />
-                                        </Feed.Label>
-                                        <Feed.Content>
-                                            <Feed.Summary>
-                                                Part Two
-                                        </Feed.Summary>
-                                            <Feed.Meta>
-                                                Offer of Coverage, Employee Required Contribution, and Section 4980H
-                                        </Feed.Meta>
-                                        </Feed.Content>
-                                    </Feed.Event>
-                                </Feed>
+                                <div style={styles.actionsContainer}>
+                                    <Button.Group fluid size="tiny" basic>
+                                        <Button labelPosition='left' icon='left chevron' content='Back' onClick={this._handlePreviousStep} disabled={this.state.step === 1} />
+                                        <Button labelPosition='right' icon='right chevron' content='Forward' onClick={this._handleNextStep} disabled={this.state.step === 2} />
+                                    </Button.Group>
+                                    <Button fluid size="tiny" onClick={this._handleCancel} style={{ marginTop: 10 }}>Reset</Button>
+                                    <Button fluid size="tiny" primary disabled={isSubmitDisabled} onClick={this._handleCreateDocument} style={{ marginTop: 10 }}>Save</Button>
+                                </div>
+
                             </div>
-                            <Button.Group fluid style={{ marginTop: 10 }} size="tiny">
-                                <Button onClick={this._handleCancel}>Cancel</Button>
-                                <Button.Or />
-                                <Button primary disabled={isSubmitDisabled} onClick={this._handleCreateDocument}>Save</Button>
-                            </Button.Group>
+
                         </div>
                     </Form>
-                </div>
+                </div>)}
+
             </div>
         )
     }
@@ -506,6 +484,7 @@ class DocumentForm extends Component {
         subLabel: {
             fontSize: theme.FontSizes.SMALL,
             color: theme.FontColors.GRAY,
+            fontStyle: 'italic'
         },
         stepController: {
             width: '100%',
@@ -531,18 +510,13 @@ class DocumentForm extends Component {
             flexDirection: 'column',
             alignItems: 'center',
         },
-        feed: {
-            width: '90%',
-            padding: theme.Spacing.SEMI_SMALL,
-            marginTop: 0
-        },
-        actions: {
+        actionsContainer: {
             width: '100%',
-            height: 100,
+            padding: theme.Spacing.SEMI_SMALL,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-        },
+        }
     })
 }
 

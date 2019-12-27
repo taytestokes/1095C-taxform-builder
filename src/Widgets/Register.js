@@ -129,12 +129,10 @@ class Register extends Component {
     },
     registerContainer: {
       width: 300,
-      height: 400,
       padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
     },
     logoContainer: {
       background: '#1b1c1d',
