@@ -96,15 +96,6 @@ class Login extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.loginContainer}>
-          <div style={styles.logoContainer}>
-            <FileIcon
-              fold={true}
-              color={theme.Colors.WHITE}
-              size={60}
-              extension="1095C"
-              labelColor={theme.Colors.PRIMARY}
-            />
-          </div>
           <Form style={styles.form} size="small">
             <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
@@ -137,6 +128,7 @@ class Login extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      justifyContent: "center",
     },
     logoContainer: {
       background: '#1b1c1d',

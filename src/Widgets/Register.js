@@ -81,7 +81,7 @@ class Register extends Component {
         if (error.response.status === 400) {
           error.message = "Username and Password are required";
         } else if (error.response.status === 401) {
-          error.message = "Invalid Username or Password";
+          error.message = "This email is already in use";
         } else {
           error.message = "Internal Server Error";
         };
@@ -100,15 +100,6 @@ class Register extends Component {
     return (
       <div style={styles.widget}>
         <div style={styles.registerContainer}>
-          <div style={styles.logoContainer}>
-            <FileIcon
-              fold={true}
-              color={theme.Colors.WHITE}
-              size={60}
-              extension="1095C"
-              labelColor={theme.Colors.PRIMARY}
-            />
-          </div>
           <Form style={styles.form} size="small">
             <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
@@ -116,7 +107,7 @@ class Register extends Component {
           </Form>
           <div style={styles.cancel}>
             <p>Already have an account?</p>
-            <Link to="/" style={{ marginLeft: theme.Spacing.XSMALL }}>
+            <Link to="/" style={{ marginLeft: theme.Spacing.SMALL }}>
               Sign In
             </Link>
           </div>
@@ -143,6 +134,7 @@ class Register extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      justifyContent: "center",
     },
     logoContainer: {
       background: '#1b1c1d',

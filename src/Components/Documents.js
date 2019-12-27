@@ -149,7 +149,7 @@ class Documents extends Component {
               }
 
               this.setState({
-                documents: data
+                documents: sortedDocuments
               });
 
               return axios.delete(`/documents/deletePDF/${filename}${createddate}`);
