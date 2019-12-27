@@ -4,9 +4,6 @@ import React, { Component } from "react";
 import DocumentForm from "./DocumentForm";
 import Banner from "./Banner";
 
-// Constants
-import theme from "../Constants/Theme";
-
 export default class Upload extends Component {
   render() {
     const styles = this.getStyles();

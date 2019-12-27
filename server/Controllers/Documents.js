@@ -152,7 +152,7 @@ exports.createDocument = (req, res) => {
   const { id, first_name, last_name } = req.session.user;
 
   const date = Date.now();
-  const fileName = `${employee_first_name}${employee_middle_name}${employee_last_name}-${employers_name}-1095`;
+  const fileName = `${employee_first_name.replace(/\s/g, "")}${employee_middle_name.replace(/\s/g, "")}${employee_last_name.replace(/\s/g, "")}-${employers_name.replace(/\s/g, "")}-1095`;
   const createdBy = `${first_name} ${last_name}`;
   const middleInitial = employee_middle_name.split('')[0];
 
