@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { css } from "glamor";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
-import Loader from "react-loader-spinner";
+import { Form, Label } from 'semantic-ui-react';
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -18,10 +17,6 @@ class Register extends Component {
     loading: false
   };
 
-  componentDidMount() {
-    this._checkForSession();
-  }
-
   _handleChange = event => {
     const { name, value } = event.target;
 
@@ -35,28 +30,35 @@ class Register extends Component {
 
     const userInfo = {
       email,
-      password
+      password,
     };
+
+    if (email === "" || password === "") return;
 
     this.setState({
       loading: true
     });
 
-    if (email === "" || password === "") {
-      this.setState({
-        loading: false
-      });
-      return swal({
-        text: "Email and Password are required",
-        button: "OKAY"
-      });
-    }
-
     if (!isEmail(email)) {
+      this.setState({
+        loading: false,
+      });
+
       return swal({
         text: "Invalid email format, please try again.",
-        button: "OKAY"
+        button: "Okay"
       });
+    };
+
+    if (password.length < 6) {
+      this.setState({
+        loading: false,
+      });
+
+      return swal({
+        text: 'Password must be atleast 6 characters long.',
+        button: 'Okay'
+      })
     }
 
     axios
@@ -66,38 +68,28 @@ class Register extends Component {
           loading: false
         });
 
-        this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard/documents");
       })
       .catch(err => {
         this.setState({
           loading: false
         });
-        //create the error object
+
         const error = Object.create(err);
-        //modify the error message based off of the response
+
         if (error.response.status === 400) {
-          //if username or password is missing
           error.message = "Username and Password are required";
         } else if (error.response.status === 401) {
-          //if username or password are incorrect
-          error.message = "Invalid Username or Password";
+          error.message = "This email is already in use";
         } else {
           error.message = "Internal Server Error";
-        }
-        // flash a pop up of the error message
+        };
+
         swal({
           text: error.message,
           button: "Okay"
         });
       });
-  };
-
-  _checkForSession = () => {
-    axios.get("/auth/session").then(({ data }) => {
-      if (data.user) {
-        this.props.history.push("/dashboard");
-      }
-    });
   };
 
   render() {
@@ -106,31 +98,24 @@ class Register extends Component {
 
     return (
       <div style={styles.widget}>
-        <div style={styles.registerContainer}>
-          <input
-            className={styles.input}
-            name="email"
-            onChange={this._handleChange}
-            placeholder="Email"
-          />
-          <input
-            className={styles.input}
-            name="password"
-            onChange={this._handleChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button className={styles.register} onClick={this._handleRegister}>
-            {loading ? (
-              <Loader type="ThreeDots" height={10} width={20} color="#FFF" />
-            ) : (
-              "Register"
-            )}
-          </button>
-          <Link className={css(styles.login)} to="/">
-            Sign In
-          </Link>
+
+        <div style={styles.loginContainer}>
+          <Form style={styles.form} size="small">
+            <Label color='red' ribbon style={{ left: -35 }}>
+              1095C Generator
+            </Label>
+            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} style={{ marginTop: theme.Spacing.LARGE }} />
+            <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
+            <Form.Button fluid type="submit" onClick={this._handleRegister} loading={loading}>Register</Form.Button>
+          </Form>
+          <div style={styles.cancel}>
+            <p>Already have an account?</p>
+            <Link to="/" style={{ marginLeft: theme.Spacing.SMALL, color: theme.FontSizes }}>
+              Sign In
+            </Link>
+          </div>
         </div>
+
       </div>
     );
   }
@@ -142,71 +127,42 @@ class Register extends Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      background: '#f9fafb',
     },
-    registerContainer: {
-      width: 300,
-      height: 350,
-      padding: theme.Spacing.LARGE,
+    loginContainer: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center"
-    },
-    input: css({
-      width: "100%",
-      height: "13%",
-      outline: "none",
       background: theme.Colors.WHITE,
-      padding: theme.Spacing.SMALL,
+      padding: theme.Spacing.LARGE,
       borderRadius: theme.BorderRadius.SMALL,
-      border: theme.Border.DEFAULT,
-      marginTop: theme.Spacing.SMALL,
-      transition: "ease .2s",
-      fontSize: theme.FontSizes.MEDIUM,
-      ":focus": {
-        border: theme.Border.FOCUS
-      }
-    }),
-    register: css({
-      width: "100%",
-      outline: "none",
-      backgroundColor: "transparent",
-      color: theme.Colors.PRIMARY,
-      padding: theme.Spacing.MEDIUM,
-      borderRadius: theme.BorderRadius.SMALL,
-      border: `1px solid ${theme.Colors.PRIMARY}`,
-      marginTop: theme.Spacing.SMALL,
-      fontSize: theme.FontSizes.SMALL,
-      transition: "ease .2s",
-      fontWeight: 700,
-      ":hover": {
-        cursor: "pointer",
-        background: theme.Colors.PRIMARY,
-        color: theme.Colors.WHITE
-      }
-    }),
-    login: css({
-      width: "100%",
-      outline: "none",
-      backgroundColor: theme.Colors.GRAY,
-      color: theme.FontColors.GRAY,
-      padding: theme.Spacing.MEDIUM,
-      border: `1px solid ${theme.Colors.GRAY}`,
-      borderRadius: theme.BorderRadius.SMALL,
-      marginTop: theme.Spacing.SMALL,
-      textDecoration: "none",
+      border: theme.Border.DEFAULT
+    },
+    logoContainer: {
+      background: '#1b1c1d',
       display: "flex",
-      justifyContent: "space-around",
-      fontSize: theme.FontSizes.SMALL,
-      transition: "ease .2s",
-      fontWeight: 700,
-      ":hover": {
-        cursor: "pointer",
-        background: theme.Colors.HOVER_GRAY,
-        border: `1px solid ${theme.Colors.HOVER_GRAY}`
-      }
-    })
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: theme.Spacing.MEDIUM,
+      color: theme.Colors.GRAY,
+
+    },
+    form: {
+      width: 250,
+      height: 200,
+    },
+    cancel: {
+      width: '100%',
+      fontSize: theme.FontSizes.LARGE,
+      color: theme.FontColors.GRAY,
+      marginTop: theme.Spacing.LARGE,
+      fontWeight: 500,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    }
   });
 }
 

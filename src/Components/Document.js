@@ -1,54 +1,72 @@
 import React, { Component } from "react";
-import * as Icon from "react-feather";
 import axios from "axios";
 import fileSaver from "file-saver";
 import FileIcon from "react-file-icon";
-import filesize from "filesize";
 import moment from "moment";
 import { css } from "glamor";
-import Loader from "react-loader-spinner";
+import { Button } from 'semantic-ui-react';
 
 // Theme
 import theme from "../Constants/Theme";
 
 export default class Document extends Component {
   state = {
-    loading: false
+    dowloading: false,
+    previewing: false,
   };
 
-  _downloadPDF = () => {
+  _previewing = () => {
     const { document } = this.props;
+
     this.setState({
-      loading: true
+      previewing: true,
     });
 
     axios
       .post("/documents/createPDF", document)
       .then(() => {
-        return axios.get(
-          `/documents/fetchPDF/${document.filename}${document.createddate}`,
-          {
-            responseType: "blob"
-          }
-        );
+        return axios.get(`/documents/fetchPDF/${document.filename}${document.createddate}`, { responseType: "blob" });
+      })
+      .then(response => {
+        const pdf = new Blob([response.data], { type: "application/pdf" });
+        const fileUrl = URL.createObjectURL(pdf);
+        window.open(fileUrl);
+
+        this.setState({
+          previewing: false,
+        });
+      });
+  };
+
+  _downloadPDF = () => {
+    const { document } = this.props;
+
+    this.setState({
+      downloading: true
+    });
+
+    axios
+      .post("/documents/createPDF", document)
+      .then(() => {
+        return axios.get(`/documents/fetchPDF/${document.filename}${document.createddate}`, { responseType: "blob" });
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         fileSaver.saveAs(pdfBlob, `${document.filename}.pdf`);
+
         this.setState({
-          loading: false
+          downloading: false,
         });
       });
   };
 
   render() {
     const styles = this.getStyles();
-    const { document, removeDocument } = this.props;
-    const fileSize = filesize(document.filesize);
+    const { document } = this.props;
     const createdDate = moment(+document.createddate).format("MMM DD, YYYY");
 
     return (
-      <div style={styles.documentCard}>
+      <div className={styles.documentCard}>
         <FileIcon
           extension="PDF"
           fold={true}
@@ -57,116 +75,66 @@ export default class Document extends Component {
           size={40}
         />
 
-        <div style={styles.documentCardInfo}>
-          <div style={styles.text}>{document.filename}</div>
-          <div style={styles.documentCardStats}>
-            <div>{fileSize}</div>
-            <div>{createdDate}</div>
+        <div style={styles.sectionInfo}>
+          <h2>{document.filename}</h2>
+          <div style={styles.innerSectionInfo}>
+            <p>Created:</p>
+            <p style={{ marginLeft: theme.Spacing.XSMALL }}>{createdDate}</p>
           </div>
         </div>
 
-        <div style={styles.optionsContainer}>
-          <Icon.Delete
-            size={14}
-            className={css(styles.delete)}
-            onClick={() =>
-              removeDocument(
-                document.id,
-                document.filepath,
-                document.filename,
-                document.createddate
-              )
-            }
-          />
-          <Icon.Download
-            size={14}
-            className={css(styles.download)}
-            onClick={this._downloadPDF}
-          />
+        <div style={styles.section}>
+          <Button.Group basic size="mini">
+            <Button icon="trash" onClick={() => this.props.removeDocument(document.id, document.filename, document.createddate)} />
+            <Button icon="eye" onClick={this._previewing} loading={this.state.previewing} />
+            <Button icon="download" onClick={this._downloadPDF} loading={this.state.downloading} />
+          </Button.Group>
         </div>
-
-        {this.state.loading ? (
-          <div style={styles.downloading}>
-            <Loader type="ThreeDots" height={40} width={50} color="#FFF" />
-          </div>
-        ) : null}
       </div>
     );
   }
 
   getStyles = () => ({
-    documentCard: {
+    documentCard: css({
       background: theme.Colors.WHITE,
       padding: theme.Spacing.SMALL,
-      boxShadow: theme.Shadows.CARD,
+      border: theme.Border.DEFAULT,
       borderRadius: theme.BorderRadius.SMALL,
       color: theme.FontColors.GRAY,
-      marginTop: theme.Spacing.MEDIUM,
+      marginTop: theme.Spacing.SMALL,
       width: "100%",
       display: "flex",
       alignItems: "center",
-      marginLeft: theme.Spacing.XSMALL,
-      marginRight: theme.Spacing.XSMALL
-    },
-    documentCardInfo: {
-      width: "70%",
-      height: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "left",
-      justifyContent: "space-between",
-      marginLeft: theme.Spacing.SMALL
-    },
-    text: {
+      transition: "ease .2s",
+    }),
+    sectionInfo: {
+      width: '65%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
       color: theme.FontColors.DARK,
       fontSize: theme.FontSizes.LARGE,
-      marginBottom: theme.Spacing.XSMALL
-    },
-    documentCardStats: {
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      fontSize: theme.FontSizes.MEDIUM,
-      color: theme.FontColors.GRAY,
+      fontWeight: 600,
+      marginLeft: theme.Spacing.XSMALL,
       marginTop: theme.Spacing.XSMALL
     },
-    optionsContainer: {
-      width: "5%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-end",
-      justifyContent: "space-between",
-      marginLeft: "auto"
+    innerSectionInfo: {
+      width: '100%',
+      display: 'flex',
+      color: theme.FontColors.GRAY,
+      fontSize: theme.FontSizes.MEDIUM,
+      marginTop: theme.Spacing.XSMALL
     },
-    delete: {
-      marginBottom: theme.Spacing.XSMALL,
-      transition: "ease .2s",
-      ":hover": {
-        color: theme.FontColors.DARK,
-        cursor: "pointer"
-      }
-    },
-    download: {
-      marginTop: theme.Spacing.XSMALL,
-      transition: "ease .2s",
-      ":hover": {
-        color: theme.FontColors.DARK,
-        cursor: "pointer"
-      }
-    },
-    downloading: {
-      height: "100vh",
-      width: "100vw",
-      background: "rgba(0,0,0,.5)",
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "center",
-      flexDirection: "column",
-      position: "fixed",
-      top: 0,
-      left: 0,
-      zIndex: 5
+    section: {
+      width: '20%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      fontSize: theme.FontSizes.MEDIUM,
+      color: theme.FontColors.DARK,
+      marginLeft: 'auto'
     }
   });
 }

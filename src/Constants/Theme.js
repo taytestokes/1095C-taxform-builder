@@ -27,7 +27,7 @@ module.exports = {
     PDF_RED: "#ff0000"
   },
   FontSizes: {
-    JUMBO: 30,
+    JUMBO: 32,
     XXLARGE: 21,
     XLARGE: 17,
     LARGE: 15,
@@ -39,8 +39,12 @@ module.exports = {
     XLARGE: 30,
     LARGE: 20,
     MEDIUM: 15,
+    SEMI_SMALL: 12,
     SMALL: 10,
     XSMALL: 5
+  },
+  Padding: {
+    INPUT: 10
   },
   Border: {
     DEFAULT: "1px solid #e6e6e6",
@@ -61,3 +65,6 @@ module.exports = {
       "rgba(0,0,0,0.1) 1px 0px 3px 0px, rgba(0, 0, 0, 0.06) 1px 0px 2px 0px"
   }
 };
+
+
+// "#f9fafb"

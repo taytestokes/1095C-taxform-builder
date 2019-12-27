@@ -1,6 +1,6 @@
 module.exports = ({
   employee_first_name,
-  employee_middle_initial,
+  employee_middle_name,
   employee_last_name,
   employee_ssn,
   employee_address,
@@ -70,7 +70,7 @@ module.exports = ({
       ${employee_first_name}
     </div>
     <div style="position: absolute; top: 124px; left: 162px">
-      ${employee_middle_initial}
+      ${employee_middle_name}
     </div>
     <div style="position: absolute; top: 124px; left: 190px">
       ${employee_last_name}

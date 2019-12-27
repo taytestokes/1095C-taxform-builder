@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import * as Icon from "react-feather";
 
-// Theme
+// Constants
 import theme from "../Constants/Theme";
 
-export default class DocumentsZeroState extends Component {
+class DocumentsZeroState extends Component {
   render() {
     const styles = this.getStyles();
 
@@ -12,7 +12,7 @@ export default class DocumentsZeroState extends Component {
       <div style={styles.zerostate}>
         <Icon.AlertCircle size={45} style={{ color: theme.FontColors.GRAY }} />
         <p style={styles.zerostateText}>
-          It looks like we weren't able to find any documents
+          It looks like we weren't able to find any documents!
         </p>
       </div>
     );
@@ -37,4 +37,6 @@ export default class DocumentsZeroState extends Component {
       lineHeight: 1.2
     }
   });
-}
+};
+
+export default DocumentsZeroState;
