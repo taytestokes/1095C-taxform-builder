@@ -63,6 +63,7 @@ class DocumentForm extends Component {
         dec_16: '',
         step: 1,
         loading: true,
+        saveLoading: false,
     };
 
     componentDidMount() {
@@ -87,6 +88,10 @@ class DocumentForm extends Component {
         const stateValues = Object.values(this.state);
 
         if (stateValues.includes('')) return;
+
+        this.setState({
+            saveLoading: true
+        })
 
         axios.post("/documents/create", this.state)
             .then(() => {
@@ -143,6 +148,7 @@ class DocumentForm extends Component {
                     nov_16: '',
                     dec_16: '',
                     step: 1,
+                    saveLoading: false
                 })
             })
             .then(() => {
@@ -412,7 +418,7 @@ class DocumentForm extends Component {
                                         <Button onClick={this._handleCancel}> Reset</Button>
                                     </Button.Group>
                                     <Button.Group fluid size="tiny" style={{ marginTop: 10 }}>
-                                        <Button fluidonClick={this._handleCreateDocument} style={{ background: '#1b1c1d', color: theme.FontColors.LIGHT }} disabled={isSubmitDisabled}>Save</Button>
+                                        <Button onClick={this._handleCreateDocument} style={{ background: '#1b1c1d', color: theme.FontColors.LIGHT }} disabled={isSubmitDisabled} loading={this.state.saveLoading}>Save</Button>
                                     </Button.Group>
 
                                 </div>
