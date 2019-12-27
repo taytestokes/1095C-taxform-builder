@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
-import { Form, Label } from 'semantic-ui-react';
+import { Form, Label } from "semantic-ui-react";
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -33,8 +33,8 @@ class Login extends Component {
       password
     };
 
-    if (email === '') return;
-    if (password === '') return;
+    if (email === "") return;
+    if (password === "") return;
 
     this.setState({
       loading: true
@@ -75,11 +75,10 @@ class Login extends Component {
         if (error.response.status === 400) {
           error.message = "Username and Password are required";
         } else if (error.response.status === 401) {
-
           error.message = "Invalid Username or Password";
         } else {
           error.message = "Internal Server Error";
-        };
+        }
 
         swal({
           text: error.message,
@@ -94,15 +93,35 @@ class Login extends Component {
 
     return (
       <div style={styles.widget}>
-
         <div style={styles.loginContainer}>
           <Form style={styles.form} size="small">
-            <Label color='red' ribbon style={{ left: -35 }}>
+            <Label color="red" ribbon style={{ left: -35 }}>
               1095C Generator
             </Label>
-            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} style={{ marginTop: theme.Spacing.LARGE }} />
-            <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
-            <Form.Button fluid secondary type="submit" onClick={this._handleLogin} loading={loading} style={{ background: '#1b1c1d' }}>Sign In</Form.Button>
+            <Form.Input
+              required
+              placeholder="Email"
+              name="email"
+              onChange={this._handleChange}
+              style={{ marginTop: theme.Spacing.LARGE }}
+            />
+            <Form.Input
+              required
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={this._handleChange}
+            />
+            <Form.Button
+              fluid
+              secondary
+              type="submit"
+              onClick={this._handleLogin}
+              loading={loading}
+              style={{ background: "#1b1c1d" }}
+            >
+              Sign In
+            </Form.Button>
           </Form>
           <div style={styles.cancel}>
             <p>Don't have an account?</p>
@@ -111,7 +130,6 @@ class Login extends Component {
             </Link>
           </div>
         </div>
-
       </div>
     );
   }
@@ -124,7 +142,7 @@ class Login extends Component {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
-      background: '#f9fafb',
+      background: "#f9fafb"
     },
     loginContainer: {
       display: "flex",
@@ -136,28 +154,27 @@ class Login extends Component {
       border: theme.Border.DEFAULT
     },
     logoContainer: {
-      background: '#1b1c1d',
+      background: "#1b1c1d",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       padding: theme.Spacing.MEDIUM,
-      color: theme.Colors.GRAY,
-
+      color: theme.Colors.GRAY
     },
     form: {
       width: 250,
-      height: 200,
+      height: 200
     },
     cancel: {
-      width: '100%',
+      width: "100%",
       fontSize: theme.FontSizes.LARGE,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.LARGE,
       fontWeight: 500,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
     }
   });
 }

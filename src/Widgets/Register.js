@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
-import { Form, Label } from 'semantic-ui-react';
+import { Form, Label } from "semantic-ui-react";
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -30,7 +30,7 @@ class Register extends Component {
 
     const userInfo = {
       email,
-      password,
+      password
     };
 
     if (email === "" || password === "") return;
@@ -41,24 +41,24 @@ class Register extends Component {
 
     if (!isEmail(email)) {
       this.setState({
-        loading: false,
+        loading: false
       });
 
       return swal({
         text: "Invalid email format, please try again.",
         button: "Okay"
       });
-    };
+    }
 
     if (password.length < 6) {
       this.setState({
-        loading: false,
+        loading: false
       });
 
       return swal({
-        text: 'Password must be atleast 6 characters long.',
-        button: 'Okay'
-      })
+        text: "Password must be atleast 6 characters long.",
+        button: "Okay"
+      });
     }
 
     axios
@@ -83,7 +83,7 @@ class Register extends Component {
           error.message = "This email is already in use";
         } else {
           error.message = "Internal Server Error";
-        };
+        }
 
         swal({
           text: error.message,
@@ -98,24 +98,47 @@ class Register extends Component {
 
     return (
       <div style={styles.widget}>
-
         <div style={styles.loginContainer}>
           <Form style={styles.form} size="small">
-            <Label color='red' ribbon style={{ left: -35 }}>
+            <Label color="red" ribbon style={{ left: -35 }}>
               1095C Generator
             </Label>
-            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} style={{ marginTop: theme.Spacing.LARGE }} />
-            <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
-            <Form.Button fluid type="submit" onClick={this._handleRegister} loading={loading}>Register</Form.Button>
+            <Form.Input
+              required
+              placeholder="Email"
+              name="email"
+              onChange={this._handleChange}
+              style={{ marginTop: theme.Spacing.LARGE }}
+            />
+            <Form.Input
+              required
+              placeholder="Password"
+              type="password"
+              name="password"
+              onChange={this._handleChange}
+            />
+            <Form.Button
+              fluid
+              type="submit"
+              onClick={this._handleRegister}
+              loading={loading}
+            >
+              Register
+            </Form.Button>
           </Form>
           <div style={styles.cancel}>
             <p>Already have an account?</p>
-            <Link to="/" style={{ marginLeft: theme.Spacing.SMALL, color: theme.FontSizes }}>
+            <Link
+              to="/"
+              style={{
+                marginLeft: theme.Spacing.SMALL,
+                color: theme.FontSizes
+              }}
+            >
               Sign In
             </Link>
           </div>
         </div>
-
       </div>
     );
   }
@@ -128,7 +151,7 @@ class Register extends Component {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "space-around",
-      background: '#f9fafb',
+      background: "#f9fafb"
     },
     loginContainer: {
       display: "flex",
@@ -140,28 +163,27 @@ class Register extends Component {
       border: theme.Border.DEFAULT
     },
     logoContainer: {
-      background: '#1b1c1d',
+      background: "#1b1c1d",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       padding: theme.Spacing.MEDIUM,
-      color: theme.Colors.GRAY,
-
+      color: theme.Colors.GRAY
     },
     form: {
       width: 250,
-      height: 200,
+      height: 200
     },
     cancel: {
-      width: '100%',
+      width: "100%",
       fontSize: theme.FontSizes.LARGE,
       color: theme.FontColors.GRAY,
       marginTop: theme.Spacing.LARGE,
       fontWeight: 500,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
     }
   });
 }

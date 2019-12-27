@@ -23,43 +23,43 @@ class MasterWidget extends Component {
     };
   }
 
-
   render() {
     const styles = this.getStyles();
     const { browserSize } = this.state;
-
 
     if (browserSize === "small") {
       return (
         <div style={styles.alert}>
           <div style={styles.card}>
             <Icon.AlertCircle size={35} />
-            <p style={styles.cardText}>Browser size is not supported! Please use a larger view port.</p>
+            <p style={styles.cardText}>
+              Browser size is not supported! Please use a larger view port.
+            </p>
           </div>
         </div>
       );
     }
 
     return <div style={styles.widget}>{MasterRouter}</div>;
-   }
+  }
 
   getStyles = () => ({
     app: {
-      width: '100vw',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      background: '#f9fafb',
+      width: "100vw",
+      height: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+      background: "#f9fafb",
       fontFamily: theme.FontFamily.PRIMARY,
-      color: theme.FontColors.GRAY,
+      color: theme.FontColors.GRAY
     },
     info: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: theme.Spacing.LARGE,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: theme.Spacing.LARGE
     },
     widget: {
       width: "100vw",
@@ -74,13 +74,13 @@ class MasterWidget extends Component {
       position: "fixed",
       top: 0,
       left: 0,
-      background: '#f9fafb',
+      background: "#f9fafb",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       fontFamily: theme.FontFamily.PRIMARY,
-      color: theme.FontColors.GRAY,
+      color: theme.FontColors.GRAY
     },
     card: {
       display: "flex",
@@ -91,8 +91,8 @@ class MasterWidget extends Component {
     cardText: {
       marginTop: theme.Spacing.MEDIUM,
       fontSize: theme.Spacing.MEDIUM,
-      width: '65%',
-      textAlign: 'center',
+      width: "65%",
+      textAlign: "center"
     }
   });
 }

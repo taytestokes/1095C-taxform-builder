@@ -37,6 +37,6 @@ class DocumentsZeroState extends Component {
       lineHeight: 1.2
     }
   });
-};
+}
 
 export default DocumentsZeroState;

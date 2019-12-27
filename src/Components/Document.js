@@ -4,7 +4,7 @@ import fileSaver from "file-saver";
 import FileIcon from "react-file-icon";
 import moment from "moment";
 import { css } from "glamor";
-import { Button } from 'semantic-ui-react';
+import { Button } from "semantic-ui-react";
 
 // Theme
 import theme from "../Constants/Theme";
@@ -12,20 +12,23 @@ import theme from "../Constants/Theme";
 export default class Document extends Component {
   state = {
     dowloading: false,
-    previewing: false,
+    previewing: false
   };
 
   _previewing = () => {
     const { document } = this.props;
 
     this.setState({
-      previewing: true,
+      previewing: true
     });
 
     axios
       .post("/documents/createPDF", document)
       .then(() => {
-        return axios.get(`/documents/fetchPDF/${document.filename}${document.createddate}`, { responseType: "blob" });
+        return axios.get(
+          `/documents/fetchPDF/${document.filename}${document.createddate}`,
+          { responseType: "blob" }
+        );
       })
       .then(response => {
         const pdf = new Blob([response.data], { type: "application/pdf" });
@@ -33,7 +36,7 @@ export default class Document extends Component {
         window.open(fileUrl);
 
         this.setState({
-          previewing: false,
+          previewing: false
         });
       });
   };
@@ -48,14 +51,17 @@ export default class Document extends Component {
     axios
       .post("/documents/createPDF", document)
       .then(() => {
-        return axios.get(`/documents/fetchPDF/${document.filename}${document.createddate}`, { responseType: "blob" });
+        return axios.get(
+          `/documents/fetchPDF/${document.filename}${document.createddate}`,
+          { responseType: "blob" }
+        );
       })
       .then(response => {
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         fileSaver.saveAs(pdfBlob, `${document.filename}.pdf`);
 
         this.setState({
-          downloading: false,
+          downloading: false
         });
       });
   };
@@ -85,9 +91,26 @@ export default class Document extends Component {
 
         <div style={styles.section}>
           <Button.Group basic size="mini">
-            <Button icon="trash" onClick={() => this.props.removeDocument(document.id, document.filename, document.createddate)} />
-            <Button icon="eye" onClick={this._previewing} loading={this.state.previewing} />
-            <Button icon="download" onClick={this._downloadPDF} loading={this.state.downloading} />
+            <Button
+              icon="trash"
+              onClick={() =>
+                this.props.removeDocument(
+                  document.id,
+                  document.filename,
+                  document.createddate
+                )
+              }
+            />
+            <Button
+              icon="eye"
+              onClick={this._previewing}
+              loading={this.state.previewing}
+            />
+            <Button
+              icon="download"
+              onClick={this._downloadPDF}
+              loading={this.state.downloading}
+            />
           </Button.Group>
         </div>
       </div>
@@ -105,14 +128,14 @@ export default class Document extends Component {
       width: "100%",
       display: "flex",
       alignItems: "center",
-      transition: "ease .2s",
+      transition: "ease .2s"
     }),
     sectionInfo: {
-      width: '65%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
+      width: "65%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
       color: theme.FontColors.DARK,
       fontSize: theme.FontSizes.LARGE,
       fontWeight: 600,
@@ -120,21 +143,21 @@ export default class Document extends Component {
       marginTop: theme.Spacing.XSMALL
     },
     innerSectionInfo: {
-      width: '100%',
-      display: 'flex',
+      width: "100%",
+      display: "flex",
       color: theme.FontColors.GRAY,
       fontSize: theme.FontSizes.MEDIUM,
       marginTop: theme.Spacing.XSMALL
     },
     section: {
-      width: '20%',
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
+      width: "20%",
+      height: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
       fontSize: theme.FontSizes.MEDIUM,
       color: theme.FontColors.DARK,
-      marginLeft: 'auto'
+      marginLeft: "auto"
     }
   });
 }
