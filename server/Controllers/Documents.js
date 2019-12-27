@@ -1,15 +1,11 @@
 // Packages
-const exceltojson = require("convert-excel-to-json");
 const pdf = require("html-pdf");
 const fs = require("fs");
-
-// Utils
-const { upload } = require("../Utils/Uploads");
 
 // PDF Layout
 const pdfTemplate = require("../PDFTemplates/1095");
 
-/* Get Documents For A Single User */
+/* Gets a single users documents */
 exports.getUserDocuments = (req, res) => {
   const { id } = req.session.user;
   const db = req.app.get("db");
@@ -23,6 +19,7 @@ exports.getUserDocuments = (req, res) => {
     });
 };
 
+/* Deletes a 1095 document from db */
 exports.deleteDocument = (req, res) => {
   const { id } = req.params;
   const db = req.app.get("db");
@@ -39,6 +36,7 @@ exports.deleteDocument = (req, res) => {
     });
 };
 
+/* Creates PDF file */
 exports.createPDF = (req, res) => {
   const pdfOptions = {
     orientation: "landscape",
@@ -60,11 +58,13 @@ exports.createPDF = (req, res) => {
     );
 };
 
+/* Fetches the PDF file */
 exports.fetchPDF = (req, res) => {
   const { name } = req.params;
   res.sendFile(`${__dirname}/PDF/${name}.pdf`);
 };
 
+/* Deletes PDF file if exists in FS */
 exports.deletePDF = (req, res) => {
   const { name } = req.params;
   const filePath = `${__dirname}/PDF/${name}.pdf`;

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 // Components
 import SideNavbar from '../Components/SideNavbar';
@@ -10,6 +12,19 @@ import theme from "../Constants/Theme";
 import DashboardRouter from '../Routes/DashboardRouter';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this._checkUserSession();
+  };
+
+  _checkUserSession = () => {
+    axios.get('/auth/session')
+      .then(({ data }) => {
+        if (!data.user) {
+          this.props.history.push('/')
+        };
+      })
+  };
+
   render() {
     const styles = this.getStyles();
 
