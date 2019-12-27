@@ -28,6 +28,7 @@ class MasterWidget extends Component {
     const styles = this.getStyles();
     const { browserSize } = this.state;
 
+
     if (browserSize === "small") {
       return (
         <div style={styles.alert}>
@@ -40,9 +41,26 @@ class MasterWidget extends Component {
     }
 
     return <div style={styles.widget}>{MasterRouter}</div>;
-  }
+   }
 
   getStyles = () => ({
+    app: {
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      background: '#f9fafb',
+      fontFamily: theme.FontFamily.PRIMARY,
+      color: theme.FontColors.GRAY,
+    },
+    info: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: theme.Spacing.LARGE,
+    },
     widget: {
       width: "100vw",
       height: "100vh",
