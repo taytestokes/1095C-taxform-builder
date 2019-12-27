@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from "react-feather";
 import { css } from "glamor";
-import FileIcon from "react-file-icon";
-import { Header } from 'semantic-ui-react';
+import { Header, Label } from 'semantic-ui-react';
 
 // Theme
 import theme from "../Constants/Theme";
@@ -15,14 +14,10 @@ class SideNavbar extends Component {
         return (
             <div style={styles.component}>
                 <div style={styles.logo}>
+                    <Label color="red" ribbon="right" style={styles.ribbon}>
+                        1095C Generator
+                    </Label>
                     <div style={{ height: '5vh', display: 'flex', alignItems: 'center' }}>
-                        {/* <FileIcon
-                            fold={true}
-                            color={theme.Colors.WHITE}
-                            size={35}
-                            extension="1095C"
-                            labelColor={theme.Colors.PRIMARY}
-                        /> */}
                     </div>
                 </div>
                 <NavLink to="/dashboard/documents" className={styles.navlink} activeClassName={styles.activeNavlink}>
@@ -87,6 +82,14 @@ class SideNavbar extends Component {
             marginLeft: theme.Spacing.SMALL,
             marginTop: 0,
             color: theme.Colors.GRAY
+        },
+        ribbon: {
+            marginLeft: '-.28rem',
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            height: 35,
+            bottom: 3
         }
     })
 }

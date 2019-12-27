@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
-import { Form, Button, } from 'semantic-ui-react';
-import FileIcon from "react-file-icon";
+import { Form, Label } from 'semantic-ui-react';
 
 // Utils
 import { isEmail } from "../Utils/Format";
@@ -95,16 +94,22 @@ class Login extends Component {
 
     return (
       <div style={styles.widget}>
+
         <div style={styles.loginContainer}>
           <Form style={styles.form} size="small">
-            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} />
+            <Label color='red' ribbon style={{ left: -35 }}>
+              1095C Generator
+            </Label>
+            <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} style={{ marginTop: theme.Spacing.LARGE }} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
-            <Form.Button fluid primary type="submit" onClick={this._handleLogin} loading={loading}>Sign In</Form.Button>
+            <Form.Button fluid primary type="submit" onClick={this._handleLogin} loading={loading} style={{ background: '#1b1c1d' }}>Sign In</Form.Button>
           </Form>
-          <div style={{ fontSize: theme.FontSizes.MEDIUM, color: theme.FontColors.GRAY, marginTop: theme.Spacing.MEDIUM, fontWeight: 600 }}>OR</div>
-          <Link to="/register" style={{ width: '100%' }}>
-            <Button fluid style={{ marginTop: theme.Spacing.MEDIUM }}>Register</Button>
-          </Link>
+          <div style={styles.cancel}>
+            <p>Don't have an account?</p>
+            <Link to="/register" style={{ marginLeft: theme.Spacing.SMALL }}>
+              Register
+            </Link>
+          </div>
         </div>
 
       </div>
@@ -122,12 +127,13 @@ class Login extends Component {
       background: '#f9fafb',
     },
     loginContainer: {
-      width: 300,
-      padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      background: theme.Colors.WHITE
+      background: theme.Colors.WHITE,
+      padding: theme.Spacing.LARGE,
+      borderRadius: theme.BorderRadius.SMALL,
+      border: theme.Border.DEFAULT
     },
     logoContainer: {
       background: '#1b1c1d',
@@ -135,14 +141,24 @@ class Login extends Component {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: theme.BorderRadius.SMALL,
       padding: theme.Spacing.MEDIUM,
       color: theme.Colors.GRAY,
+
     },
     form: {
-      marginTop: theme.Spacing.LARGE,
-      width: '100%',
+      width: 250,
+      height: 200,
     },
+    cancel: {
+      width: '100%',
+      fontSize: theme.FontSizes.LARGE,
+      color: theme.FontColors.GRAY,
+      marginTop: theme.Spacing.LARGE,
+      fontWeight: 500,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    }
   });
 }
 

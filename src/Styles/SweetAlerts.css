@@ -8,8 +8,8 @@
 
 /* Modal Button Styles */
 .swal-button {
-  background-color: #2185d0;
-  border: 1px solid #2185d0;
+  background-color: #1b1c1d;
+  border: 1px solid #1b1c1d;
   border-radius: 3px;
   height: 35px;
   width: 80px;
@@ -32,7 +32,7 @@
 }
 
 .swal-button:not([disabled]):hover {
-  background-color: #1678c2;
+  background-color: #1b1c1d;
 }
 
 .swal-button--cancel:not([disabled]):hover {

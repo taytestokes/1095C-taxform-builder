@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Feed, Icon, Loader } from 'semantic-ui-react';
+import { Form, Button, Loader, Label } from 'semantic-ui-react';
 import { css } from 'glamor';
 import axios from 'axios';
 import swal from "@sweetalert/with-react";
@@ -261,8 +261,10 @@ class DocumentForm extends Component {
                                 {/* Part One: Employee Section */}
                                 <div style={styles.formSection}>
                                     <div style={styles.labelContainer}>
-                                        <h2 style={styles.label}>Employee Information</h2>
-                                        <h3 style={styles.subLabel}> Part One</h3>
+                                        <Label color="red" ribbon style={styles.ribbon}>
+                                            <h2>Employee Information</h2>
+                                            <h3 style={{ fontSize: theme.FontSizes.SMALL }}>Part One</h3>
+                                        </Label>
                                     </div>
                                     <div style={styles.formGroup}>
                                         <Form.Group>
@@ -284,8 +286,10 @@ class DocumentForm extends Component {
                                 {/* Part One: Employer Section */}
                                 <div style={styles.formSection}>
                                     <div style={styles.labelContainer}>
-                                        <h2 style={styles.label}>Employer Information</h2>
-                                        <h3 style={styles.subLabel}> Part One</h3>
+                                        <Label color="red" ribbon style={styles.ribbon}>
+                                            <h2>Employer Information</h2>
+                                            <h3 style={{ fontSize: theme.FontSizes.SMALL }}>Part One</h3>
+                                        </Label>
                                     </div>
                                     <div style={styles.formGroup}>
                                         <Form.Group>
@@ -312,8 +316,10 @@ class DocumentForm extends Component {
                                 {/*  Part Two: Employee Offer of Coverage*/}
                                 <div style={styles.formSection}>
                                     <div style={styles.labelContainer}>
-                                        <h2 style={styles.label}>Employee Offer Of Coverage</h2>
-                                        <h3 style={styles.subLabel}> Part Two</h3>
+                                        <Label color="red" ribbon style={styles.ribbon}>
+                                            <h2>Employee Offer of Coverage</h2>
+                                            <h3 style={{ fontSize: theme.FontSizes.SMALL }}>Part Two</h3>
+                                        </Label>
                                     </div>
                                     <div style={styles.formGroup}>
                                         <Form.Group widths="equal">
@@ -337,8 +343,10 @@ class DocumentForm extends Component {
                                 {/* Part Two: Employee Contribution */}
                                 <div style={styles.formSection}>
                                     <div style={styles.labelContainer}>
-                                        <h2 style={styles.label}>Employee Required Contribution</h2>
-                                        <h3 style={styles.subLabel}> Part Two</h3>
+                                        <Label color="red" ribbon style={styles.ribbon}>
+                                            <h2>Employee Required Contribution Amount</h2>
+                                            <h3 style={{ fontSize: theme.FontSizes.SMALL }}>Part Two</h3>
+                                        </Label>
                                     </div>
                                     <div style={styles.formGroup}>
                                         <Form.Group>
@@ -362,8 +370,10 @@ class DocumentForm extends Component {
                                 {/* Part Two: Section 4980H */}
                                 <div style={styles.formSection}>
                                     <div style={styles.labelContainer}>
-                                        <h2 style={styles.label}>Section 4980H Safe Harbor And Other Relief</h2>
-                                        <h3 style={styles.subLabel}>Part Two</h3>
+                                        <Label color="red" ribbon style={styles.ribbon}>
+                                            <h2>Section 4980H Safe Harbor and Other Relief</h2>
+                                            <h3 style={{ fontSize: theme.FontSizes.SMALL }}>Part Two</h3>
+                                        </Label>
                                     </div>
                                     <div style={styles.formGroup}>
                                         <Form.Group widths="equal">
@@ -390,7 +400,7 @@ class DocumentForm extends Component {
                         <div style={styles.rightColumn}>
                             <div style={styles.formAction}>
                                 <div style={styles.labelContainer}>
-                                    <h2 style={styles.label}>Form Steps</h2>
+                                    <h2 style={styles.label}>Steps</h2>
                                     <h3 style={styles.subLabel}>Currently on step {this.state.step} of 2</h3>
                                 </div>
                                 <div style={styles.actionsContainer}>
@@ -398,8 +408,13 @@ class DocumentForm extends Component {
                                         <Button labelPosition='left' icon='left chevron' content='Back' onClick={this._handlePreviousStep} disabled={this.state.step === 1} />
                                         <Button labelPosition='right' icon='right chevron' content='Forward' onClick={this._handleNextStep} disabled={this.state.step === 2} />
                                     </Button.Group>
-                                    <Button fluid size="tiny" onClick={this._handleCancel} style={{ marginTop: 10 }}>Reset</Button>
-                                    <Button fluid size="tiny" primary disabled={isSubmitDisabled} onClick={this._handleCreateDocument} style={{ marginTop: 10 }}>Save</Button>
+                                    <Button.Group fluid size="tiny" style={{ marginTop: 10 }}>
+                                        <Button onClick={this._handleCancel}> Reset</Button>
+                                    </Button.Group>
+                                    <Button.Group fluid size="tiny" style={{ marginTop: 10 }}>
+                                        <Button fluidonClick={this._handleCreateDocument} style={{ background: '#1b1c1d', color: theme.FontColors.LIGHT }} disabled={isSubmitDisabled}>Save</Button>
+                                    </Button.Group>
+
                                 </div>
 
                             </div>
@@ -450,8 +465,7 @@ class DocumentForm extends Component {
         },
         formGroup: {
             width: '100%',
-            paddingLeft: theme.Spacing.SEMI_SMALL,
-            paddingRight: theme.Spacing.SEMI_SMALL,
+            padding: theme.Spacing.SEMI_SMALL,
             marginTop: theme.Spacing.SMALL
         },
         formInput: {
@@ -465,17 +479,20 @@ class DocumentForm extends Component {
             background: theme.Colors.WHITE,
             border: theme.Border.DEFAULT,
             borderRadius: theme.BorderRadius.SMALL,
-            marginTop: theme.Spacing.MEDIUM,
+            marginTop: theme.Spacing.XLARGE,
         },
         labelContainer: {
             width: '100%',
-            height: 50,
             display: 'flex',
             flexDirection: 'column',
-            paddingLeft: theme.Spacing.SEMI_SMALL,
-            paddingTop: theme.Spacing.SMALL,
+            padding: theme.Spacing.SEMI_SMALL,
             background: theme.Colors.WHITE,
-            borderBottom: theme.Border.DEFAULT,
+        },
+        ribbon: {
+            left: '-1.8rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
         },
         label: {
             fontSize: theme.FontSizes.XLARGE,
@@ -484,7 +501,7 @@ class DocumentForm extends Component {
         subLabel: {
             fontSize: theme.FontSizes.SMALL,
             color: theme.FontColors.GRAY,
-            fontStyle: 'italic'
+            marginTop: theme.Spacing.XSMALL
         },
         stepController: {
             width: '100%',
@@ -505,7 +522,7 @@ class DocumentForm extends Component {
             background: theme.Colors.WHITE,
             border: theme.Border.DEFAULT,
             borderRadius: theme.BorderRadius.SMALL,
-            marginTop: theme.Spacing.MEDIUM,
+            marginTop: theme.Spacing.XLARGE,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

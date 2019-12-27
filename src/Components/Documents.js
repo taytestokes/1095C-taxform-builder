@@ -18,7 +18,7 @@ class Documents extends Component {
     documents: [],
     loading: true,
     currentPage: 1,
-    documentsPerPage: 8,
+    documentsPerPage: 11,
     sortOption: 'Newest',
   };
 
@@ -320,8 +320,7 @@ class Documents extends Component {
       alignItems: 'center',
       justifyContent: 'flex-end',
       width: '80%',
-      height: '10vh',
-      marginTop: theme.Spacing.LARGE,
+      marginTop: theme.Spacing.XLARGE,
     },
     pagination: {
       boxShadow: 'none',

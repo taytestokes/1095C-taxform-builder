@@ -4,7 +4,7 @@ import fileSaver from "file-saver";
 import FileIcon from "react-file-icon";
 import moment from "moment";
 import { css } from "glamor";
-import { Button, Popup } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 // Theme
 import theme from "../Constants/Theme";
