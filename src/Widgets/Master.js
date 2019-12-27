@@ -23,6 +23,7 @@ class MasterWidget extends Component {
     };
   }
 
+
   render() {
     const styles = this.getStyles();
     const { browserSize } = this.state;
@@ -31,8 +32,8 @@ class MasterWidget extends Component {
       return (
         <div style={styles.alert}>
           <div style={styles.card}>
-            <Icon.AlertCircle size={30} />
-            <p style={styles.cardText}>Browser size is not supported!</p>
+            <Icon.AlertCircle size={35} />
+            <p style={styles.cardText}>Browser size is not supported! Please use a larger view port.</p>
           </div>
         </div>
       );
@@ -55,17 +56,15 @@ class MasterWidget extends Component {
       position: "fixed",
       top: 0,
       left: 0,
-      background: theme.BackgroundColors.LIGHT,
+      background: '#f9fafb',
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      fontFamily: theme.FontFamily.PRIMARY
+      fontFamily: theme.FontFamily.PRIMARY,
+      color: theme.FontColors.GRAY,
     },
     card: {
-      background: theme.Colors.WHITE,
-      boxShadow: theme.Shadows.CARD,
-      padding: theme.Spacing.LARGE,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -73,7 +72,9 @@ class MasterWidget extends Component {
     },
     cardText: {
       marginTop: theme.Spacing.MEDIUM,
-      fontSize: theme.Spacing.MEDIUM
+      fontSize: theme.Spacing.MEDIUM,
+      width: '65%',
+      textAlign: 'center',
     }
   });
 }

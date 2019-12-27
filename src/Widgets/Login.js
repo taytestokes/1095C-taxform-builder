@@ -102,7 +102,7 @@ class Login extends Component {
             </Label>
             <Form.Input required placeholder="Email" name="email" onChange={this._handleChange} style={{ marginTop: theme.Spacing.LARGE }} />
             <Form.Input required placeholder="Password" type="password" name="password" onChange={this._handleChange} />
-            <Form.Button fluid primary type="submit" onClick={this._handleLogin} loading={loading} style={{ background: '#1b1c1d' }}>Sign In</Form.Button>
+            <Form.Button fluid secondary type="submit" onClick={this._handleLogin} loading={loading} style={{ background: '#1b1c1d' }}>Sign In</Form.Button>
           </Form>
           <div style={styles.cancel}>
             <p>Don't have an account?</p>
