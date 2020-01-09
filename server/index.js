@@ -4,6 +4,14 @@ const cluster = require("cluster");
 const os = require("os");
 const chalk = require("chalk");
 const environment = process.env.NODE_ENV;
+const scheduler = require("node-schedule");
+const { clearPdfFiles } = require("./Utils/clearPDF");
+
+/* Runs a Chron-like job to remove PDF files every 5th hour */
+scheduler.scheduleJob("* */5 * * *", () => {
+  console.log('Removing all PDF files from FS')
+  clearPdfFiles();
+})
 
 /* Check Master Cluster and Create Child Workers */
 if (cluster.isMaster && environment === 'production') {
